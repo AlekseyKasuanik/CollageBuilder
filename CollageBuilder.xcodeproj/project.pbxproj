@@ -11,6 +11,11 @@
 		1F5DF5C82A76726A00430AF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* ContentView.swift */; };
 		1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C92A76726C00430AF1 /* Assets.xcassets */; };
 		1F5DF5CE2A76726C00430AF1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5CD2A76726C00430AF1 /* Preview Assets.xcassets */; };
+		1F660F1E2A78174D0072925A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F1D2A78174D0072925A /* Store.swift */; };
+		1F660F212A781EDC0072925A /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F202A781EDC0072925A /* AppReducer.swift */; };
+		1F660F232A781F050072925A /* ReducerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F222A781F050072925A /* ReducerProtocol.swift */; };
+		1F660F262A781F570072925A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F252A781F570072925A /* AppState.swift */; };
+		1F660F292A781F8C0072925A /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F282A781F8C0072925A /* AppAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		1F5DF5C92A76726C00430AF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F5DF5CB2A76726C00430AF1 /* CollageBuilder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollageBuilder.entitlements; sourceTree = "<group>"; };
 		1F5DF5CD2A76726C00430AF1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1F660F1D2A78174D0072925A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		1F660F202A781EDC0072925A /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		1F660F222A781F050072925A /* ReducerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerProtocol.swift; sourceTree = "<group>"; };
+		1F660F252A781F570072925A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		1F660F282A781F8C0072925A /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +64,10 @@
 			children = (
 				1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */,
 				1F5DF5C72A76726A00430AF1 /* ContentView.swift */,
+				1F660F1C2A78172A0072925A /* AppStore */,
+				1F660F1F2A781EAB0072925A /* AppReducer */,
+				1F660F272A781F6F0072925A /* AppAction */,
+				1F660F242A781F290072925A /* AppState */,
 				1F5DF5C92A76726C00430AF1 /* Assets.xcassets */,
 				1F5DF5CB2A76726C00430AF1 /* CollageBuilder.entitlements */,
 				1F5DF5CC2A76726C00430AF1 /* Preview Content */,
@@ -67,6 +81,39 @@
 				1F5DF5CD2A76726C00430AF1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1F660F1C2A78172A0072925A /* AppStore */ = {
+			isa = PBXGroup;
+			children = (
+				1F660F1D2A78174D0072925A /* Store.swift */,
+			);
+			path = AppStore;
+			sourceTree = "<group>";
+		};
+		1F660F1F2A781EAB0072925A /* AppReducer */ = {
+			isa = PBXGroup;
+			children = (
+				1F660F202A781EDC0072925A /* AppReducer.swift */,
+				1F660F222A781F050072925A /* ReducerProtocol.swift */,
+			);
+			path = AppReducer;
+			sourceTree = "<group>";
+		};
+		1F660F242A781F290072925A /* AppState */ = {
+			isa = PBXGroup;
+			children = (
+				1F660F252A781F570072925A /* AppState.swift */,
+			);
+			path = AppState;
+			sourceTree = "<group>";
+		};
+		1F660F272A781F6F0072925A /* AppAction */ = {
+			isa = PBXGroup;
+			children = (
+				1F660F282A781F8C0072925A /* AppAction.swift */,
+			);
+			path = AppAction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F660F292A781F8C0072925A /* AppAction.swift in Sources */,
+				1F660F1E2A78174D0072925A /* Store.swift in Sources */,
+				1F660F232A781F050072925A /* ReducerProtocol.swift in Sources */,
 				1F5DF5C82A76726A00430AF1 /* ContentView.swift in Sources */,
+				1F660F262A781F570072925A /* AppState.swift in Sources */,
+				1F660F212A781EDC0072925A /* AppReducer.swift in Sources */,
 				1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
