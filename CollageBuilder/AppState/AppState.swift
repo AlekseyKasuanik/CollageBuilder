@@ -8,5 +8,5 @@
 import Foundation
 
 struct AppState {
-    
+    var shape: ShapeData
 }

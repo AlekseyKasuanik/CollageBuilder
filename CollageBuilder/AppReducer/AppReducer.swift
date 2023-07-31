@@ -10,6 +10,12 @@ import Foundation
 struct AppReducer: ReducerProtocol {
     
     func reduce(_ currentState: AppState, _ action: AppAction) -> AppState {
+        switch action {
+        case .translateConrolPoint(let state):
+            break
+        }
         
+        return currentState
     }
+    
 }
