@@ -11,5 +11,5 @@ protocol ReducerProtocol {
     associatedtype State
     associatedtype Action
     
-    func reduce(_ currentState: State, _ action: Action) -> State
+    mutating func reduce(_ currentState: State, _ action: Action) -> State
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F347B5D2A79950C008915BF /* ShapeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F347B5C2A79950C008915BF /* ShapeChanger.swift */; };
 		1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */; };
 		1F5DF5C82A76726A00430AF1 /* CollageBuiderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */; };
 		1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C92A76726C00430AF1 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F347B5C2A79950C008915BF /* ShapeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeChanger.swift; sourceTree = "<group>"; };
 		1F5DF5C22A76726A00430AF1 /* CollageBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollageBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderApp.swift; sourceTree = "<group>"; };
 		1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuiderView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				1F660F322A78298F0072925A /* ControlPoint.swift */,
 				1F660F2E2A7829580072925A /* ControlPointsExtractor.swift */,
 				1F660F4B2A7839200072925A /* ElementsChanger.swift */,
+				1F347B5C2A79950C008915BF /* ShapeChanger.swift */,
 				1F660F362A782D3F0072925A /* GestureView */,
 				1F660F462A7831ED0072925A /* Views */,
 				1F660F3F2A782E410072925A /* Extensions */,
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F660F442A782E6B0072925A /* CGSize+.swift in Sources */,
+				1F347B5D2A79950C008915BF /* ShapeChanger.swift in Sources */,
 				1F660F3A2A782D640072925A /* GestureUIView.swift in Sources */,
 				1F660F352A782D010072925A /* AppStorePreview.swift in Sources */,
 				1F660F3C2A782D820072925A /* GestureState.swift in Sources */,

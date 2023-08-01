@@ -10,13 +10,14 @@ import SwiftUI
 struct ControlPointsView: View {
     
     let controlPoints: [ControlPoint]
+    let size: CGSize
     
     var body: some View {
         ZStack {
             ForEach(controlPoints) { controlPoint in
                 circle
-                    .position(x: controlPoint.point.x,
-                              y: controlPoint.point.y)
+                    .position(x: controlPoint.point.x * size.width,
+                              y: controlPoint.point.y * size.height)
             }
         }
     }
@@ -35,8 +36,8 @@ struct ControlPointsView: View {
 struct ControlPointsView_Previews: PreviewProvider {
     static var previews: some View {
         ControlPointsView(controlPoints: [
-            .init(point: .init(x: 100, y: 100), index: 0, type: .point),
-            .init(point: .init(x: 200, y: 200), index: 1, type: .point)
-        ])
+            .init(point: .init(x: 0.1, y: 0.1), index: 0, type: .point),
+            .init(point: .init(x: 0.2, y: 0.2), index: 1, type: .point)
+        ], size: .init(side: 1000))
     }
 }

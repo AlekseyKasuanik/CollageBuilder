@@ -13,7 +13,7 @@ final class Store<Reducer: ReducerProtocol>: ObservableObject {
     
     @Published private(set) var state: Reducer.State
     
-    private let reducer: Reducer
+    private var reducer: Reducer
     
     init(initial: Reducer.State,
          reducer: Reducer) {

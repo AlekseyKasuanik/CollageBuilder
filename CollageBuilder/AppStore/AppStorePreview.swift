@@ -9,7 +9,7 @@ import Foundation
 
 extension AppStore {
     static var preview: AppStore {
-        let element = ShapeElement.rectangle(.init(x: 400, y: 200, width: 200, height: 300))
+        let element = ShapeElement.rectangle(.init(x: 0.4, y: 0.2, width: 0.2, height: 0.3))
         return AppStore(
             initial: AppState(shape: .init(elements: [element])),
             reducer: AppReducer()

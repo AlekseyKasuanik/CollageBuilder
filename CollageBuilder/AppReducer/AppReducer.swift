@@ -9,13 +9,17 @@ import Foundation
 
 struct AppReducer: ReducerProtocol {
     
-    func reduce(_ currentState: AppState, _ action: AppAction) -> AppState {
+    var shapeChanger = ShapeChanger()
+    
+    mutating func reduce(_ currentState: AppState, _ action: AppAction) -> AppState {
+        var newState = currentState
+        
         switch action {
-        case .translateConrolPoint(let state):
-            break
+        case .translateConrolPoint(let gestureState):
+            newState.shape = shapeChanger.translate(gestureState, in: currentState.shape)
         }
         
-        return currentState
+        return newState
     }
     
 }

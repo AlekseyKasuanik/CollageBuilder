@@ -125,27 +125,25 @@ enum ElementsChanger {
         guard let rect = getElementRect(for: elements[point.index]) else {
             return elements
         }
-
+        
         let dWidth = point.point.x - rect.maxX
         let newRect = CGRect(x: rect.minX,
                              y: rect.minY,
                              width: rect.width + dWidth,
                              height: rect.height)
-
+        
         return change(newRect, in: elements, at: point.index)
     }
     
-    private static func change(_ rect: CGRect, in element: ShapeElement) -> ShapeElement {
-        switch element {
-        case .rectangle:
-            return .rectangle(rect)
-            
-        case .ellipse:
+    private static func change(_ rect: CGRect,
+                               in element: ShapeElement) -> ShapeElement {
+        
+        guard case .rectangle = element else {
             return .ellipse(rect)
-            
-        default:
-            break
         }
+        
+        return .rectangle(rect)
+        
     }
     
     private static func change(_ rect: CGRect,

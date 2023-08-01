@@ -18,3 +18,7 @@ struct ShapeData {
 }
 
 
+struct Collage {
+    var shapes: ShapeData
+    private(set) var id: String = UUID().uuidString
+}

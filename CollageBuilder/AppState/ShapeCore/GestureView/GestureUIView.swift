@@ -57,13 +57,21 @@ final class GestureUIView: UIView {
         
         switch gesture.state {
         case .began:
+            let location = gesture.location(in: self)
             onTranslateGesture?(.began(
-                position: gesture.location(in: self)
+                position: CGPoint(
+                    x: location.x / frame.width,
+                    y: location.y / frame.height
+                )
             ))
             
         case .changed:
+            let translation = gesture.translation(in: self)
             onTranslateGesture?(.changed(
-                translation: gesture.translation(in: self)
+                translation: CGPoint(
+                    x: translation.x / frame.width,
+                    y: translation.y / frame.height
+                )
             ))
             
         default:
@@ -74,7 +82,12 @@ final class GestureUIView: UIView {
     }
     
     @objc private func twoFingersPanGestureRecognizer(gesture: UIPanGestureRecognizer) {
-        onTwoFingersTranslateGesture?(gesture.translation(in: self))
+        let translation = gesture.translation(in: self)
+        onTwoFingersTranslateGesture?(CGPoint(
+            x: translation.x / frame.width,
+            y: translation.y / frame.height
+        ))
+        
         gesture.setTranslation(.zero, in: self)
     }
     
@@ -97,7 +110,11 @@ final class GestureUIView: UIView {
     }
     
     @objc private func tapGestureRecognizer(gesture: UITapGestureRecognizer) {
-        onTapGesture?(gesture.location(in: self))
+        let location = gesture.location(in: self)
+        onTapGesture?(CGPoint(
+            x: location.x / frame.width,
+            y: location.y / frame.height
+        ))
     }
     
 }

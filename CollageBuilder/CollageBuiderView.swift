@@ -16,10 +16,18 @@ struct CollageBuiderView: View {
     
     var body: some View {
         ZStack {
-            ZStack {
-                GridView(xLines: 100, yLines: 100)
-                CollageShape(shape: store.state.shape)
-                ControlPointsView(controlPoints: store.state.shape.controlPoints)
+            GeometryReader { geo in
+                ZStack {
+                    GridView(xLines: 100, yLines: 100)
+                    CollageShape(
+                        shape: store.state.shape,
+                        size: geo.size
+                    )
+                    ControlPointsView(
+                        controlPoints: store.state.shape.controlPoints,
+                        size: geo.size
+                    )
+                }
             }
         }
         .frame(width: 1000, height: 1000)
@@ -31,7 +39,7 @@ struct CollageBuiderView: View {
             } onScaleGesture: { scale in
                 collageScale = collageScale * scale
             } onTranslateGesture: { translation in
-                // model.pointsChanger.translate(translation)
+                store.dispatch(.translateConrolPoint(translation))
             } onTwoFingersTranslateGesture: { translation in
                 collageOffeset = translation + collageOffeset
             }
