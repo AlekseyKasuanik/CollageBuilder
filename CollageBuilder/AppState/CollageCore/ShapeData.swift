@@ -7,18 +7,13 @@
 
 import Foundation
 
-struct ShapeData {
+struct ShapeData: Identifiable {
     var elements: [ShapeElement]
     
     private(set) var id: String = UUID().uuidString
     
     var controlPoints: [ControlPoint] {
-        ControlPointsExtractor.extract(from: elements)
+        ControlPointsExtractor.extract(from: self)
     }
 }
 
-
-struct Collage {
-    var shapes: ShapeData
-    private(set) var id: String = UUID().uuidString
-}

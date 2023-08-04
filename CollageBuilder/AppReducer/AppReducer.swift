@@ -9,17 +9,30 @@ import Foundation
 
 struct AppReducer: ReducerProtocol {
     
-    var shapeChanger = ShapeChanger()
+    var collageChanger = CollageChanger()
     
     mutating func reduce(_ currentState: AppState, _ action: AppAction) -> AppState {
         var newState = currentState
         
         switch action {
         case .translateConrolPoint(let gestureState):
-            newState.shape = shapeChanger.translate(gestureState, in: currentState.shape)
+            newState.collage = collageChanger.translate(
+                gestureState,
+                in: newState.collage
+            )
+        case .conectControlPoints(let ids):
+            guard let index = newState.collage.dependencies.firstIndex(where: {
+                !$0.pointIDs.intersection(ids).isEmpty
+            }) else {
+                newState.collage.dependencies.append(.init(pointIDs: ids))
+                break
+            }
+            
+            newState.collage.dependencies[index] = .init(pointIDs: ids)
         }
         
         return newState
     }
     
 }
+

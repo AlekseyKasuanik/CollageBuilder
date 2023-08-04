@@ -39,19 +39,19 @@ enum ElementsChanger {
     private static func changePoint(_ point: ControlPoint,
                                     in elements: [ShapeElement]) -> [ShapeElement] {
         var newElements = elements
-        newElements[point.index] = .point(point.point)
+        newElements[point.indexInElement] = .point(point.point)
         return newElements
     }
     
     private static func changeCurveEnd(_ point: ControlPoint,
                                        in elements: [ShapeElement]) -> [ShapeElement] {
         
-        guard case .curve(_, let oldControl) = elements[point.index] else {
+        guard case .curve(_, let oldControl) = elements[point.indexInElement] else {
             return elements
         }
         
         var newElements = elements
-        newElements[point.index] = .curve(endPoint: point.point,
+        newElements[point.indexInElement] = .curve(endPoint: point.point,
                                           control: oldControl)
         
         return newElements
@@ -60,12 +60,12 @@ enum ElementsChanger {
     private static func changeCurveControl(_ point: ControlPoint,
                                            in elements: [ShapeElement]) -> [ShapeElement] {
         
-        guard case .curve(let oldCurveEnd, _) = elements[point.index] else {
+        guard case .curve(let oldCurveEnd, _) = elements[point.indexInElement] else {
             return elements
         }
         
         var newElements = elements
-        newElements[point.index] = .curve(endPoint: oldCurveEnd,
+        newElements[point.indexInElement] = .curve(endPoint: oldCurveEnd,
                                           control: point.point)
         
         return newElements
@@ -74,7 +74,7 @@ enum ElementsChanger {
     private static func changeTopMidX(_ point: ControlPoint,
                                       in elements: [ShapeElement]) -> [ShapeElement] {
         
-        guard let rect = getElementRect(for: elements[point.index]) else {
+        guard let rect = getElementRect(for: elements[point.indexInElement]) else {
             return elements
         }
         
@@ -84,13 +84,13 @@ enum ElementsChanger {
                              width: rect.width,
                              height: rect.height - dHeight)
         
-        return change(newRect, in: elements, at: point.index)
+        return change(newRect, in: elements, at: point.indexInElement)
     }
     
     private static func changeBottomMidX(_ point: ControlPoint,
                                          in elements: [ShapeElement]) -> [ShapeElement] {
         
-        guard let rect = getElementRect(for: elements[point.index]) else {
+        guard let rect = getElementRect(for: elements[point.indexInElement]) else {
             return elements
         }
 
@@ -100,13 +100,13 @@ enum ElementsChanger {
                              width: rect.width,
                              height: rect.height + dHeight)
 
-        return change(newRect, in: elements, at: point.index)
+        return change(newRect, in: elements, at: point.indexInElement)
     }
     
     private static func changeLeftMidY(_ point: ControlPoint,
                                        in elements: [ShapeElement]) -> [ShapeElement] {
         
-        guard let rect = getElementRect(for: elements[point.index]) else {
+        guard let rect = getElementRect(for: elements[point.indexInElement]) else {
             return elements
         }
 
@@ -116,13 +116,13 @@ enum ElementsChanger {
                              width: rect.width - dWidth,
                              height: rect.height)
 
-        return change(newRect, in: elements, at: point.index)
+        return change(newRect, in: elements, at: point.indexInElement)
     }
     
     private static func changeRightMidY(_ point: ControlPoint,
                                         in elements: [ShapeElement]) -> [ShapeElement] {
         
-        guard let rect = getElementRect(for: elements[point.index]) else {
+        guard let rect = getElementRect(for: elements[point.indexInElement]) else {
             return elements
         }
         
@@ -132,7 +132,7 @@ enum ElementsChanger {
                              width: rect.width + dWidth,
                              height: rect.height)
         
-        return change(newRect, in: elements, at: point.index)
+        return change(newRect, in: elements, at: point.indexInElement)
     }
     
     private static func change(_ rect: CGRect,

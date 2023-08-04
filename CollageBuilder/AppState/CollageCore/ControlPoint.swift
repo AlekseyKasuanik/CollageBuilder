@@ -9,8 +9,9 @@ import Foundation
 
 struct ControlPoint {
     var point: CGPoint
-    let index: Int
+    let indexInElement: Int
     let type: PointType
+    let shapeID: String
     
     enum PointType: String {
         case point, curveEnd, curveControl, topMidX,
@@ -19,5 +20,11 @@ struct ControlPoint {
 }
 
 extension ControlPoint: Identifiable {
-    var id: String { index.description + type.rawValue }
+    var id: String { indexInElement.description + shapeID + type.rawValue }
+}
+
+extension ControlPoint: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

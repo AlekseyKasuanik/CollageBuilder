@@ -9,4 +9,5 @@ import Foundation
 
 enum AppAction {
     case translateConrolPoint(GestureState)
+    case conectControlPoints(Set<String>)
 }
