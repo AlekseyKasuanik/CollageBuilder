@@ -10,6 +10,7 @@
 		1F32A2042A7C3A14006A4AAE /* PointsRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */; };
 		1F347B5D2A79950C008915BF /* CollageChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F347B5C2A79950C008915BF /* CollageChanger.swift */; };
 		1F3BD2762A7AB3B9001E7ACB /* Collage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3BD2752A7AB3B9001E7ACB /* Collage.swift */; };
+		1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F76C12A7E5418005374EB /* AddShapeElementView.swift */; };
 		1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */; };
 		1F5DF5C82A76726A00430AF1 /* CollageBuiderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */; };
 		1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C92A76726C00430AF1 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 		1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsRecognizer.swift; sourceTree = "<group>"; };
 		1F347B5C2A79950C008915BF /* CollageChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageChanger.swift; sourceTree = "<group>"; };
 		1F3BD2752A7AB3B9001E7ACB /* Collage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collage.swift; sourceTree = "<group>"; };
+		1F4F76C12A7E5418005374EB /* AddShapeElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShapeElementView.swift; sourceTree = "<group>"; };
 		1F5DF5C22A76726A00430AF1 /* CollageBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollageBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderApp.swift; sourceTree = "<group>"; };
 		1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuiderView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */,
 				1F660F3D2A782DEF0072925A /* GridView.swift */,
 				1F660F492A78324D0072925A /* ControlPointsView.swift */,
+				1F4F76C12A7E5418005374EB /* AddShapeElementView.swift */,
 				1F660F1C2A78172A0072925A /* AppStore */,
 				1F660F1F2A781EAB0072925A /* AppReducer */,
 				1F660F272A781F6F0072925A /* AppAction */,
@@ -282,6 +285,7 @@
 				1F660F1E2A78174D0072925A /* Store.swift in Sources */,
 				1F3BD2762A7AB3B9001E7ACB /* Collage.swift in Sources */,
 				1F660F382A782D4B0072925A /* GestureView.swift in Sources */,
+				1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */,
 				1F660F312A7829700072925A /* ShapeElement.swift in Sources */,
 				1F660F232A781F050072925A /* ReducerProtocol.swift in Sources */,
 				1F660F4C2A7839200072925A /* ElementsChanger.swift in Sources */,

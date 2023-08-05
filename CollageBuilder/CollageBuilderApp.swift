@@ -11,7 +11,16 @@ import SwiftUI
 struct CollageBuilderApp: App {
     var body: some Scene {
         WindowGroup {
-            CollageBuiderView(store: .preview)
+            CollageBuiderView(store: createStore())
         }
+    }
+    
+    private func createStore() -> AppStore {
+        .init(
+            initial: .init(collage: .init(shapes: [],
+                                          dependencies: [],
+                                          id: UUID().uuidString)),
+            reducer: .init()
+        )
     }
 }

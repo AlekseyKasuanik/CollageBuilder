@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CollageBuiderView: View {
     
+    private let collageSize: CGSize = .init(side: 1000)
+    
     @ObservedObject private(set) var store: AppStore
     
     @State private var collageOffeset: CGPoint = .zero
@@ -21,25 +23,23 @@ struct CollageBuiderView: View {
     var body: some View {
         ZStack {
             ZStack {
-                GeometryReader { geo in
-                    ZStack {
-                        GridView(xLines: 100, yLines: 100)
-                        ForEach(collage.shapes) { shape in
-                            CollageShape(
-                                shape: shape,
-                                size: geo.size
-                            )
-                            .frame(width: 1000, height: 1000)
-                        }
-                        ControlPointsView(
-                            selectedPointsIDs: $selectedPointsIDs,
-                            controlPoints: collage.controlPoints,
-                            size: geo.size
+                ZStack {
+                    GridView(xLines: 100, yLines: 100)
+                    ForEach(collage.shapes) { shape in
+                        CollageShape(
+                            shape: shape,
+                            size: collageSize
                         )
                     }
+                    ControlPointsView(
+                        selectedPointsIDs: $selectedPointsIDs,
+                        controlPoints: collage.controlPoints,
+                        size: collageSize
+                    )
                 }
             }
-            .frame(width: 1000, height: 1000)
+            .frame(width: collageSize.width,
+                   height: collageSize.height)
             .offset(x: collageOffeset.x,
                     y: collageOffeset.y)
             .overlay {
@@ -70,12 +70,15 @@ struct CollageBuiderView: View {
                         createButtonBody(with: "Cancel")
                     }
                 }
+                .buttonStyle(.plain)
+                .opacity(selectedPointsIDs.isEmpty ? 0 : 1)
+                .animation(.default, value: selectedPointsIDs)
                 Spacer()
+                AddShapeElementView(size: collageSize)
+                    .frame(height: 250)
             }
-            .buttonStyle(.plain)
-            .opacity(selectedPointsIDs.isEmpty ? 0 : 1)
-            .animation(.default, value: selectedPointsIDs)
         }
+        .environmentObject(store)
 
     }
     
