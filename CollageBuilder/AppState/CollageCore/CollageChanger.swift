@@ -9,11 +9,16 @@ import Foundation
 
 struct CollageChanger {
     let pointTouchSide: CGFloat
+    let transalationStep: CGFloat
     
     private var movedPoint: ControlPoint?
+    private var accumulatedTranslation: CGPoint = .zero
     
-    init(pointTouchSide: CGFloat = 0.05) {
+    init(pointTouchSide: CGFloat = 0.05,
+         transalationStep: CGFloat = 0) {
+        
         self.pointTouchSide = pointTouchSide
+        self.transalationStep = transalationStep
     }
     
     mutating func translate(_ translation: GestureState,
@@ -42,8 +47,10 @@ struct CollageChanger {
     private mutating func translatePoint(_ translation: CGPoint,
                                          in collage: Collage) -> Collage {
         
-        movedPoint?.point.x += translation.x
-        movedPoint?.point.y += translation.y
+        let coorectTransation = getCoorectTranslation(translation)
+        
+        movedPoint?.point.x += coorectTransation.x
+        movedPoint?.point.y += coorectTransation.y
         
         guard let point = movedPoint else {
             return collage
@@ -53,14 +60,31 @@ struct CollageChanger {
         
         dependedPoints.enumerated().forEach { index, point in
             dependedPoints[index].point = .init(
-                x: point.point.x + translation.x,
-                y: point.point.y + translation.y
+                x: point.point.x + coorectTransation.x,
+                y: point.point.y + coorectTransation.y
             )
         }
         
         let allPoints = Array(Set([point] + dependedPoints))
         
         return setPoints(allPoints, to: collage)
+    }
+    
+    private mutating func getCoorectTranslation(_ translation: CGPoint) -> CGPoint {
+        let sumTranslation = accumulatedTranslation + translation
+        
+        let remainderX = sumTranslation.x.truncatingRemainder(dividingBy: transalationStep)
+        let remainderY = sumTranslation.y.truncatingRemainder(dividingBy: transalationStep)
+        
+        let resultTranslation = CGPoint(
+            x: sumTranslation.x - remainderX,
+            y: sumTranslation.y - remainderY
+        )
+        
+        accumulatedTranslation = .init(x: remainderX,
+                                       y: remainderY)
+        
+        return resultTranslation
     }
     
     private func getDependedPoints(in collage: Collage) -> [ControlPoint] {

@@ -40,8 +40,6 @@ struct CollageBuiderView: View {
             }
             .frame(width: collageSize.width,
                    height: collageSize.height)
-            .offset(x: collageOffeset.x,
-                    y: collageOffeset.y)
             .overlay {
                 GestureView() { location in
                     handleLongTap(in: location)
@@ -53,10 +51,13 @@ struct CollageBuiderView: View {
                     collageOffeset = translation + collageOffeset
                 }
             }
+            .offset(x: collageOffeset.x * collageSize.width,
+                    y: collageOffeset.y * collageSize.height)
             .scaleEffect(collageScale)
             .layoutPriority(-1)
             
             VStack {
+                TopBarView()
                 HStack {
                     Button {
                         store.dispatch(.conectControlPoints(selectedPointsIDs))
@@ -75,7 +76,6 @@ struct CollageBuiderView: View {
                 .animation(.default, value: selectedPointsIDs)
                 Spacer()
                 AddShapeElementView(size: collageSize)
-                    .frame(height: 250)
             }
         }
         .environmentObject(store)

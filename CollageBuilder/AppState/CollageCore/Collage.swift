@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Collage {
+struct Collage: Codable {
     var shapes: [ShapeData]
     var dependencies: [DependentPoints]
     let id: String
@@ -15,9 +15,4 @@ struct Collage {
     var controlPoints: [ControlPoint] {
         shapes.flatMap { $0.controlPoints }
     }
-}
-
-
-struct DependentPoints: Hashable {
-    var pointIDs: Set<String>
 }

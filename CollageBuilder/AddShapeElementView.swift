@@ -22,36 +22,51 @@ struct AddShapeElementView: View {
     @State private var width = ""
     @State private var height = ""
     
+    @State private var selectedElement: ElementType = .point
     @State private var mutatedShapeID = UUID().uuidString
     
     var body: some View {
-        ScrollView {
-            VStack {
-                addShape
-                addPointButton
-                addCurveButton
-                addRectangleButton
-                addElipseButton
+        VStack(spacing: 12) {
+            addShape
+            Divider()
+            elementSelector
+            Divider()
+            Group {
+                switch selectedElement {
+                case .point:
+                    addPointButton
+                case .curve:
+                    addCurveButton
+                case .rectangle:
+                    addRectangleButton
+                case .elipse:
+                    addElipseButton
+                }
+            }
+            .padding(.horizontal, 15)
+            Divider()
+        }
+        .frame(height: 230)
+        .background(Color(uiColor: .systemGray6))
+    }
+    
+    private var elementSelector: some View {
+        HStack {
+            ForEach(ElementType.allCases) { element in
+                Button {
+                    selectedElement = element
+                } label: {
+                    Text(element.rawValue)
+                }
+                .frame(maxWidth: .infinity)
             }
         }
-        .padding()
-        .background(Color(uiColor: .systemGray6))
     }
     
     private var addPointButton: some View {
         VStack {
-            Divider()
             Button {
-                guard let x = Double(xPoint),
-                      let y = Double(yPoint) else {
-                    return
-                }
-                
-                store.dispatch(.addElement(
-                    .point(.init(x: x / size.width,
-                                 y: y / size.height)),
-                    shapeId: mutatedShapeID
-                ))
+                addPoint()
             } label: {
                 Text("Add Point")
             }
@@ -64,10 +79,8 @@ struct AddShapeElementView: View {
                         Text("Y")
                     }
                 }
-                .padding()
                 .frame(maxWidth: .infinity)
             }
-            Divider()
         }
     }
     
@@ -86,21 +99,7 @@ struct AddShapeElementView: View {
     private var addCurveButton: some View {
         VStack {
             Button {
-                guard let endX = Double(xPoint),
-                      let endY = Double(yPoint),
-                      let controlX = Double(xControlPoint),
-                      let controlY = Double(yControlPoint)
-                else {
-                    return
-                }
-                
-                store.dispatch(.addElement(
-                    .curve(endPoint: .init(x: endX / size.width,
-                                           y: endY / size.height),
-                           control: .init(x: controlX / size.width,
-                                          y: controlY / size.height)),
-                    shapeId: mutatedShapeID
-                ))
+                addCurve()
             } label: {
                 Text("Add Curve")
             }
@@ -120,28 +119,13 @@ struct AddShapeElementView: View {
                     Text("controlY")
                 }
             }
-            Divider()
         }
     }
     
     private var addRectangleButton: some View {
         VStack {
             Button {
-                guard let x = Double(xPoint),
-                      let y = Double(yPoint),
-                      let width = Double(width),
-                      let height = Double(height)
-                else {
-                    return
-                }
-                
-                store.dispatch(.addElement(
-                    .rectangle(.init(x: x / size.width,
-                                     y: y / size.height,
-                                     width: width / size.width,
-                                     height: height / size.height)),
-                    shapeId: mutatedShapeID
-                ))
+                addRectangle()
             } label: {
                 Text("Add Rectangle")
             }
@@ -161,28 +145,13 @@ struct AddShapeElementView: View {
                     Text("Height")
                 }
             }
-            Divider()
         }
     }
     
     private var addElipseButton: some View {
         VStack {
             Button {
-                guard let x = Double(xPoint),
-                      let y = Double(yPoint),
-                      let width = Double(width),
-                      let height = Double(height)
-                else {
-                    return
-                }
                 
-                store.dispatch(.addElement(
-                    .ellipse(.init(x: x / size.width,
-                                   y: y / size.height,
-                                   width: width / size.width,
-                                   height: height / size.height)),
-                    shapeId: mutatedShapeID
-                ))
             } label: {
                 Text("Add Elipse")
             }
@@ -202,8 +171,81 @@ struct AddShapeElementView: View {
                     Text("Height")
                 }
             }
-            Divider()
         }
+    }
+    
+    private func addPoint() {
+        guard let x = Double(xPoint),
+              let y = Double(yPoint) else {
+            return
+        }
+        
+        store.dispatch(.addElement(
+            .point(.init(x: x / size.width,
+                         y: y / size.height)),
+            shapeId: mutatedShapeID
+        ))
+    }
+    
+    private func addCurve() {
+        guard let endX = Double(xPoint),
+              let endY = Double(yPoint),
+              let controlX = Double(xControlPoint),
+              let controlY = Double(yControlPoint)
+        else {
+            return
+        }
+        
+        store.dispatch(.addElement(
+            .curve(endPoint: .init(x: endX / size.width,
+                                   y: endY / size.height),
+                   control: .init(x: controlX / size.width,
+                                  y: controlY / size.height)),
+            shapeId: mutatedShapeID
+        ))
+    }
+    
+    private func addRectangle() {
+        guard let rect = extractRect() else {
+            return
+        }
+        
+        store.dispatch(.addElement(
+            .rectangle(rect),
+            shapeId: mutatedShapeID
+        ))
+    }
+    
+    private func addElipse() {
+        guard let rect = extractRect() else {
+            return
+        }
+        
+        store.dispatch(.addElement(
+            .ellipse(rect),
+            shapeId: mutatedShapeID
+        ))
+    }
+    
+    private func extractRect() -> CGRect? {
+        guard let x = Double(xPoint),
+              let y = Double(yPoint),
+              let width = Double(width),
+              let height = Double(height)
+        else {
+            return nil
+        }
+        
+        return .init(x: x / size.width,
+                     y: y / size.height,
+                     width: width / size.width,
+                     height: height / size.height)
+    }
+    
+    private enum ElementType: String, Identifiable, CaseIterable {
+        var id: String { rawValue }
+        
+        case point, curve, rectangle, elipse
     }
     
 }

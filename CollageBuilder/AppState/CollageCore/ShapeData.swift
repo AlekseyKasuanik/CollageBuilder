@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShapeData: Identifiable {
+struct ShapeData: Identifiable, Codable {
     var elements: [ShapeElement]
     
     private(set) var id: String = UUID().uuidString

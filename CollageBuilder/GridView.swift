@@ -17,12 +17,12 @@ struct GridView: View {
     var body: some View {
         ZStack {
             VStack {
-                ForEach(0..<yLines, id: \.self) {
+                ForEach(0...yLines, id: \.self) {
                     createHLine(index: $0)
                 }
             }
             HStack {
-                ForEach(0..<xLines, id: \.self) {
+                ForEach(0...xLines, id: \.self) {
                     createYLine(index: $0)
                 }
             }

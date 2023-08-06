@@ -9,7 +9,8 @@ import Foundation
 
 struct AppReducer: ReducerProtocol {
     
-    var collageChanger = CollageChanger(pointTouchSide: 0.1)
+    var collageChanger = CollageChanger(pointTouchSide: 0.1,
+                                        transalationStep: 0.01)
     
     mutating func reduce(_ currentState: AppState, _ action: AppAction) -> AppState {
         var newState = currentState
@@ -40,6 +41,9 @@ struct AppReducer: ReducerProtocol {
                 break
             }
             newState.collage.shapes[index].elements.append(element)
+            
+        case .setCollage(let collage):
+            newState.collage = collage
         }
         
         return newState

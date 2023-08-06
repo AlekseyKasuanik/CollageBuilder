@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ShapeElement {
+enum ShapeElement: Codable {
     case point(CGPoint)
     case curve(endPoint: CGPoint, control: CGPoint)
     case rectangle(CGRect)

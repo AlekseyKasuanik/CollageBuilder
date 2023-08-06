@@ -12,4 +12,5 @@ enum AppAction {
     case conectControlPoints(Set<String>)
     case addShape(ShapeData)
     case addElement(ShapeElement, shapeId: String)
+    case setCollage(Collage)
 }
