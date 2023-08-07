@@ -1,6 +1,6 @@
 //
 //  CGPoint+.swift
-//  LearningSwiftUI
+//  CollageBuilder
 //
 //  Created by Алексей Касьяник on 22.07.2023.
 //

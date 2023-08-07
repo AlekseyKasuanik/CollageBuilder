@@ -18,6 +18,10 @@ struct CollageBuiderView: View {
     
     @State private var selectedPointsIDs = Set<String>()
     
+    @State private var showMediaPicker = false
+    @State private var selectedShapeId: String?
+    @State private var selectedMedia: Media?
+    
     private var collage: Collage { store.state.collage }
     
     var body: some View {
@@ -42,6 +46,8 @@ struct CollageBuiderView: View {
                    height: collageSize.height)
             .overlay {
                 GestureView() { location in
+                    handleTap(in: location)
+                } onLongTapGesture: { location in
                     handleLongTap(in: location)
                 } onScaleGesture: { scale in
                     collageScale = collageScale * scale
@@ -78,6 +84,17 @@ struct CollageBuiderView: View {
                 AddShapeElementView(size: collageSize)
             }
         }
+        .sheet(isPresented: $showMediaPicker) {
+            MediaPickerView(media: $selectedMedia,
+                            show: $showMediaPicker)
+        }
+        .onChange(of: selectedMedia) { media in
+            guard let selectedShapeId else {
+                return
+            }
+            
+            store.dispatch(.changeMedia(media, shapeId: selectedShapeId))
+        }
         .environmentObject(store)
 
     }
@@ -89,6 +106,19 @@ struct CollageBuiderView: View {
             .overlay {
                 Text(text)
             }
+    }
+    
+    private func handleTap(in point: CGPoint) {
+        guard let shape = collage.shapes.first(where: {
+            PathCreator.create(size: .init(side: 1), shape: $0)
+                .contains(point)
+        }) else {
+            return
+        }
+        
+        showMediaPicker = true
+        selectedShapeId = shape.id
+        
     }
     
     private func handleLongTap(in point: CGPoint) {

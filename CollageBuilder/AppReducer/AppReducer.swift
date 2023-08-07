@@ -35,19 +35,30 @@ struct AppReducer: ReducerProtocol {
             newState.collage.shapes.append(shape)
             
         case .addElement(let element, shapeId: let id):
-            guard let index = newState.collage.shapes.firstIndex(where: {
-                $0.id == id
-            }) else {
+            guard let index = getShapeIndex(id: id, in: newState) else {
                 break
             }
+            
             newState.collage.shapes[index].elements.append(element)
             
         case .setCollage(let collage):
             newState.collage = collage
+            
+        case .changeMedia(let media, shapeId: let id):
+            guard let index = getShapeIndex(id: id, in: newState) else {
+                break
+            }
+            
+            newState.collage.shapes[index].media = media
         }
         
         return newState
     }
     
+    private func getShapeIndex(id: String, in state: AppState) -> Int? {
+        state.collage.shapes.firstIndex(where: {
+            $0.id == id
+        })
+    }
 }
 

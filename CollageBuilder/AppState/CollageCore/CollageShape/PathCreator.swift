@@ -1,18 +1,15 @@
 //
-//  CollageShape.swift
+//  PathCreator.swift
 //  CollageBuilder
 //
-//  Created by Алексей Касьяник on 31.07.2023.
+//  Created by Алексей Касьяник on 07.08.2023.
 //
 
 import SwiftUI
 
-struct CollageShape: Shape {
+enum PathCreator {
     
-    let shape: ShapeData
-    let size: CGSize
-    
-    func path(in rect: CGRect) -> Path {
+    static func create(size: CGSize, shape: ShapeData) -> Path {
         var path = Path()
         var isFirstPint = true
         var lastPoint: CGPoint?
@@ -21,10 +18,10 @@ struct CollageShape: Shape {
             switch element {
             case .point(let point):
                 if isFirstPint {
-                    path.move(to: convertRelative(point))
+                    path.move(to: convertRelative(point, in: size))
                     isFirstPint = false
                 } else {
-                    path.addLine(to: convertRelative(point))
+                    path.addLine(to: convertRelative(point, in: size))
                 }
                 
                 lastPoint = point
@@ -38,16 +35,16 @@ struct CollageShape: Shape {
                                                through: control,
                                                end: endPoint)
                 
-                path.addQuadCurve(to: convertRelative(endPoint),
-                                  control: convertRelative(control))
+                path.addQuadCurve(to: convertRelative(endPoint, in: size),
+                                  control: convertRelative(control, in: size))
                 
                 lastPoint = endPoint
                 
             case .rectangle(let rect):
-                path.addRect(convertRelative(rect))
+                path.addRect(convertRelative(rect, in: size))
                 
             case .ellipse(let rect):
-                path.addEllipse(in: convertRelative(rect))
+                path.addEllipse(in: convertRelative(rect, in: size))
             }
             
         }
@@ -55,7 +52,7 @@ struct CollageShape: Shape {
         return path
     }
     
-    private func convertToControl(start: CGPoint,
+    private static func convertToControl(start: CGPoint,
                                   through: CGPoint,
                                   end: CGPoint) -> CGPoint {
         
@@ -76,12 +73,12 @@ struct CollageShape: Shape {
     }
     
     
-    private func convertRelative(_ point: CGPoint) -> CGPoint {
+    private static func convertRelative(_ point: CGPoint, in size: CGSize) -> CGPoint {
         CGPoint(x: point.x * size.width,
                 y: point.y * size.height)
     }
     
-    private func convertRelative(_ rect: CGRect) -> CGRect {
+    private static func convertRelative(_ rect: CGRect, in size: CGSize) -> CGRect {
         CGRect(x: rect.minX * size.width,
                y: rect.minY * size.height,
                width: rect.width * size.width,

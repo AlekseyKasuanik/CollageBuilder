@@ -13,4 +13,5 @@ enum AppAction {
     case addShape(ShapeData)
     case addElement(ShapeElement, shapeId: String)
     case setCollage(Collage)
+    case changeMedia(Media?, shapeId: String)
 }

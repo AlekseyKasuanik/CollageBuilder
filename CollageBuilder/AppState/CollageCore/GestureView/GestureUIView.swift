@@ -9,6 +9,7 @@ import SwiftUI
 
 final class GestureUIView: UIView {
     
+    var onTapGesture: ((CGPoint) -> ())?
     var onLongTapGesture: ((CGPoint) -> ())?
     var onScaleGesture: ((CGFloat) -> ())?
     var onTranslateGesture: ((GestureState) -> ())?
@@ -32,9 +33,15 @@ final class GestureUIView: UIView {
         )
         addGestureRecognizer(pinchGesture)
         
-        let tapGesture = UILongPressGestureRecognizer(
+        let longTapGesture = UILongPressGestureRecognizer(
             target: self,
             action: #selector(longTapGestureRecognizer)
+        )
+        addGestureRecognizer(longTapGesture)
+        
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapGestureRecognizer)
         )
         addGestureRecognizer(tapGesture)
         
@@ -118,6 +125,14 @@ final class GestureUIView: UIView {
             y: location.y / frame.height
         ))
         
+    }
+    
+    @objc private func tapGestureRecognizer(gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: self)
+        onTapGesture?(CGPoint(
+            x: location.x / frame.width,
+            y: location.y / frame.height
+        ))
     }
     
 }

@@ -1,6 +1,6 @@
 //
 //  CGSize+.swift
-//  LearningSwiftUI
+//  CollageBuilder
 //
 //  Created by Алексей Касьяник on 29.07.2023.
 //

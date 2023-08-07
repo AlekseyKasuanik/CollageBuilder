@@ -1,6 +1,6 @@
 //
 //  AddShapeElementView.swift
-//  LearningSwiftUI
+//  CollageBuilder
 //
 //  Created by Алексей Касьяник on 23.07.2023.
 //
