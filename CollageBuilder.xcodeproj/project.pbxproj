@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D3F4B2A82A45B00EA6307 /* ShapeItemView.swift */; };
 		1F302C8B2A7F9EEB005956C0 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F302C8A2A7F9EEB005956C0 /* TopBarView.swift */; };
 		1F302C8D2A7FA3A2005956C0 /* DependentPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F302C8C2A7FA3A2005956C0 /* DependentPoints.swift */; };
 		1F32A2042A7C3A14006A4AAE /* PointsRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F2D3F4B2A82A45B00EA6307 /* ShapeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeItemView.swift; sourceTree = "<group>"; };
 		1F302C8A2A7F9EEB005956C0 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		1F302C8C2A7FA3A2005956C0 /* DependentPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependentPoints.swift; sourceTree = "<group>"; };
 		1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsRecognizer.swift; sourceTree = "<group>"; };
@@ -103,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F2D3F4D2A82A46E00EA6307 /* ShapeItemView */ = {
+			isa = PBXGroup;
+			children = (
+				1F2D3F4B2A82A45B00EA6307 /* ShapeItemView.swift */,
+				1F660F462A7831ED0072925A /* CollageShape */,
+			);
+			path = ShapeItemView;
+			sourceTree = "<group>";
+		};
 		1F52FD872A815509005ECBDD /* CodableWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +221,7 @@
 				1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */,
 				1F52FD872A815509005ECBDD /* CodableWrapper */,
 				1F660F362A782D3F0072925A /* GestureView */,
-				1F660F462A7831ED0072925A /* CollageShape */,
+				1F2D3F4D2A82A46E00EA6307 /* ShapeItemView */,
 				1F660F3F2A782E410072925A /* Extensions */,
 			);
 			name = CollageCore;
@@ -346,6 +357,7 @@
 				1F660F262A781F570072925A /* AppState.swift in Sources */,
 				1F660F332A78298F0072925A /* ControlPoint.swift in Sources */,
 				1F660F2D2A7825560072925A /* ShapeData.swift in Sources */,
+				1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */,
 				1F68699A2A810FD1006C2B6C /* CodableWrapper.swift in Sources */,
 				1F32A2042A7C3A14006A4AAE /* PointsRecognizer.swift in Sources */,
 				1F52FD892A815516005ECBDD /* DataRepresentable.swift in Sources */,

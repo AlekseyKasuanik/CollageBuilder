@@ -30,7 +30,7 @@ struct CollageBuiderView: View {
                 ZStack {
                     GridView(xLines: 100, yLines: 100)
                     ForEach(collage.shapes) { shape in
-                        CollageShape(
+                        ShapeItemView(
                             shape: shape,
                             size: collageSize
                         )

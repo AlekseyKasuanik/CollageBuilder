@@ -61,10 +61,10 @@ enum RectExtractor {
 }
 
 fileprivate struct Corners {
-    var minX: CGFloat = .zero
-    var minY: CGFloat = .zero
-    var maxX: CGFloat = .zero
-    var maxY: CGFloat = .zero
+    var minX: CGFloat = 1
+    var minY: CGFloat = 1
+    var maxX: CGFloat = 0
+    var maxY: CGFloat = 0
 }
 
 fileprivate extension Corners {
