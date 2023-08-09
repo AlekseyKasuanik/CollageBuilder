@@ -85,8 +85,7 @@ struct CollageBuiderView: View {
             }
         }
         .sheet(isPresented: $showMediaPicker) {
-            MediaPickerView(media: $selectedMedia,
-                            show: $showMediaPicker)
+            MediaPickerView(media: $selectedMedia)
         }
         .onChange(of: selectedMedia) { media in
             guard let selectedShapeId else {

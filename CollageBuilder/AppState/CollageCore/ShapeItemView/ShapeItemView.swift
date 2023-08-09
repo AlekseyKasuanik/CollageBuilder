@@ -16,19 +16,25 @@ struct ShapeItemView: View {
     
     var body: some View {
         ZStack {
-            if let media = shape.media,
-               case .image(let image) = media.resource {
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(
-                        width: shape.fitRect.width * size.width,
-                        height: shape.fitRect.height * size.height
-                    )
-                    .rotationEffect(.degrees(45))
-                    .position(
-                        x: shape.fitRect.midX * size.width,
-                        y: shape.fitRect.midY * size.height
-                    )
+            if let media = shape.media {
+                Group {
+                    switch media.resource {
+                    case .image(let image):
+                        Image(uiImage: image)
+                            .resizable()
+                    case .video(let video):
+                        VideoPlayerView(videoURL: video.videoUrl,
+                                        modifiers: [])
+                    }
+                }
+                .frame(
+                    width: shape.fitRect.width * size.width,
+                    height: shape.fitRect.height * size.height
+                )
+                .position(
+                    x: shape.fitRect.midX * size.width,
+                    y: shape.fitRect.midY * size.height
+                )
             } else {
                 Color(uiColor: emptyColor)
             }

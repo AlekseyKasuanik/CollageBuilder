@@ -6,44 +6,61 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct MediaPickerView: UIViewControllerRepresentable {
     
     @Binding var media: Media?
-    @Binding var show: Bool
     
-    func makeUIViewController(context: Context) -> UIImagePickerController  {
-        let vc = UIImagePickerController()
-        vc.allowsEditing = false
-        vc.delegate = context.coordinator
-        return vc
+    func makeUIViewController(context: Context) -> PHPickerViewController  {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = context.coordinator
+        return picker
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(media: $media, show: $show)
+        return Coordinator(media: $media)
     }
     
-    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    class Coordinator: NSObject, PHPickerViewControllerDelegate {
         
         @Binding var media: Media?
-        @Binding var show: Bool
         
-        init(media: Binding<Media?>, show: Binding<Bool>) {
+        init(media: Binding<Media?>) {
             self._media = media
-            self._show = show
         }
         
-        func imagePickerController(_ picker: UIImagePickerController,
-                                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        func picker(_ picker: PHPickerViewController,
+                    didFinishPicking results: [PHPickerResult]) {
             
-            if let image = info[.originalImage] as? UIImage {
-                media = .init(resource: .image(image))
+            guard let provider = results.first?.itemProvider else {
+                picker.dismiss(animated: true)
+                return
             }
             
-            show = false
+            if provider.canLoadObject(ofClass: UIImage.self) {
+                provider.loadObject(ofClass: UIImage.self) { image, _ in
+                    guard let image = image as? UIImage else { return }
+                    Task { @MainActor in
+                        self.media = .init(resource: .image(image))
+                        picker.dismiss(animated: true)
+                    }
+                }
+            } else if provider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                let _ = provider.loadTransferable(type: Video.self) { result in
+                    guard case .success(let video) = result else { return }
+                    Task { @MainActor in
+                        self.media = .init(resource: .video(video))
+                        picker.dismiss(animated: true)
+                    }
+                }
+            } else {
+                picker.dismiss(animated: true)
+            }
         }
-        
     }
 }
