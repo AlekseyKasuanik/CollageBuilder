@@ -8,37 +8,46 @@
 import AVFoundation
 import SwiftUI
 import CoreImage.CIFilterBuiltins
+import Combine
 
 final class VideoPlayer: UIView {
     
     private let asset: AVURLAsset
-    private let playerLooper: AVPlayerLooper
     private let queuePlayer: AVQueuePlayer
     private let playerItem: AVPlayerItem
     private let videoLayer: AVPlayerLayer
     
     private var videoSize: CGSize?
-    
+    private var videoTrim: VideoTrim?
+    private var cancelable = Set<AnyCancellable>()
+
     var modifiers: [Modifier]
     
-    init(videoURL: URL, modifiers: [Modifier]) {
+    init(videoURL: URL,
+         modifiers: [Modifier],
+         videoTrim: VideoTrim?) {
         
         self.asset = AVURLAsset(url: videoURL)
         self.modifiers = modifiers
+        self.videoTrim = videoTrim
         
-        self.playerItem = AVPlayerItem(asset: asset)
-        self.queuePlayer = AVQueuePlayer(playerItem: playerItem)
-        self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
-        self.videoLayer = AVPlayerLayer(player: queuePlayer)
+        playerItem = AVPlayerItem(asset: asset)
+        queuePlayer = AVQueuePlayer(playerItem: playerItem)
+        queuePlayer.actionAtItemEnd = .none
+       
+        videoLayer = AVPlayerLayer(player: queuePlayer)
         
         super.init(frame: .zero)
         
-        self.layer.addSublayer(videoLayer)
-        self.layer.masksToBounds = true
+        layer.addSublayer(videoLayer)
+        layer.masksToBounds = true
         
-        Task { await self.setupVideoSize(for: asset) }
-        self.setupCompostion()
+        Task { await setupVideoSize(for: asset) }
         
+        setupCompostion()
+        setutPlayerNotification()
+        
+        try? setupTrim()
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +65,21 @@ final class VideoPlayer: UIView {
     
     func pause() {
         queuePlayer.pause()
+    }
+    
+    private func setupTrim() throws {
+        Task {
+            if videoTrim == nil {
+                let duration = try await asset.load(.duration).seconds
+                videoTrim = .init(start: 0, end: duration)
+            }
+            
+            await queuePlayer.seek(to: videoTrim!.startTime, toleranceBefore: .zero, toleranceAfter: .zero)
+            queuePlayer.currentItem?.forwardPlaybackEndTime = videoTrim!.endTime
+            queuePlayer.play()
+            queuePlayer.rate = 1.5
+        }
+        
     }
     
     private func setupCompostion() {
@@ -98,6 +122,20 @@ final class VideoPlayer: UIView {
                                   y: (frame.height - videoHeight) / 2,
                                   width: videoWidth,
                                   height: videoHeight)
+    }
+    
+    private func setutPlayerNotification() {
+        NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime)
+            .sink { [weak self] player in
+                guard let self,
+                      let item = player.object as? AVPlayerItem,
+                      item == playerItem else {
+                    return
+                }
+                
+                try? setupTrim()
+            }
+            .store(in: &cancelable)
     }
     
 }

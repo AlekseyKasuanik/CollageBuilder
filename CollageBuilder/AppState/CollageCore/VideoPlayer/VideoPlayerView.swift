@@ -13,7 +13,9 @@ struct VideoPlayerView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> some UIView {
         
-        let videoPlayer = VideoPlayer(videoURL: videoURL, modifiers: modifiers)
+        let videoPlayer = VideoPlayer(videoURL: videoURL,
+                                      modifiers: modifiers,
+                                      videoTrim: .init(start: 60, end: 70))
         videoPlayer.play()
         return videoPlayer
     }
