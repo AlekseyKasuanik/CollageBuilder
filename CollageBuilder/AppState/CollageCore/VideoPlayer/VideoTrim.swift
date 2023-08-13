@@ -7,19 +7,19 @@
 
 import AVFoundation
 
-struct VideoTrim {
-    var startTime: CMTime
-    var endTime: CMTime
+struct VideoTrim: Codable, Equatable {
+    
+    var start: CGFloat
+    var end: CGFloat
+    var timescale: CMTimeScale = 600
+    
+    var startTime: CMTime {
+        .init(seconds: start, preferredTimescale: timescale)
+    }
+    
+    var endTime: CMTime {
+        .init(seconds: end, preferredTimescale: timescale)
+    }
+    
 }
 
-extension VideoTrim {
-    init(start: CGFloat,
-         end: CGFloat,
-         timescale: CMTimeScale = 600) {
-        
-        self.init(
-            startTime: .init(seconds: start, preferredTimescale: timescale),
-            endTime: .init(seconds: end, preferredTimescale: timescale)
-        )
-    }
-}

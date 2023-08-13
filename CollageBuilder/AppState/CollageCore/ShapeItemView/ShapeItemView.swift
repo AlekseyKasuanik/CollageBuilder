@@ -24,7 +24,8 @@ struct ShapeItemView: View {
                             .resizable()
                     case .video(let video):
                         VideoPlayerView(videoURL: video.videoUrl,
-                                        modifiers: [])
+                                        modifiers: [],
+                                        settings: .defaultSettings)
                     }
                 }
                 .frame(

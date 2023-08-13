@@ -37,36 +37,6 @@ struct Media: Codable {
     
 }
 
-struct Video: DataRepresentable {
-    
-    let videoUrl: URL
-    
-    func getData() -> Data? {
-        nil
-    }
-    
-    static func create(from data: Data) -> Video? {
-        nil
-    }
-}
-
-extension Video: Transferable {
-    static var transferRepresentation: some TransferRepresentation {
-        FileRepresentation(contentType: .movie) { movie in
-            SentTransferredFile(movie.videoUrl)
-        } importing: { received in
-            let copy = URL.cachesDirectory.appending(path: UUID().uuidString + ".mp4")
-
-            if FileManager.default.fileExists(atPath: copy.path()) {
-                try FileManager.default.removeItem(at: copy)
-            }
-
-            try FileManager.default.copyItem(at: received.file, to: copy)
-            return Self.init(videoUrl: copy)
-        }
-    }
-}
-
 extension Media: Equatable {
     static func == (lhs: Media, rhs: Media) -> Bool {
         return lhs.id == rhs.id

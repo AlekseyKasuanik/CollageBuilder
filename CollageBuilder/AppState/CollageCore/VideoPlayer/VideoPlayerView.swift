@@ -8,25 +8,29 @@
 import SwiftUI
 
 struct VideoPlayerView: UIViewRepresentable {
-    let videoURL: URL
-    let modifiers: [Modifier]
     
-    func makeUIView(context: Context) -> some UIView {
-        
+    var videoURL: URL
+    var modifiers: [Modifier]
+    var settings: VideoSettings
+    
+    func makeUIView(context: Context) -> VideoPlayer {
         let videoPlayer = VideoPlayer(videoURL: videoURL,
                                       modifiers: modifiers,
-                                      videoTrim: .init(start: 60, end: 70))
-        videoPlayer.play()
+                                      settings: settings)
         return videoPlayer
     }
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {}
+    func updateUIView(_ uiView: VideoPlayer, context: Context) {
+        uiView.modifiers = modifiers
+        uiView.changeSettings(settings)
+    }
 }
 
 struct VideoPlayerView_Previews: PreviewProvider {
     static var previews: some View {
         VideoPlayerView(videoURL: Bundle.main.url(forResource: "ExampleVideo",
                                                   withExtension: "mp4")!,
-                        modifiers: [])
+                        modifiers: [],
+                        settings: .defaultSettings)
     }
 }

@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct VideoSettings: Codable {
+    
+    var trim: VideoTrim?
+    var speed: Float
+    var isMuted: Bool
+    
+    static let defaultSettings = VideoSettings(speed: 1, isMuted: false)
+    
+}

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F2638382A83B67C00022E1C /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2638372A83B67C00022E1C /* Modifier.swift */; };
 		1F26383A2A83B69900022E1C /* SharedContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2638392A83B69900022E1C /* SharedContext.swift */; };
+		1F2B5CB02A88F5C700BAEE19 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B5CAF2A88F5C600BAEE19 /* UIScreen+.swift */; };
+		1F2B5CB22A88FCD300BAEE19 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B5CB12A88FCD300BAEE19 /* CIImage+.swift */; };
 		1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D3F4B2A82A45B00EA6307 /* ShapeItemView.swift */; };
 		1F2D3F502A82C26000EA6307 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D3F4F2A82C26000EA6307 /* VideoPlayer.swift */; };
 		1F2D3F522A82C67F00EA6307 /* ExampleVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F2D3F512A82C67F00EA6307 /* ExampleVideo.mp4 */; };
@@ -26,6 +28,7 @@
 		1F52FD8D2A815E36005ECBDD /* PathCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52FD8C2A815E36005ECBDD /* PathCreator.swift */; };
 		1F52FD8F2A81685D005ECBDD /* MediaPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52FD8E2A81685D005ECBDD /* MediaPickerView.swift */; };
 		1F52FD912A81744B005ECBDD /* RectExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52FD902A81744B005ECBDD /* RectExtractor.swift */; };
+		1F562BB72A882C7B00302C22 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F562BB62A882C7B00302C22 /* Video.swift */; };
 		1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */; };
 		1F5DF5C82A76726A00430AF1 /* CollageBuiderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */; };
 		1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C92A76726C00430AF1 /* Assets.xcassets */; };
@@ -59,6 +62,8 @@
 /* Begin PBXFileReference section */
 		1F2638372A83B67C00022E1C /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		1F2638392A83B69900022E1C /* SharedContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedContext.swift; sourceTree = "<group>"; };
+		1F2B5CAF2A88F5C600BAEE19 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		1F2B5CB12A88FCD300BAEE19 /* CIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+.swift"; sourceTree = "<group>"; };
 		1F2D3F4B2A82A45B00EA6307 /* ShapeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeItemView.swift; sourceTree = "<group>"; };
 		1F2D3F4F2A82C26000EA6307 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		1F2D3F512A82C67F00EA6307 /* ExampleVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleVideo.mp4; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		1F52FD8C2A815E36005ECBDD /* PathCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCreator.swift; sourceTree = "<group>"; };
 		1F52FD8E2A81685D005ECBDD /* MediaPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPickerView.swift; sourceTree = "<group>"; };
 		1F52FD902A81744B005ECBDD /* RectExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectExtractor.swift; sourceTree = "<group>"; };
+		1F562BB62A882C7B00302C22 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		1F5DF5C22A76726A00430AF1 /* CollageBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollageBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderApp.swift; sourceTree = "<group>"; };
 		1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuiderView.swift; sourceTree = "<group>"; };
@@ -239,6 +245,7 @@
 				1F52FD902A81744B005ECBDD /* RectExtractor.swift */,
 				1F3BD2752A7AB3B9001E7ACB /* Collage.swift */,
 				1F52FD8A2A8156A6005ECBDD /* Media.swift */,
+				1F562BB62A882C7B00302C22 /* Video.swift */,
 				1F660F302A7829700072925A /* ShapeElement.swift */,
 				1F302C8C2A7FA3A2005956C0 /* DependentPoints.swift */,
 				1F660F322A78298F0072925A /* ControlPoint.swift */,
@@ -274,6 +281,8 @@
 				1F660F402A782E6B0072925A /* CGRect+.swift */,
 				1F660F412A782E6B0072925A /* CGSize+.swift */,
 				1F6869972A810E78006C2B6C /* UIImage+.swift */,
+				1F2B5CAF2A88F5C600BAEE19 /* UIScreen+.swift */,
+				1F2B5CB12A88FCD300BAEE19 /* CIImage+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -362,6 +371,7 @@
 				1F347B5D2A79950C008915BF /* CollageChanger.swift in Sources */,
 				1F660F3A2A782D640072925A /* GestureUIView.swift in Sources */,
 				1F660F352A782D010072925A /* AppStorePreview.swift in Sources */,
+				1F562BB72A882C7B00302C22 /* Video.swift in Sources */,
 				1F52FD8F2A81685D005ECBDD /* MediaPickerView.swift in Sources */,
 				1F660F3C2A782D820072925A /* GestureState.swift in Sources */,
 				1F660F292A781F8C0072925A /* AppAction.swift in Sources */,
@@ -372,6 +382,8 @@
 				1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */,
 				1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */,
 				1F302C8B2A7F9EEB005956C0 /* TopBarView.swift in Sources */,
+				1F2B5CB02A88F5C700BAEE19 /* UIScreen+.swift in Sources */,
+				1F2B5CB22A88FCD300BAEE19 /* CIImage+.swift in Sources */,
 				1F52FD912A81744B005ECBDD /* RectExtractor.swift in Sources */,
 				1F660F312A7829700072925A /* ShapeElement.swift in Sources */,
 				1F52FD8B2A8156A6005ECBDD /* Media.swift in Sources */,

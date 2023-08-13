@@ -18,18 +18,19 @@ final class VideoPlayer: UIView {
     private let videoLayer: AVPlayerLayer
     
     private var videoSize: CGSize?
-    private var videoTrim: VideoTrim?
     private var cancelable = Set<AnyCancellable>()
+    
+    private(set) var settings: VideoSettings
 
     var modifiers: [Modifier]
     
     init(videoURL: URL,
          modifiers: [Modifier],
-         videoTrim: VideoTrim?) {
+         settings: VideoSettings) {
         
         self.asset = AVURLAsset(url: videoURL)
         self.modifiers = modifiers
-        self.videoTrim = videoTrim
+        self.settings = settings
         
         playerItem = AVPlayerItem(asset: asset)
         queuePlayer = AVQueuePlayer(playerItem: playerItem)
@@ -67,17 +68,43 @@ final class VideoPlayer: UIView {
         queuePlayer.pause()
     }
     
+    func changeSettings(_ settings: VideoSettings) {
+        let oldSettings = self.settings
+        self.settings = settings
+        
+        if oldSettings.trim != settings.trim {
+            try? setupTrim()
+        }
+        
+        if oldSettings.speed != settings.speed {
+            setupSpeed()
+        }
+        
+        if oldSettings.isMuted != settings.isMuted {
+            setupMute()
+        }
+    }
+    
+    private func setupSpeed() {
+        queuePlayer.rate = settings.speed
+    }
+    
+    private func setupMute() {
+        queuePlayer.isMuted = settings.isMuted
+    }
+    
     private func setupTrim() throws {
         Task {
-            if videoTrim == nil {
-                let duration = try await asset.load(.duration).seconds
-                videoTrim = .init(start: 0, end: duration)
-            }
+        
+            let duration = try await asset.load(.duration).seconds
+            let trim = settings.trim ?? .init(start: 0, end: duration)
             
-            await queuePlayer.seek(to: videoTrim!.startTime, toleranceBefore: .zero, toleranceAfter: .zero)
-            queuePlayer.currentItem?.forwardPlaybackEndTime = videoTrim!.endTime
+            await queuePlayer.seek(to: trim.startTime,
+                                   toleranceBefore: .zero,
+                                   toleranceAfter: .zero)
+            
+            queuePlayer.currentItem?.forwardPlaybackEndTime = trim.endTime
             queuePlayer.play()
-            queuePlayer.rate = 1.5
         }
         
     }
