@@ -9,7 +9,7 @@ import Foundation
 
 enum PointsRecognizer {
     
-    static func find(_ point: CGPoint,
+    static func findPoint(_ point: CGPoint,
                      in collage: Collage,
                      radius: CGFloat = 0.05) -> ControlPoint? {
         
@@ -23,5 +23,18 @@ enum PointsRecognizer {
         })
         
         return resultPoint
+    }
+    
+    static func findShape(_ point: CGPoint,
+                          in collage: Collage) -> ShapeData? {
+        
+        let resultShapes = collage.shapes.first(where: { shape in
+            PathCreator.create(
+                size: .init(side: 1),
+                shape: shape
+            ).contains(point)
+        })
+        
+        return resultShapes
     }
 }

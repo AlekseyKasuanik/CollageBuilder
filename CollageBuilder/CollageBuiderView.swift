@@ -34,6 +34,7 @@ struct CollageBuiderView: View {
                             shape: shape,
                             size: collageSize
                         )
+                        .blendMode(.hardLight)
                     }
                     ControlPointsView(
                         selectedPointsIDs: $selectedPointsIDs,
@@ -52,7 +53,7 @@ struct CollageBuiderView: View {
                 } onScaleGesture: { scale in
                     collageScale = collageScale * scale
                 } onTranslateGesture: { translation in
-                    store.dispatch(.translateConrolPoint(translation))
+                    store.dispatch(.translate(translation))
                 } onTwoFingersTranslateGesture: { translation in
                     collageOffeset = translation + collageOffeset
                 }
@@ -121,7 +122,7 @@ struct CollageBuiderView: View {
     }
     
     private func handleLongTap(in point: CGPoint) {
-        guard let pointID = PointsRecognizer.find(
+        guard let pointID = PointsRecognizer.findPoint(
             point,
             in: collage
         )?.id else {

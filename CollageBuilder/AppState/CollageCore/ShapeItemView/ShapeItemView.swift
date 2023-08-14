@@ -59,7 +59,9 @@ struct ShapeItemView_Previews: PreviewProvider {
         ScrollView([.vertical, .horizontal]) {
             ShapeItemView(
                 shape: .init(elements: [element],
-                             media: .init(resource: .image(image))),
+                             media: .init(resource: .image(image)),
+                             zPosition: 1,
+                             blendMode: .normal),
                 size: .init(side: 500)
             )
             .background(.red)

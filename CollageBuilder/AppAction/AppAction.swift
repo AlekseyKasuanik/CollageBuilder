@@ -8,7 +8,7 @@
 import Foundation
 
 enum AppAction {
-    case translateConrolPoint(GestureState)
+    case translate(GestureState)
     case conectControlPoints(Set<String>)
     case addShape(ShapeData)
     case addElement(ShapeElement, shapeId: String)

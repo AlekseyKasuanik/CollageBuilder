@@ -14,8 +14,8 @@ extension AppStore {
         let collageID = UUID().uuidString
         
         let collage = Collage(
-            shapes: [.init(elements: [element1]),
-                     .init(elements: [element2])],
+            shapes: [.init(elements: [element1], zPosition: 1, blendMode: .normal),
+                     .init(elements: [element2], zPosition: 2, blendMode: .normal)],
             dependencies: [],
             id: collageID
         

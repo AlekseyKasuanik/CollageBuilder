@@ -85,14 +85,14 @@ struct AddShapeElementView: View {
     }
     
     private var addShape: some View {
-        VStack {
-            Button {
-                mutatedShapeID = UUID().uuidString
-                store.dispatch(.addShape(.init(elements: [],
-                                         id: mutatedShapeID)))
-            } label: {
-                Text("Add new shape")
-            }
+        Button {
+            mutatedShapeID = UUID().uuidString
+            store.dispatch(.addShape(.init(elements: [],
+                                           zPosition: 1,
+                                           blendMode: .normal,
+                                           id: mutatedShapeID)))
+        } label: {
+            Text("Add new shape")
         }
     }
     

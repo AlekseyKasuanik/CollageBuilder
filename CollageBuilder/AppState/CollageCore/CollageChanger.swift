@@ -11,8 +11,8 @@ struct CollageChanger {
     let pointTouchSide: CGFloat
     let transalationStep: CGFloat
     
-    private var movedPoint: ControlPoint?
-    private var accumulatedTranslation: CGPoint = .zero
+    private var movedPointsIDs = [String]()
+    private var accumulatedTranslation = CGPoint.zero
     
     init(pointTouchSide: CGFloat = 0.05,
          transalationStep: CGFloat = 0) {
@@ -26,7 +26,7 @@ struct CollageChanger {
         
         switch translation {
         case .began(let position):
-            changeMovedPoint(position, in: collage)
+            changeMovedPoints(position, in: collage)
             return collage
             
         case .changed(let translation):
@@ -34,14 +34,22 @@ struct CollageChanger {
         }
     }
     
-    private mutating func changeMovedPoint(_ point: CGPoint,
-                                           in collage: Collage) {
+    private mutating func changeMovedPoints(_ point: CGPoint,
+                                            in collage: Collage) {
         
-        movedPoint = PointsRecognizer.find(
+        if let point = PointsRecognizer.findPoint(
             point,
             in: collage,
             radius: pointTouchSide
-        )
+        ) {
+            movedPointsIDs = [point.id]
+            
+        } else if let shape = PointsRecognizer.findShape(
+            point,
+            in: collage
+        ) {
+            movedPointsIDs = shape.controlPoints.map(\.id)
+        }
     }
     
     private mutating func translatePoint(_ translation: CGPoint,
@@ -49,25 +57,19 @@ struct CollageChanger {
         
         let coorectTransation = getCoorectTranslation(translation)
         
-        movedPoint?.point.x += coorectTransation.x
-        movedPoint?.point.y += coorectTransation.y
+        let allPoints = getAllPointsForTranslation(in: collage)
         
-        guard let point = movedPoint else {
-            return collage
-        }
-        
-        var dependedPoints = getDependedPoints(in: collage)
-        
-        dependedPoints.enumerated().forEach { index, point in
-            dependedPoints[index].point = .init(
-                x: point.point.x + coorectTransation.x,
-                y: point.point.y + coorectTransation.y
+        let translatedPoints = allPoints.map { controlPoint in
+            var newPoint = controlPoint
+            newPoint.point = .init(
+                x: newPoint.point.x + coorectTransation.x,
+                y: newPoint.point.y + coorectTransation.y
             )
+            
+            return newPoint
         }
-        
-        let allPoints = Array(Set([point] + dependedPoints))
-        
-        return setPoints(allPoints, to: collage)
+    
+        return setPoints(translatedPoints, to: collage)
     }
     
     private mutating func getCoorectTranslation(_ translation: CGPoint) -> CGPoint {
@@ -87,19 +89,24 @@ struct CollageChanger {
         return resultTranslation
     }
     
-    private func getDependedPoints(in collage: Collage) -> [ControlPoint] {
-        guard let movedPoint,
-              let group = collage.dependencies.first(where: {
-                  $0.pointIDs.contains(movedPoint.id)
-              }) else {
-            return []
+    private func getAllPointsForTranslation(in collage: Collage) -> [ControlPoint] {
+        
+        let allPoints = movedPointsIDs.reduce([ControlPoint]()) { allPoints, pointID in
+            if let group = collage.dependencies.first(where: {
+                $0.pointIDs.contains(pointID)
+            }) {
+                let points = collage.controlPoints.filter {
+                    group.pointIDs.contains($0.id)
+                }
+                return allPoints + points
+            }
+            
+            let point = collage.controlPoints.filter { $0.id == pointID }
+            
+            return allPoints + point
         }
         
-        let points = collage.controlPoints.filter{
-            group.pointIDs.contains($0.id)
-        }
-        
-        return points
+        return allPoints
     }
     
     private func setPoints(_ points: [ControlPoint],
@@ -109,12 +116,12 @@ struct CollageChanger {
         
         points.forEach { point in
             guard let shapeIndex = collage.shapes.firstIndex(where: {
-                      $0.id == point.shapeID
-                  }) else {
+                $0.id == point.shapeID
+            }) else {
                 return
             }
             
-            var newShape = collage.shapes[shapeIndex]
+            var newShape = newCollage.shapes[shapeIndex]
             newShape.elements = ElementsChanger.change(
                 point,
                 in: newShape.elements
@@ -125,7 +132,6 @@ struct CollageChanger {
         
         return newCollage
     }
-    
     
     
 }

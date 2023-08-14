@@ -5,11 +5,13 @@
 //  Created by Алексей Касьяник on 31.07.2023.
 //
 
-import Foundation
+import SwiftUI
 
 struct ShapeData: Identifiable, Codable {
     var elements: [ShapeElement]
     var media: Media?
+    var zPosition: Int
+    var blendMode: ContentBlendMode
     
     private(set) var id: String = UUID().uuidString
     

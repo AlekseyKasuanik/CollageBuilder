@@ -16,11 +16,12 @@ struct AppReducer: ReducerProtocol {
         var newState = currentState
         
         switch action {
-        case .translateConrolPoint(let gestureState):
+        case .translate(let gestureState):
             newState.collage = collageChanger.translate(
                 gestureState,
                 in: newState.collage
             )
+            
         case .conectControlPoints(let ids):
             guard let index = newState.collage.dependencies.firstIndex(where: {
                 !$0.pointIDs.intersection(ids).isEmpty
