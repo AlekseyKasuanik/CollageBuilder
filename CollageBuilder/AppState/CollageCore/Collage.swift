@@ -12,6 +12,8 @@ struct Collage: Codable {
     var dependencies: [DependentPoints]
     let id: String
     
+    @CodableWrapper var background: CollageBackground
+    
     var controlPoints: [ControlPoint] {
         shapes.flatMap { $0.controlPoints }
     }

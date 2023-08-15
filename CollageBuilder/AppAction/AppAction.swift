@@ -9,9 +9,8 @@ import Foundation
 
 enum AppAction {
     case translate(GestureState)
-    case conectControlPoints(Set<String>)
-    case addShape(ShapeData)
     case addElement(ShapeElement, shapeId: String)
     case setCollage(Collage)
     case changeMedia(Media?, shapeId: String)
+    case changeCollage(CollageModification)
 }

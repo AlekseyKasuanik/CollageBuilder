@@ -22,6 +22,7 @@ struct ShapeItemView: View {
                     case .image(let image):
                         Image(uiImage: image)
                             .resizable()
+                            .scaledToFill()
                     case .video(let video):
                         VideoPlayerView(videoURL: video.videoUrl,
                                         modifiers: [],

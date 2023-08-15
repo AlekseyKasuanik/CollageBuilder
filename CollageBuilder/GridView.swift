@@ -27,7 +27,7 @@ struct GridView: View {
                 }
             }
         }
-        .background(Color(uiColor: .systemGray6))
+        
     }
     
     @ViewBuilder

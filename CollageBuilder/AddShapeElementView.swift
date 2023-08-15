@@ -87,10 +87,12 @@ struct AddShapeElementView: View {
     private var addShape: some View {
         Button {
             mutatedShapeID = UUID().uuidString
-            store.dispatch(.addShape(.init(elements: [],
-                                           zPosition: 1,
-                                           blendMode: .normal,
-                                           id: mutatedShapeID)))
+            store.dispatch(.changeCollage(.addShape(.init(
+                elements: [],
+                zPosition: 1,
+                blendMode: .normal,
+                id: mutatedShapeID
+            ))))
         } label: {
             Text("Add new shape")
         }

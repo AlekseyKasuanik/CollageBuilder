@@ -31,6 +31,11 @@
 		1F53337C2A8AADC40068069B /* ZPositionSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F53337B2A8AADC40068069B /* ZPositionSelectorView.swift */; };
 		1F53337E2A8AB0B80068069B /* ContentBlendMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F53337D2A8AB0B80068069B /* ContentBlendMode.swift */; };
 		1F562BB72A882C7B00302C22 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F562BB62A882C7B00302C22 /* Video.swift */; };
+		1F574BFF2A8BEEDE00B0EC2E /* CollageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574BFE2A8BEEDE00B0EC2E /* CollageBackground.swift */; };
+		1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C002A8BF13500B0EC2E /* UIColor+.swift */; };
+		1F574C032A8BFFFA00B0EC2E /* CollageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */; };
+		1F574C052A8C109000B0EC2E /* CollageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C042A8C109000B0EC2E /* CollageBackgroundView.swift */; };
+		1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C062A8C11AC00B0EC2E /* CollageModification.swift */; };
 		1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */; };
 		1F5DF5C82A76726A00430AF1 /* CollageBuiderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */; };
 		1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C92A76726C00430AF1 /* Assets.xcassets */; };
@@ -86,6 +91,11 @@
 		1F53337B2A8AADC40068069B /* ZPositionSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPositionSelectorView.swift; sourceTree = "<group>"; };
 		1F53337D2A8AB0B80068069B /* ContentBlendMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlendMode.swift; sourceTree = "<group>"; };
 		1F562BB62A882C7B00302C22 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		1F574BFE2A8BEEDE00B0EC2E /* CollageBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBackground.swift; sourceTree = "<group>"; };
+		1F574C002A8BF13500B0EC2E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageReducer.swift; sourceTree = "<group>"; };
+		1F574C042A8C109000B0EC2E /* CollageBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBackgroundView.swift; sourceTree = "<group>"; };
+		1F574C062A8C11AC00B0EC2E /* CollageModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageModification.swift; sourceTree = "<group>"; };
 		1F5DF5C22A76726A00430AF1 /* CollageBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollageBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderApp.swift; sourceTree = "<group>"; };
 		1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuiderView.swift; sourceTree = "<group>"; };
@@ -222,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				1F660F202A781EDC0072925A /* AppReducer.swift */,
+				1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */,
 				1F660F222A781F050072925A /* ReducerProtocol.swift */,
 			);
 			path = AppReducer;
@@ -239,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				1F660F282A781F8C0072925A /* AppAction.swift */,
+				1F574C062A8C11AC00B0EC2E /* CollageModification.swift */,
 			);
 			path = AppAction;
 			sourceTree = "<group>";
@@ -249,6 +261,7 @@
 				1F660F2C2A7825560072925A /* ShapeData.swift */,
 				1F52FD902A81744B005ECBDD /* RectExtractor.swift */,
 				1F3BD2752A7AB3B9001E7ACB /* Collage.swift */,
+				1F574BFE2A8BEEDE00B0EC2E /* CollageBackground.swift */,
 				1F52FD8A2A8156A6005ECBDD /* Media.swift */,
 				1F562BB62A882C7B00302C22 /* Video.swift */,
 				1F660F302A7829700072925A /* ShapeElement.swift */,
@@ -260,6 +273,7 @@
 				1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */,
 				1F2638392A83B69900022E1C /* SharedContext.swift */,
 				1F53337D2A8AB0B80068069B /* ContentBlendMode.swift */,
+				1F574C042A8C109000B0EC2E /* CollageBackgroundView.swift */,
 				1F52FD872A815509005ECBDD /* CodableWrapper */,
 				1F660F362A782D3F0072925A /* GestureView */,
 				1F2D3F4D2A82A46E00EA6307 /* ShapeItemView */,
@@ -289,6 +303,7 @@
 				1F6869972A810E78006C2B6C /* UIImage+.swift */,
 				1F2B5CAF2A88F5C600BAEE19 /* UIScreen+.swift */,
 				1F2B5CB12A88FCD300BAEE19 /* CIImage+.swift */,
+				1F574C002A8BF13500B0EC2E /* UIColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,6 +396,7 @@
 				1F52FD8F2A81685D005ECBDD /* MediaPickerView.swift in Sources */,
 				1F660F3C2A782D820072925A /* GestureState.swift in Sources */,
 				1F660F292A781F8C0072925A /* AppAction.swift in Sources */,
+				1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */,
 				1F660F1E2A78174D0072925A /* Store.swift in Sources */,
 				1F3BD2762A7AB3B9001E7ACB /* Collage.swift in Sources */,
 				1F660F382A782D4B0072925A /* GestureView.swift in Sources */,
@@ -409,14 +425,18 @@
 				1F2D3F502A82C26000EA6307 /* VideoPlayer.swift in Sources */,
 				1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */,
 				1F68699A2A810FD1006C2B6C /* CodableWrapper.swift in Sources */,
+				1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */,
 				1F2638382A83B67C00022E1C /* Modifier.swift in Sources */,
+				1F574BFF2A8BEEDE00B0EC2E /* CollageBackground.swift in Sources */,
 				1F53337E2A8AB0B80068069B /* ContentBlendMode.swift in Sources */,
 				1F32A2042A7C3A14006A4AAE /* PointsRecognizer.swift in Sources */,
 				1F52FD892A815516005ECBDD /* DataRepresentable.swift in Sources */,
 				1F52FD8D2A815E36005ECBDD /* PathCreator.swift in Sources */,
 				1F53337C2A8AADC40068069B /* ZPositionSelectorView.swift in Sources */,
+				1F574C032A8BFFFA00B0EC2E /* CollageReducer.swift in Sources */,
 				1F6869982A810E78006C2B6C /* UIImage+.swift in Sources */,
 				1F660F212A781EDC0072925A /* AppReducer.swift in Sources */,
+				1F574C052A8C109000B0EC2E /* CollageBackgroundView.swift in Sources */,
 				1F26383A2A83B69900022E1C /* SharedContext.swift in Sources */,
 				1F4E86812A84FDBC0019AAB3 /* VideoTrim.swift in Sources */,
 				1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */,

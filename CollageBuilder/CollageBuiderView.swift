@@ -45,6 +45,9 @@ struct CollageBuiderView: View {
             }
             .frame(width: collageSize.width,
                    height: collageSize.height)
+            .background {
+                CollageBackgroundView(background: collage.background)
+            }
             .overlay {
                 GestureView() { location in
                     handleTap(in: location)
@@ -67,7 +70,7 @@ struct CollageBuiderView: View {
                 TopBarView()
                 HStack {
                     Button {
-                        store.dispatch(.conectControlPoints(selectedPointsIDs))
+                        store.dispatch(.changeCollage(.conectControlPoints(selectedPointsIDs)))
                         selectedPointsIDs.removeAll()
                     } label: {
                         createButtonBody(with: "Conect")
@@ -109,10 +112,10 @@ struct CollageBuiderView: View {
     }
     
     private func handleTap(in point: CGPoint) {
-        guard let shape = collage.shapes.first(where: {
-            PathCreator.create(size: .init(side: 1), shape: $0)
-                .contains(point)
-        }) else {
+        guard let shape = PointsRecognizer.findShape(
+            point,
+            in: collage
+        ) else {
             return
         }
         

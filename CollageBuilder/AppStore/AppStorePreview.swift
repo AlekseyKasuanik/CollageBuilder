@@ -17,7 +17,8 @@ extension AppStore {
             shapes: [.init(elements: [element1], zPosition: 1, blendMode: .normal),
                      .init(elements: [element2], zPosition: 2, blendMode: .normal)],
             dependencies: [],
-            id: collageID
+            id: collageID,
+            background: .color(.white)
         
         )
         return AppStore(

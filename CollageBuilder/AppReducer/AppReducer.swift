@@ -12,7 +12,11 @@ struct AppReducer: ReducerProtocol {
     var collageChanger = CollageChanger(pointTouchSide: 0.1,
                                         transalationStep: 0.01)
     
-    mutating func reduce(_ currentState: AppState, _ action: AppAction) -> AppState {
+    var collageReducer = CollageReducer()
+    
+    mutating func reduce(_ currentState: AppState,
+                         _ action: AppAction) -> AppState {
+        
         var newState = currentState
         
         switch action {
@@ -22,18 +26,8 @@ struct AppReducer: ReducerProtocol {
                 in: newState.collage
             )
             
-        case .conectControlPoints(let ids):
-            guard let index = newState.collage.dependencies.firstIndex(where: {
-                !$0.pointIDs.intersection(ids).isEmpty
-            }) else {
-                newState.collage.dependencies.append(.init(pointIDs: ids))
-                break
-            }
-            
-            newState.collage.dependencies[index] = .init(pointIDs: ids)
-            
-        case .addShape(let shape):
-            newState.collage.shapes.append(shape)
+        case .changeCollage(let modification):
+            newState.collage = collageReducer.reduce(newState.collage, modification)
             
         case .addElement(let element, shapeId: let id):
             guard let index = getShapeIndex(id: id, in: newState) else {
