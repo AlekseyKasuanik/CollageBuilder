@@ -24,6 +24,9 @@ struct CollageReducer: ReducerProtocol {
             
         case .conectControlPoints(let ids):
             newCollage = conectControlPoints(ids, in: newCollage)
+            
+        case .cnahgeCornerRadius(let radius):
+            newCollage = changeCornerRadius(radius, in: newCollage)
         }
         
         return newCollage
@@ -59,6 +62,14 @@ struct CollageReducer: ReducerProtocol {
         
         newCollage.dependencies[index] = .init(pointIDs: ids)
         
+        return newCollage
+    }
+    
+    private func changeCornerRadius(_ radius: CGFloat,
+                                    in collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.cornerRadius = radius
         return newCollage
     }
 }

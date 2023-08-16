@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShapeItemView: View {
     
+    let cornerRadius: CGFloat
     let shape: ShapeData
     let size: CGSize
     
@@ -16,8 +17,8 @@ struct ShapeItemView: View {
     
     var body: some View {
         ZStack {
-            if let media = shape.media {
-                Group {
+            Group {
+                if let media = shape.media {
                     switch media.resource {
                     case .image(let image):
                         Image(uiImage: image)
@@ -28,18 +29,19 @@ struct ShapeItemView: View {
                                         modifiers: [],
                                         settings: .defaultSettings)
                     }
+                } else {
+                    RoundedRectangle(cornerRadius: 0.01)
                 }
-                .frame(
-                    width: shape.fitRect.width * size.width,
-                    height: shape.fitRect.height * size.height
-                )
-                .position(
-                    x: shape.fitRect.midX * size.width,
-                    y: shape.fitRect.midY * size.height
-                )
-            } else {
-                Color(uiColor: emptyColor)
             }
+            .frame(
+                width: shape.fitRect.width * size.width,
+                height: shape.fitRect.height * size.height
+            )
+            .cornerRadius(cornerRadius)
+            .position(
+                x: shape.fitRect.midX * size.width,
+                y: shape.fitRect.midY * size.height
+            )
         }
         .frame(width: size.width,
                height: size.height)
@@ -59,6 +61,7 @@ struct ShapeItemView_Previews: PreviewProvider {
         let image = UIImage(named: "exampleImage1")!
         ScrollView([.vertical, .horizontal]) {
             ShapeItemView(
+                cornerRadius: 0,
                 shape: .init(elements: [element],
                              media: .init(resource: .image(image)),
                              zPosition: 1,

@@ -19,6 +19,7 @@ struct CollageBuilderApp: App {
         .init(
             initial: .init(collage: .init(shapes: [],
                                           dependencies: [],
+                                          cornerRadius: 0,
                                           id: UUID().uuidString,
                                           background: .color(.white))),
             reducer: .init()

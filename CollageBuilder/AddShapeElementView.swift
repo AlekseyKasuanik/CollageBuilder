@@ -22,43 +22,16 @@ struct AddShapeElementView: View {
     @State private var width = ""
     @State private var height = ""
     
-    @State private var selectedElement: ElementType = .point
     @State private var mutatedShapeID = UUID().uuidString
     
     var body: some View {
-        VStack(spacing: 12) {
-            addShape
-            Divider()
-            elementSelector
-            Divider()
-            Group {
-                switch selectedElement {
-                case .point:
-                    addPointButton
-                case .curve:
-                    addCurveButton
-                case .rectangle:
-                    addRectangleButton
-                case .elipse:
-                    addElipseButton
-                }
-            }
-            .padding(.horizontal, 15)
-            Divider()
-        }
-        .frame(height: 230)
-        .background(Color(uiColor: .systemGray6))
-    }
-    
-    private var elementSelector: some View {
-        HStack {
-            ForEach(ElementType.allCases) { element in
-                Button {
-                    selectedElement = element
-                } label: {
-                    Text(element.rawValue)
-                }
-                .frame(maxWidth: .infinity)
+        Group {
+            Section("change elements") {
+                addShape
+                addPointButton
+                addCurveButton
+                addRectangleButton
+                addElipseButton
             }
         }
     }
@@ -85,17 +58,23 @@ struct AddShapeElementView: View {
     }
     
     private var addShape: some View {
-        Button {
-            mutatedShapeID = UUID().uuidString
-            store.dispatch(.changeCollage(.addShape(.init(
-                elements: [],
-                zPosition: 1,
-                blendMode: .normal,
-                id: mutatedShapeID
-            ))))
-        } label: {
-            Text("Add new shape")
+        HStack {
+            Text("AddShape")
+            Spacer()
+            Button {
+                mutatedShapeID = UUID().uuidString
+                store.dispatch(.changeCollage(.addShape(.init(
+                    elements: [],
+                    zPosition: 1,
+                    blendMode: .normal,
+                    id: mutatedShapeID
+                ))))
+            } label: {
+                Image(systemName: "plus.app")
+                    .font(.largeTitle)
+            }
         }
+
     }
     
     private var addCurveButton: some View {
@@ -244,17 +223,13 @@ struct AddShapeElementView: View {
                      height: height / size.height)
     }
     
-    private enum ElementType: String, Identifiable, CaseIterable {
-        var id: String { rawValue }
-        
-        case point, curve, rectangle, elipse
-    }
-    
 }
 
 struct AddShapeElementView_Previews: PreviewProvider {
     static var previews: some View {
-        AddShapeElementView(size: .init(side: 1000))
+        List {
+            AddShapeElementView(size: .init(side: 1000))
+        }
             .environmentObject(AppStore.preview)
     }
 }

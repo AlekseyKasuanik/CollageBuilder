@@ -11,4 +11,5 @@ enum CollageModification {
     case addShape(ShapeData)
     case changeBackground(CollageBackground)
     case conectControlPoints(Set<String>)
+    case cnahgeCornerRadius(CGFloat)
 }

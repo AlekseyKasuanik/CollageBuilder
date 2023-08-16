@@ -11,6 +11,16 @@ enum CollageBackground {
     case image(UIImage)
     case video(Video)
     case color(UIColor)
+    
+    init(media: Media) {
+        switch media.resource {
+        case .image(let image):
+            self = .image(image)
+            
+        case .video(let video):
+            self = .video(video)
+        }
+    }
 }
 
 extension CollageBackground: DataRepresentable {

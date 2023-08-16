@@ -10,6 +10,7 @@ import Foundation
 struct Collage: Codable {
     var shapes: [ShapeData]
     var dependencies: [DependentPoints]
+    var cornerRadius: CGFloat
     let id: String
     
     @CodableWrapper var background: CollageBackground

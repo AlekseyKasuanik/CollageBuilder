@@ -31,10 +31,11 @@ struct CollageBuiderView: View {
                     GridView(xLines: 100, yLines: 100)
                     ForEach(collage.shapes) { shape in
                         ShapeItemView(
+                            cornerRadius: collage.cornerRadius,
                             shape: shape,
                             size: collageSize
                         )
-                        .blendMode(.hardLight)
+                        .blendMode(shape.blendMode.blendMode)
                     }
                     ControlPointsView(
                         selectedPointsIDs: $selectedPointsIDs,
@@ -85,7 +86,12 @@ struct CollageBuiderView: View {
                 .opacity(selectedPointsIDs.isEmpty ? 0 : 1)
                 .animation(.default, value: selectedPointsIDs)
                 Spacer()
-                AddShapeElementView(size: collageSize)
+                List {
+                    AddShapeElementView(size: collageSize)
+                    CollageEditorView()
+                }
+                .frame(height: 300)
+                
             }
         }
         .sheet(isPresented: $showMediaPicker) {
