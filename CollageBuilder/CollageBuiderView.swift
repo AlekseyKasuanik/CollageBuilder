@@ -36,6 +36,10 @@ struct CollageBuiderView: View {
                             size: collageSize
                         )
                         .blendMode(shape.blendMode.blendMode)
+                        .position(
+                            x: shape.fitRect.midX * collageSize.width,
+                            y: shape.fitRect.midY * collageSize.height
+                        )
                     }
                     ControlPointsView(
                         selectedPointsIDs: $selectedPointsIDs,

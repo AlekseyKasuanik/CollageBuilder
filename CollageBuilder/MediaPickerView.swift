@@ -50,6 +50,7 @@ struct MediaPickerView: UIViewControllerRepresentable {
                         picker.dismiss(animated: true)
                     }
                 }
+                
             } else if provider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
                 let _ = provider.loadTransferable(type: Video.self) { result in
                     guard case .success(let video) = result else { return }
@@ -58,6 +59,7 @@ struct MediaPickerView: UIViewControllerRepresentable {
                         picker.dismiss(animated: true)
                     }
                 }
+                
             } else {
                 picker.dismiss(animated: true)
             }

@@ -29,10 +29,14 @@ enum PointsRecognizer {
                           in collage: Collage) -> ShapeData? {
         
         let resultShapes = collage.shapes.first(where: { shape in
+            shape.fitRect.contains(point) &&
             PathCreator.create(
                 size: .init(side: 1),
                 shape: shape
-            ).contains(point)
+            ).contains(
+                CGPoint(x: point.x - shape.fitRect.minX,
+                        y: point.y - shape.fitRect.minY)
+            )
         })
         
         return resultShapes

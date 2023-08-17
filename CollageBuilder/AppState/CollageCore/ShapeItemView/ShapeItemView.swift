@@ -13,9 +13,13 @@ struct ShapeItemView: View {
     let shape: ShapeData
     let size: CGSize
     
+    var strokeColor: UIColor = .clear
+    var strokeWidth: CGFloat = 7
+    
     var emptyColor: UIColor = .systemGray3
     
     var body: some View {
+        let collageShape = CollageShape(shape: shape, size: size)
         ZStack {
             Group {
                 if let media = shape.media {
@@ -38,14 +42,20 @@ struct ShapeItemView: View {
                 height: shape.fitRect.height * size.height
             )
             .cornerRadius(cornerRadius)
-            .position(
-                x: shape.fitRect.midX * size.width,
-                y: shape.fitRect.midY * size.height
-            )
         }
-        .frame(width: size.width,
-               height: size.height)
-        .clipShape(CollageShape(shape: shape, size: size))
+        .clipShape(collageShape)
+        .overlay {
+            ZStack {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color(strokeColor), lineWidth: strokeWidth)
+                collageShape
+                    .stroke(Color(strokeColor), lineWidth: strokeWidth)
+            }
+            .mask {
+                collageShape
+                    .cornerRadius(cornerRadius)
+            }
+        }
     }
 }
 

@@ -14,14 +14,17 @@ enum PathCreator {
         var isFirstPint = true
         var lastPoint: CGPoint?
         
+        let offset = CGPoint(x: shape.fitRect.minX,
+                             y: shape.fitRect.minY)
+        
         for element in shape.elements {
             switch element {
             case .point(let point):
                 if isFirstPint {
-                    path.move(to: convertRelative(point, in: size))
+                    path.move(to: convertRelative(point - offset, in: size))
                     isFirstPint = false
                 } else {
-                    path.addLine(to: convertRelative(point, in: size))
+                    path.addLine(to: convertRelative(point - offset, in: size))
                 }
                 
                 lastPoint = point
@@ -35,8 +38,8 @@ enum PathCreator {
                                                through: control,
                                                end: endPoint)
                 
-                path.addQuadCurve(to: convertRelative(endPoint, in: size),
-                                  control: convertRelative(control, in: size))
+                path.addQuadCurve(to: convertRelative(endPoint - offset, in: size),
+                                  control: convertRelative(control - offset, in: size))
                 
                 lastPoint = endPoint
                 
@@ -79,8 +82,8 @@ enum PathCreator {
     }
     
     private static func convertRelative(_ rect: CGRect, in size: CGSize) -> CGRect {
-        CGRect(x: rect.minX * size.width,
-               y: rect.minY * size.height,
+        CGRect(x: 0,
+               y: 0,
                width: rect.width * size.width,
                height: rect.height * size.height)
     }
