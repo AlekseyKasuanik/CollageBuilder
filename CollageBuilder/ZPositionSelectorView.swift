@@ -13,7 +13,7 @@ struct ZPositionSelectorView: View {
     
     var body: some View {
         HStack {
-            Text("Z index: ")
+            Text("Z position: ")
             Picker("", selection: $zPosition) {
                 ForEach(-20...20, id: \.self) {
                     Text($0.description)
@@ -21,7 +21,7 @@ struct ZPositionSelectorView: View {
             }
             .pickerStyle(.wheel)
         }
-        .frame(width: 130, height: 50)
+        .frame(height: 100)
     }
 }
 

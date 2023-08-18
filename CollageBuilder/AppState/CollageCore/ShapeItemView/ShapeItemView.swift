@@ -44,6 +44,7 @@ struct ShapeItemView: View {
             .cornerRadius(cornerRadius)
         }
         .clipShape(collageShape)
+        .blendMode(shape.blendMode.blendMode)
         .overlay {
             ZStack {
                 RoundedRectangle(cornerRadius: cornerRadius)

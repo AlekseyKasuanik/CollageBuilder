@@ -18,10 +18,6 @@ struct CollageBuiderView: View {
     
     @State private var selectedPointsIDs = Set<String>()
     
-    @State private var showMediaPicker = false
-    @State private var selectedShapeId: String?
-    @State private var selectedMedia: Media?
-    
     private var collage: Collage { store.state.collage }
     
     var body: some View {
@@ -30,12 +26,14 @@ struct CollageBuiderView: View {
                 ZStack {
                     GridView(xLines: 100, yLines: 100)
                     ForEach(collage.shapes) { shape in
+                        let isSelected = store.state.selectedShapeID == shape.id
                         ShapeItemView(
                             cornerRadius: collage.cornerRadius,
                             shape: shape,
-                            size: collageSize
+                            size: collageSize,
+                            strokeColor: isSelected ? .green : .clear
                         )
-                        .blendMode(shape.blendMode.blendMode)
+                        .zIndex(Double(shape.zPosition))
                         .position(
                             x: shape.fitRect.midX * collageSize.width,
                             y: shape.fitRect.midY * collageSize.height
@@ -90,23 +88,24 @@ struct CollageBuiderView: View {
                 .opacity(selectedPointsIDs.isEmpty ? 0 : 1)
                 .animation(.default, value: selectedPointsIDs)
                 Spacer()
-                List {
-                    AddShapeElementView(size: collageSize)
-                    CollageEditorView()
+                VStack {
+                    Text(store.state.selectedShapeID == nil
+                         ? "Collage Editor"
+                         : "ShapeEditor")
+                        .font(.title2)
+                        .padding()
+                    List {
+                        if store.state.selectedShapeID == nil {
+                            AddShapeElementView(size: collageSize)
+                            CollageEditorView()
+                        } else {
+                            ShapeEditorView()
+                        }
+                    }
                 }
                 .frame(height: 300)
-                
+                .background(Color(uiColor: .systemBackground))
             }
-        }
-        .sheet(isPresented: $showMediaPicker) {
-            MediaPickerView(media: $selectedMedia)
-        }
-        .onChange(of: selectedMedia) { media in
-            guard let selectedShapeId else {
-                return
-            }
-            
-            store.dispatch(.changeMedia(media, shapeId: selectedShapeId))
         }
         .environmentObject(store)
 
@@ -122,15 +121,12 @@ struct CollageBuiderView: View {
     }
     
     private func handleTap(in point: CGPoint) {
-        guard let shape = PointsRecognizer.findShape(
+       let shape = PointsRecognizer.findShape(
             point,
             in: collage
-        ) else {
-            return
-        }
+        )
         
-        showMediaPicker = true
-        selectedShapeId = shape.id
+        store.dispatch(.selectShape(shape?.id))
         
     }
     

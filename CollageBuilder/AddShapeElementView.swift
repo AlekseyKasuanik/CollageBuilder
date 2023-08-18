@@ -161,11 +161,10 @@ struct AddShapeElementView: View {
             return
         }
         
-        store.dispatch(.addElement(
-            .point(.init(x: x / size.width,
-                         y: y / size.height)),
-            shapeId: mutatedShapeID
-        ))
+        dispatch(.point(.init(
+            x: x / size.width,
+            y: y / size.height
+        )))
     }
     
     private func addCurve() {
@@ -177,12 +176,11 @@ struct AddShapeElementView: View {
             return
         }
         
-        store.dispatch(.addElement(
-            .curve(endPoint: .init(x: endX / size.width,
-                                   y: endY / size.height),
-                   control: .init(x: controlX / size.width,
-                                  y: controlY / size.height)),
-            shapeId: mutatedShapeID
+        dispatch(.curve(
+            endPoint: .init(x: endX / size.width,
+                            y: endY / size.height),
+            control: .init(x: controlX / size.width,
+                           y: controlY / size.height)
         ))
     }
     
@@ -191,10 +189,7 @@ struct AddShapeElementView: View {
             return
         }
         
-        store.dispatch(.addElement(
-            .rectangle(rect),
-            shapeId: mutatedShapeID
-        ))
+        dispatch(.rectangle(rect))
     }
     
     private func addElipse() {
@@ -202,10 +197,7 @@ struct AddShapeElementView: View {
             return
         }
         
-        store.dispatch(.addElement(
-            .ellipse(rect),
-            shapeId: mutatedShapeID
-        ))
+        dispatch(.ellipse(rect))
     }
     
     private func extractRect() -> CGRect? {
@@ -221,6 +213,12 @@ struct AddShapeElementView: View {
                      y: y / size.height,
                      width: width / size.width,
                      height: height / size.height)
+    }
+    
+    private func dispatch(_ element: ShapeElement) {
+        store.dispatch(.changeCollage(.changeShape(
+            .addElement(element), id: mutatedShapeID
+        )))
     }
     
 }

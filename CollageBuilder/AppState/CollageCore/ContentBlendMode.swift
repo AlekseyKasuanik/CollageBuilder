@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ContentBlendMode: Codable {
+enum ContentBlendMode: String, Codable, CaseIterable {
     
     case normal
     case multiply

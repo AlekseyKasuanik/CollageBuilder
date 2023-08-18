@@ -29,22 +29,11 @@ struct AppReducer: ReducerProtocol {
         case .changeCollage(let modification):
             newState.collage = collageReducer.reduce(newState.collage, modification)
             
-        case .addElement(let element, shapeId: let id):
-            guard let index = getShapeIndex(id: id, in: newState) else {
-                break
-            }
-            
-            newState.collage.shapes[index].elements.append(element)
-            
         case .setCollage(let collage):
             newState.collage = collage
             
-        case .changeMedia(let media, shapeId: let id):
-            guard let index = getShapeIndex(id: id, in: newState) else {
-                break
-            }
-            
-            newState.collage.shapes[index].media = media
+        case .selectShape(let id):
+            newState.selectedShapeID = id
         }
         
         return newState

@@ -9,4 +9,5 @@ import Foundation
 
 struct AppState {
     var collage: Collage
+    var selectedShapeID: String?
 }

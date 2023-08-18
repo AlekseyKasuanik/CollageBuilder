@@ -9,6 +9,7 @@ import Foundation
 
 struct CollageReducer: ReducerProtocol {
     
+    private var shapeReducer = ShapeReducer()
     
     mutating func reduce(_ currentState: Collage,
                          _ action: CollageModification) -> Collage {
@@ -27,10 +28,33 @@ struct CollageReducer: ReducerProtocol {
             
         case .cnahgeCornerRadius(let radius):
             newCollage = changeCornerRadius(radius, in: newCollage)
+            
+        case .changeShape(let action, id: let id):
+            newCollage = changeShape(action, id: id, in: newCollage)
         }
         
         return newCollage
         
+    }
+    
+    private mutating func changeShape(_ action: ShapeModification,
+                             id: String,
+                             in collage: Collage) -> Collage {
+        
+        guard let shpaeIndex = collage.shapes.firstIndex(where: {
+            $0.id == id
+        }) else {
+            return collage
+        }
+        
+        var newCollage = collage
+        
+        newCollage.shapes[shpaeIndex] = shapeReducer.reduce(
+            newCollage.shapes[shpaeIndex],
+            action
+        )
+        
+        return newCollage
     }
     
     private func changeBackground(_ background: CollageBackground,
