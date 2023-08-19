@@ -9,9 +9,7 @@ import SwiftUI
 
 struct ControlPointsView: View {
     
-    @EnvironmentObject private var model: AppStore
-    
-    @Binding var selectedPointsIDs: Set<String>
+    let selectedPointsIDs: Set<String>
     
     let controlPoints: [ControlPoint]
     let size: CGSize
@@ -24,6 +22,7 @@ struct ControlPointsView: View {
                               y: controlPoint.point.y * size.height)
             }
         }
+        .allowsHitTesting(false)
     }
     
     
@@ -42,13 +41,12 @@ struct ControlPointsView: View {
 struct ControlPointsView_Previews: PreviewProvider {
     static var previews: some View {
         ControlPointsView(
-            selectedPointsIDs: .constant(["2"]),
+            selectedPointsIDs: ["2"],
             controlPoints: [
                 .init(point: .init(x: 0.1, y: 0.1), indexInElement: 0, type: .point, shapeID: "1"),
                 .init(point: .init(x: 0.2, y: 0.2), indexInElement: 1, type: .point, shapeID: "2")
             ],
             size: .init(side: 1000)
         )
-        .environmentObject(AppStore.preview)
     }
 }

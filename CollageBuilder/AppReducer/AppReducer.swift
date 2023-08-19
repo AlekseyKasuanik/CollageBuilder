@@ -9,10 +9,9 @@ import Foundation
 
 struct AppReducer: ReducerProtocol {
     
-    var collageChanger = CollageChanger(pointTouchSide: 0.1,
-                                        transalationStep: 0.01)
     
     var collageReducer = CollageReducer()
+    var gestureReducer = GestureReducer()
     
     mutating func reduce(_ currentState: AppState,
                          _ action: AppAction) -> AppState {
@@ -20,12 +19,6 @@ struct AppReducer: ReducerProtocol {
         var newState = currentState
         
         switch action {
-        case .translate(let gestureState):
-            newState.collage = collageChanger.translate(
-                gestureState,
-                in: newState.collage
-            )
-            
         case .changeCollage(let modification):
             newState.collage = collageReducer.reduce(newState.collage, modification)
             
@@ -34,15 +27,16 @@ struct AppReducer: ReducerProtocol {
             
         case .selectShape(let id):
             newState.selectedShapeID = id
+            
+        case .gesture(let action):
+            newState = gestureReducer.reduce(newState, action)
+            
+        case .removeSelectedPoints:
+            newState.selectedPointsIDs.removeAll()
         }
         
         return newState
     }
     
-    private func getShapeIndex(id: String, in state: AppState) -> Int? {
-        state.collage.shapes.firstIndex(where: {
-            $0.id == id
-        })
-    }
 }
 

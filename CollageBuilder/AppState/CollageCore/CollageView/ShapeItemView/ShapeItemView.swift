@@ -34,7 +34,7 @@ struct ShapeItemView: View {
                                         settings: .defaultSettings)
                     }
                 } else {
-                    RoundedRectangle(cornerRadius: 0.01)
+                    Color(uiColor: emptyColor)
                 }
             }
             .frame(

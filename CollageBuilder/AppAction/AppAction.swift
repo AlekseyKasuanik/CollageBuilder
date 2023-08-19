@@ -8,8 +8,9 @@
 import Foundation
 
 enum AppAction {
-    case translate(GestureState)
+    case gesture(GestureAction)
     case setCollage(Collage)
     case changeCollage(CollageModification)
     case selectShape(String?)
+    case removeSelectedPoints
 }

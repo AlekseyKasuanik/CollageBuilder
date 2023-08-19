@@ -27,11 +27,13 @@ struct AddShapeElementView: View {
     var body: some View {
         Group {
             Section("change elements") {
-                addShape
-                addPointButton
-                addCurveButton
-                addRectangleButton
-                addElipseButton
+                VStack(spacing: 20) {
+                    addShape
+                    addPointButton
+                    addCurveButton
+                    addRectangleButton
+                    addElipseButton
+                }
             }
         }
     }
@@ -132,7 +134,7 @@ struct AddShapeElementView: View {
     private var addElipseButton: some View {
         VStack {
             Button {
-                
+                addElipse()
             } label: {
                 Text("Add Elipse")
             }
@@ -228,6 +230,6 @@ struct AddShapeElementView_Previews: PreviewProvider {
         List {
             AddShapeElementView(size: .init(side: 1000))
         }
-            .environmentObject(AppStore.preview)
+        .environmentObject(AppStore.preview)
     }
 }

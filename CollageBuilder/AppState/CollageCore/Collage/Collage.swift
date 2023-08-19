@@ -19,3 +19,13 @@ struct Collage: Codable {
         shapes.flatMap { $0.controlPoints }
     }
 }
+
+extension Collage {
+    static var empty: Collage {
+        .init(shapes: [],
+              dependencies: [],
+              cornerRadius: 0,
+              id: "1",
+              background: .color(.white))
+    }
+}

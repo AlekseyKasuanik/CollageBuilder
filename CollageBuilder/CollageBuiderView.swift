@@ -13,140 +13,97 @@ struct CollageBuiderView: View {
     
     @ObservedObject private(set) var store: AppStore
     
-    @State private var collageOffeset: CGPoint = .zero
-    @State private var collageScale: CGFloat = 1
-    
-    @State private var selectedPointsIDs = Set<String>()
+    @State private var showGrid = true
     
     private var collage: Collage { store.state.collage }
     
     var body: some View {
         ZStack {
-            ZStack {
-                ZStack {
-                    GridView(xLines: 100, yLines: 100)
-                    ForEach(collage.shapes) { shape in
-                        let isSelected = store.state.selectedShapeID == shape.id
-                        ShapeItemView(
-                            cornerRadius: collage.cornerRadius,
-                            shape: shape,
-                            size: collageSize,
-                            strokeColor: isSelected ? .green : .clear
-                        )
-                        .zIndex(Double(shape.zPosition))
-                        .position(
-                            x: shape.fitRect.midX * collageSize.width,
-                            y: shape.fitRect.midY * collageSize.height
-                        )
-                    }
+            collageView
+                .overlay {
                     ControlPointsView(
-                        selectedPointsIDs: $selectedPointsIDs,
+                        selectedPointsIDs: store.state.selectedPointsIDs,
                         controlPoints: collage.controlPoints,
                         size: collageSize
                     )
                 }
-            }
-            .frame(width: collageSize.width,
-                   height: collageSize.height)
-            .background {
-                CollageBackgroundView(background: collage.background)
-            }
-            .overlay {
-                GestureView() { location in
-                    handleTap(in: location)
-                } onLongTapGesture: { location in
-                    handleLongTap(in: location)
-                } onScaleGesture: { scale in
-                    collageScale = collageScale * scale
-                } onTranslateGesture: { translation in
-                    store.dispatch(.translate(translation))
-                } onTwoFingersTranslateGesture: { translation in
-                    collageOffeset = translation + collageOffeset
-                }
-            }
-            .offset(x: collageOffeset.x * collageSize.width,
-                    y: collageOffeset.y * collageSize.height)
-            .scaleEffect(collageScale)
-            .layoutPriority(-1)
+                .offset(
+                    x: store.state.collageSettings.translation.x * collageSize.width,
+                    y: store.state.collageSettings.translation.y * collageSize.height
+                )
+                .scaleEffect(store.state.collageSettings.scale)
+                .layoutPriority(-1)
             
             VStack {
                 TopBarView()
-                HStack {
-                    Button {
-                        store.dispatch(.changeCollage(.conectControlPoints(selectedPointsIDs)))
-                        selectedPointsIDs.removeAll()
-                    } label: {
-                        createButtonBody(with: "Conect")
-                    }
-                    Button {
-                        selectedPointsIDs.removeAll()
-                    } label: {
-                        createButtonBody(with: "Cancel")
-                    }
-                }
-                .buttonStyle(.plain)
-                .opacity(selectedPointsIDs.isEmpty ? 0 : 1)
-                .animation(.default, value: selectedPointsIDs)
+                DependentPointsConectorView()
                 Spacer()
-                VStack {
-                    Text(store.state.selectedShapeID == nil
-                         ? "Collage Editor"
-                         : "ShapeEditor")
-                        .font(.title2)
-                        .padding()
-                    List {
-                        if store.state.selectedShapeID == nil {
-                            AddShapeElementView(size: collageSize)
-                            CollageEditorView()
-                        } else {
-                            ShapeEditorView()
-                        }
-                    }
-                }
-                .frame(height: 300)
-                .background(Color(uiColor: .systemBackground))
+                gridEditor
+                editor
             }
         }
         .environmentObject(store)
-
     }
     
-    private func createButtonBody(with text: String) -> some View {
-        Capsule()
-            .fill(Color(uiColor: .systemGray3))
-            .frame(width: 100, height: 40)
-            .overlay {
-                Text(text)
+    private var gridEditor: some View {
+        HStack {
+            Spacer()
+            Button {
+                showGrid.toggle()
+            } label: {
+                Image(systemName: "squareshape.split.3x3")
             }
+            .font(.largeTitle)
+            .foregroundColor(showGrid ? .red : .blue)
+        }
+        .padding(.horizontal, 12)
+        .frame(height: 50)
     }
     
-    private func handleTap(in point: CGPoint) {
-       let shape = PointsRecognizer.findShape(
-            point,
-            in: collage
-        )
-        
-        store.dispatch(.selectShape(shape?.id))
-        
+    private var editor: some View {
+        VStack {
+            Text(store.state.selectedShapeID == nil
+                 ? "Collage Editor"
+                 : "ShapeEditor")
+            .font(.title2)
+            .padding()
+            List {
+                if store.state.selectedShapeID == nil {
+                    AddShapeElementView(size: collageSize)
+                    CollageEditorView()
+                } else {
+                    ShapeEditorView()
+                }
+            }
+            .buttonStyle(.borderless)
+        }
+        .frame(height: 300)
+        .background(Color(uiColor: .systemBackground))
     }
     
-    private func handleLongTap(in point: CGPoint) {
-        guard let pointID = PointsRecognizer.findPoint(
-            point,
-            in: collage
-        )?.id else {
-            return
-        }
+    @ViewBuilder
+    private var collageView: some View {
+        let gridView = GridView(xLines: 100, yLines: 100)
+            .opacity(showGrid ? 1 : 0)
         
-        if selectedPointsIDs.isEmpty,
-           let dependencies = collage.dependencies.first(where: {
-               $0.pointIDs.contains(pointID)
-           }) {
-            selectedPointsIDs.formUnion(dependencies.pointIDs)
+        CollageView(
+            collage: collage,
+            collageSize: collageSize,
+            selectedShapeID: store.state.selectedShapeID,
+            intermediateView: gridView
+        ) {
+            store.dispatch(.gesture(.tap($0)))
+        } onLongTapGesture: {
+            store.dispatch(.gesture(.longTap($0)))
+        } onScaleGesture: {
+            store.dispatch(.gesture(.scale($0)))
+        } onTranslateGesture: {
+            store.dispatch(.gesture(.translate($0)))
+        } onTwoFingersTranslateGesture: {
+            store.dispatch(.gesture(.twoFingersTranslate($0)))
         }
-        
-        selectedPointsIDs.update(with: pointID)
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

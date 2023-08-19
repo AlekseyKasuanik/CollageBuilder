@@ -1,5 +1,5 @@
 //
-//  CollageChanger.swift
+//  ShapesTranslator.swift
 //  CollageBuilder
 //
 //  Created by Алексей Касьяник on 01.08.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CollageChanger {
+struct ShapesTranslator: ShapesTranslatable {
     let pointTouchSide: CGFloat
     let transalationStep: CGFloat
     
@@ -132,6 +132,5 @@ struct CollageChanger {
         
         return newCollage
     }
-    
     
 }

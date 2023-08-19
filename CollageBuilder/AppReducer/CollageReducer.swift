@@ -26,6 +26,9 @@ struct CollageReducer: ReducerProtocol {
         case .conectControlPoints(let ids):
             newCollage = conectControlPoints(ids, in: newCollage)
             
+        case .disconectControlPoints(let ids):
+            newCollage = disconectControlPoints(ids, in: newCollage)
+            
         case .cnahgeCornerRadius(let radius):
             newCollage = changeCornerRadius(radius, in: newCollage)
             
@@ -75,8 +78,8 @@ struct CollageReducer: ReducerProtocol {
     
     private func conectControlPoints(_ ids: Set<String>,
                                      in collage: Collage) -> Collage {
-        var newCollage = collage
         
+        var newCollage = collage
         guard let index = newCollage.dependencies.firstIndex(where: {
             !$0.pointIDs.intersection(ids).isEmpty
         }) else {
@@ -85,6 +88,21 @@ struct CollageReducer: ReducerProtocol {
         }
         
         newCollage.dependencies[index] = .init(pointIDs: ids)
+        
+        return newCollage
+    }
+    
+    private func disconectControlPoints(_ ids: Set<String>,
+                                        in collage: Collage) -> Collage {
+        
+        guard let index = collage.dependencies.firstIndex(where: {
+            $0.pointIDs.isSubset(of: ids)
+        }) else {
+            return collage
+        }
+        
+        var newCollage = collage
+        newCollage.dependencies.remove(at: index)
         
         return newCollage
     }

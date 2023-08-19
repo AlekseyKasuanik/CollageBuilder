@@ -64,6 +64,7 @@ struct ShapeEditorView_Previews: PreviewProvider {
     static var previews: some View {
         List {
             ShapeEditorView()
+                .environmentObject(AppStore.preview)
         }
     }
 }
