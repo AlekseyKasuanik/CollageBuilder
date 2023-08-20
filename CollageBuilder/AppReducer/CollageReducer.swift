@@ -60,11 +60,11 @@ struct CollageReducer: ReducerProtocol {
         return newCollage
     }
     
-    private func changeBackground(_ background: CollageBackground,
-                                  in collage: Collage) -> Collage {
+    private mutating func changeBackground(_ action: ShapeModification,
+                                           in collage: Collage) -> Collage {
         
         var newCollage = collage
-        newCollage.background = background
+        newCollage.background = shapeReducer.reduce( newCollage.background, action)
         return newCollage
     }
     

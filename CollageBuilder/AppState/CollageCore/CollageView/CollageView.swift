@@ -47,7 +47,12 @@ struct CollageView<ViewType: View>: View {
         .frame(width: collageSize.width,
                height: collageSize.height)
         .background {
-            CollageBackgroundView(background: collage.background)
+            ShapeItemView(
+                cornerRadius: 0,
+                shape: collage.background,
+                size: collageSize,
+                strokeColor: .clear
+            )
         }
         .overlay {
             GestureView() {

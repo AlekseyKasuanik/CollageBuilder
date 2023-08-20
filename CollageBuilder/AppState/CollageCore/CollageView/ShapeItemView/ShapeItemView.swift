@@ -21,27 +21,12 @@ struct ShapeItemView: View {
     var body: some View {
         let collageShape = CollageShape(shape: shape, size: size)
         ZStack {
-            Group {
-                if let media = shape.media {
-                    switch media.resource {
-                    case .image(let image):
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFill()
-                    case .video(let video):
-                        VideoPlayerView(videoURL: video.videoUrl,
-                                        modifiers: [],
-                                        settings: .defaultSettings)
-                    }
-                } else {
-                    Color(uiColor: emptyColor)
-                }
-            }
-            .frame(
-                width: shape.fitRect.width * size.width,
-                height: shape.fitRect.height * size.height
-            )
-            .cornerRadius(cornerRadius)
+            media
+                .frame(
+                    width: shape.fitRect.width * size.width,
+                    height: shape.fitRect.height * size.height
+                )
+                .cornerRadius(cornerRadius)
         }
         .clipShape(collageShape)
         .blendMode(shape.blendMode.blendMode)
@@ -56,6 +41,27 @@ struct ShapeItemView: View {
                 collageShape
                     .cornerRadius(cornerRadius)
             }
+        }
+    }
+    
+    
+    @ViewBuilder
+    private var media: some View {
+        if let media = shape.media {
+            switch media.resource {
+            case .image(let image):
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            case .video(let video):
+                VideoPlayerView(videoURL: video.videoUrl,
+                                modifiers: [],
+                                settings: .defaultSettings)
+            case .color(let color):
+                Color(uiColor: color)
+            }
+        } else {
+            Color(uiColor: emptyColor)
         }
     }
 }

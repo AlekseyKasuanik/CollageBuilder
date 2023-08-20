@@ -11,9 +11,8 @@ struct Collage: Codable {
     var shapes: [ShapeData]
     var dependencies: [DependentPoints]
     var cornerRadius: CGFloat
+    var background: ShapeData
     let id: String
-    
-    @CodableWrapper var background: CollageBackground
     
     var controlPoints: [ControlPoint] {
         shapes.flatMap { $0.controlPoints }
@@ -25,7 +24,14 @@ extension Collage {
         .init(shapes: [],
               dependencies: [],
               cornerRadius: 0,
-              id: "1",
-              background: .color(.white))
+              background: .init(
+                elements: [.rectangle(.init(
+                    origin: .zero,
+                    size: .init(side: 1)
+                ))],
+                zPosition: 0,
+                blendMode: .normal
+              ),
+              id: "1")
     }
 }

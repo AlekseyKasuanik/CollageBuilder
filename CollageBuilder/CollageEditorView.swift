@@ -30,11 +30,12 @@ struct CollageEditorView: View {
             MediaPickerView(media: $selectedMedia)
         }
         .onChange(of: selectedColor) { color in
-            dispatch(.changeBackground(.color(UIColor(selectedColor))))
+            dispatch(.changeBackground(.changeMedia(
+                .init(resource: .color(UIColor(color)))
+            )))
         }
         .onChange(of: selectedMedia) { media in
-            guard let media else { return }
-            dispatch(.changeBackground(.init(media: media)))
+            dispatch(.changeBackground(.changeMedia(media)))
         }
         .onChange(of: cornerRadius) { radius in
             dispatch(.cnahgeCornerRadius(radius))

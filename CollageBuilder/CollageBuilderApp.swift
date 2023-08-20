@@ -16,13 +16,24 @@ struct CollageBuilderApp: App {
     }
     
     private func createStore() -> AppStore {
-        .init(
+        let background = ShapeData(
+            elements: [.rectangle(.init(
+                origin: .zero,
+                size: .init(side: 1)
+            ))],
+            zPosition: 0,
+            blendMode: .normal
+          )
+        
+        let store = AppStore(
             initial: .init(collage: .init(shapes: [],
                                           dependencies: [],
                                           cornerRadius: 0,
-                                          id: UUID().uuidString,
-                                          background: .color(.white))),
+                                          background: background,
+                                          id: UUID().uuidString)),
             reducer: .init()
         )
+        
+       return store
     }
 }

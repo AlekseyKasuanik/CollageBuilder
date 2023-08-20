@@ -9,7 +9,7 @@ import Foundation
 
 enum CollageModification {
     case addShape(ShapeData)
-    case changeBackground(CollageBackground)
+    case changeBackground(ShapeModification)
     case conectControlPoints(Set<String>)
     case disconectControlPoints(Set<String>)
     case cnahgeCornerRadius(CGFloat)
