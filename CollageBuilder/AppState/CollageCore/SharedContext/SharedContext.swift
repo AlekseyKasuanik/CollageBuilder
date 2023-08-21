@@ -8,7 +8,7 @@
 import CoreImage
 
 enum SharedContext {
-    static let contect = CIContext(options: [
+    static let context = CIContext(options: [
         .workingColorSpace: CGColorSpace(name: CGColorSpace.displayP3)!,
         .outputColorSpace: CGColorSpace(name: CGColorSpace.displayP3)!
     ])

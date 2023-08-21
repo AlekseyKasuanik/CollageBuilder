@@ -15,6 +15,9 @@
 		1F2D3F502A82C26000EA6307 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D3F4F2A82C26000EA6307 /* VideoPlayer.swift */; };
 		1F2D3F522A82C67F00EA6307 /* ExampleVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F2D3F512A82C67F00EA6307 /* ExampleVideo.mp4 */; };
 		1F2D3F542A82C6C800EA6307 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D3F532A82C6C800EA6307 /* VideoPlayerView.swift */; };
+		1F2E07D92A92730700A71926 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E07D82A92730700A71926 /* Blur.swift */; };
+		1F2E07DC2A92739500A71926 /* BlurModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E07DB2A92739500A71926 /* BlurModifier.swift */; };
+		1F2E07DE2A92888400A71926 /* BlurSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E07DD2A92888400A71926 /* BlurSelectorView.swift */; };
 		1F302C8B2A7F9EEB005956C0 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F302C8A2A7F9EEB005956C0 /* TopBarView.swift */; };
 		1F302C8D2A7FA3A2005956C0 /* DependentPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F302C8C2A7FA3A2005956C0 /* DependentPoints.swift */; };
 		1F32A2042A7C3A14006A4AAE /* PointsRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */; };
@@ -85,6 +88,9 @@
 		1F2D3F4F2A82C26000EA6307 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		1F2D3F512A82C67F00EA6307 /* ExampleVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleVideo.mp4; sourceTree = "<group>"; };
 		1F2D3F532A82C6C800EA6307 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		1F2E07D82A92730700A71926 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		1F2E07DB2A92739500A71926 /* BlurModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurModifier.swift; sourceTree = "<group>"; };
+		1F2E07DD2A92888400A71926 /* BlurSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurSelectorView.swift; sourceTree = "<group>"; };
 		1F302C8A2A7F9EEB005956C0 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		1F302C8C2A7FA3A2005956C0 /* DependentPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependentPoints.swift; sourceTree = "<group>"; };
 		1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsRecognizer.swift; sourceTree = "<group>"; };
@@ -173,12 +179,20 @@
 			children = (
 				1F2D3F4F2A82C26000EA6307 /* VideoPlayer.swift */,
 				1F2D3F532A82C6C800EA6307 /* VideoPlayerView.swift */,
-				1F2638372A83B67C00022E1C /* Modifier.swift */,
 				1F4E86822A84FE560019AAB3 /* VideoSettings.swift */,
 				1F4E86802A84FDBC0019AAB3 /* VideoTrim.swift */,
 				1F2D3F512A82C67F00EA6307 /* ExampleVideo.mp4 */,
 			);
 			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		1F2E07DA2A92737B00A71926 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1F2638372A83B67C00022E1C /* Modifier.swift */,
+				1F2E07DB2A92739500A71926 /* BlurModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		1F47FE512A8FB21300E96210 /* Collage */ = {
@@ -212,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				1F660F302A7829700072925A /* ShapeElement.swift */,
+				1F2E07D82A92730700A71926 /* Blur.swift */,
 				1F53337D2A8AB0B80068069B /* ContentBlendMode.swift */,
 				1F660F322A78298F0072925A /* ControlPoint.swift */,
 				1F47FE552A8FB30300E96210 /* Media */,
@@ -314,6 +329,7 @@
 			children = (
 				1F47FE4F2A8FA5CD00E96210 /* BlendModeSelectorView.swift */,
 				1F53337B2A8AADC40068069B /* ZPositionSelectorView.swift */,
+				1F2E07DD2A92888400A71926 /* BlurSelectorView.swift */,
 			);
 			name = Selectors;
 			sourceTree = "<group>";
@@ -414,6 +430,7 @@
 			children = (
 				1F47FE512A8FB21300E96210 /* Collage */,
 				1F47FE612A8FB84B00E96210 /* CollageView */,
+				1F2E07DA2A92737B00A71926 /* Modifiers */,
 				1F47FE622A8FB94300E96210 /* SupportUtils */,
 				1F47FE5E2A8FB6BE00E96210 /* ShapesTranslator */,
 				1F52FD872A815509005ECBDD /* CodableWrapper */,
@@ -545,6 +562,7 @@
 				1F660F1E2A78174D0072925A /* Store.swift in Sources */,
 				1F3BD2762A7AB3B9001E7ACB /* Collage.swift in Sources */,
 				1F660F382A782D4B0072925A /* GestureView.swift in Sources */,
+				1F2E07DE2A92888400A71926 /* BlurSelectorView.swift in Sources */,
 				1FED663E2A7FBC9C009FF7A4 /* DataExporterView.swift in Sources */,
 				1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */,
 				1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */,
@@ -562,6 +580,7 @@
 				1F4E86832A84FE560019AAB3 /* VideoSettings.swift in Sources */,
 				1F70EA312A8D4BA70057D9FD /* CollageEditorView.swift in Sources */,
 				1F660F432A782E6B0072925A /* CGRect+.swift in Sources */,
+				1F2E07D92A92730700A71926 /* Blur.swift in Sources */,
 				1F660F4A2A78324D0072925A /* ControlPointsView.swift in Sources */,
 				1F5DF5C82A76726A00430AF1 /* CollageBuiderView.swift in Sources */,
 				1F47FE582A8FB38000E96210 /* Resource.swift in Sources */,
@@ -571,6 +590,7 @@
 				1F660F332A78298F0072925A /* ControlPoint.swift in Sources */,
 				1F47FE4E2A8F9B8B00E96210 /* ShapeReducer.swift in Sources */,
 				1F660F2D2A7825560072925A /* ShapeData.swift in Sources */,
+				1F2E07DC2A92739500A71926 /* BlurModifier.swift in Sources */,
 				1F2D3F502A82C26000EA6307 /* VideoPlayer.swift in Sources */,
 				1F47FE6D2A8FEEAB00E96210 /* DependentPointsConectorView.swift in Sources */,
 				1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */,

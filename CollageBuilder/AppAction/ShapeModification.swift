@@ -12,4 +12,5 @@ enum ShapeModification {
     case changeMedia(Media?)
     case changeBlendMode(ContentBlendMode)
     case changeZPozition(Int)
+    case changeBlur(Blur)
 }

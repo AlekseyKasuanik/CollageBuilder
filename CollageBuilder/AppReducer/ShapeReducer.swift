@@ -27,6 +27,9 @@ struct ShapeReducer: ReducerProtocol {
             
         case .changeZPozition(let position):
             newShape.zPosition = position
+            
+        case .changeBlur(let blur):
+            newShape.blur = blur
         }
         
         return newShape

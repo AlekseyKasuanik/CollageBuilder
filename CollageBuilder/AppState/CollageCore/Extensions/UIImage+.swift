@@ -16,4 +16,29 @@ extension UIImage: DataRepresentable {
     static func create(from data: Data) -> UIImage? {
         UIImage(data: data)
     }
+    
+    var imageCI: CIImage? {
+        if let ciImage {
+            return ciImage
+        } else if let cgImage {
+            return CIImage(cgImage: cgImage)
+        } else {
+            return nil
+        }
+    }
+    
+    convenience init(ciImage: CIImage, context: CIContext?) {
+        if let context,
+           let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
+            self.init(cgImage: cgImage)
+        } else {
+            self.init(ciImage: ciImage)
+        }
+    }
+    
+    func withModifiers(_ modifiers: [Modifier]) -> UIImage {
+        modifiers.reduce(self) { resultImage, modifier in
+            modifier.modify(resultImage)
+        }
+    }
 }

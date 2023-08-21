@@ -18,6 +18,11 @@ struct ShapeItemView: View {
     
     var emptyColor: UIColor = .systemGray3
     
+    @State private var blurModifier = BlurModifier(
+        context: SharedContext.context,
+        blur: .none
+    )
+    
     var body: some View {
         let collageShape = CollageShape(shape: shape, size: size)
         ZStack {
@@ -44,18 +49,17 @@ struct ShapeItemView: View {
         }
     }
     
-    
     @ViewBuilder
     private var media: some View {
         if let media = shape.media {
             switch media.resource {
             case .image(let image):
-                Image(uiImage: image)
+                Image(uiImage: image.withModifiers(extractModifiers()))
                     .resizable()
                     .scaledToFill()
             case .video(let video):
                 VideoPlayerView(videoURL: video.videoUrl,
-                                modifiers: [],
+                                modifiers: extractModifiers(),
                                 settings: .defaultSettings)
             case .color(let color):
                 Color(uiColor: color)
@@ -64,6 +68,18 @@ struct ShapeItemView: View {
             Color(uiColor: emptyColor)
         }
     }
+    
+    func extractModifiers() -> [Modifier] {
+        setupBlurModifier()
+        return [blurModifier]
+    }
+    
+    private func setupBlurModifier() {
+        if blurModifier.blur != shape.blur {
+            blurModifier.blur = shape.blur
+        }
+    }
+    
 }
 
 struct ShapeItemView_Previews: PreviewProvider {
@@ -82,10 +98,12 @@ struct ShapeItemView_Previews: PreviewProvider {
                 shape: .init(elements: [element],
                              media: .init(resource: .image(image)),
                              zPosition: 1,
-                             blendMode: .normal),
+                             blendMode: .normal,
+                             blur: .none),
                 size: .init(side: 500)
             )
             .background(.red)
         }
     }
 }
+

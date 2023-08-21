@@ -12,6 +12,7 @@ struct ShapeData: Identifiable, Codable {
     var media: Media?
     var zPosition: Int
     var blendMode: ContentBlendMode
+    var blur: Blur
     
     private(set) var id: String = UUID().uuidString
     
@@ -23,4 +24,3 @@ struct ShapeData: Identifiable, Codable {
         RectExtractor.extract(from: self)
     }
 }
-

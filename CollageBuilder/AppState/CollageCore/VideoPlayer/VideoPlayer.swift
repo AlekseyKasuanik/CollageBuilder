@@ -111,14 +111,8 @@ final class VideoPlayer: UIView {
     
     private func setupCompostion() {
         playerItem.videoComposition = AVMutableVideoComposition(asset: asset) { request in
-            request.finish(with: self.applyModifiers(to: request.sourceImage),
-                           context: SharedContext.contect)
-        }
-    }
-    
-    private func applyModifiers(to image: CIImage) -> CIImage {
-        modifiers.reduce(image) { resultImage, modifier in
-            modifier.modify(resultImage)
+            request.finish(with: request.sourceImage.withModifiers(self.modifiers),
+                           context: SharedContext.context)
         }
     }
     

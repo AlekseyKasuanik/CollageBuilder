@@ -19,12 +19,13 @@ extension AppStore {
                 size: .init(side: 1)
             ))],
             zPosition: 0,
-            blendMode: .normal
+            blendMode: .normal,
+            blur: .none
         )
         
         let collage = Collage(
-            shapes: [.init(elements: [element1], zPosition: 1, blendMode: .normal),
-                     .init(elements: [element2], zPosition: 2, blendMode: .normal)],
+            shapes: [.init(elements: [element1], zPosition: 1, blendMode: .normal, blur: .none),
+                     .init(elements: [element2], zPosition: 2, blendMode: .normal, blur: .none)],
             dependencies: [],
             cornerRadius: 20,
             background: background,

@@ -49,7 +49,7 @@ struct CollageEditorView: View {
         HStack {
             Slider(value: $cornerRadius, in: 0...100)
             Text(Int(cornerRadius).description)
-                .frame(width: 30)
+                .frame(width: 40)
         }
     }
     

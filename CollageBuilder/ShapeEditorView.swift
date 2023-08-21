@@ -24,10 +24,18 @@ struct ShapeEditorView: View {
                 set: { dispatch(.changeZPozition($0)) }
             ))
             addMedia
-            .sheet(isPresented: $showMediaPicker) {
-                MediaPickerView(media: .init(
-                    get: { nil } ,
-                    set: { dispatch(.changeMedia($0)) }
+                .sheet(isPresented: $showMediaPicker) {
+                    MediaPickerView(media: .init(
+                        get: { nil } ,
+                        set: { dispatch(.changeMedia($0)) }
+                    ))
+                }
+        }
+        Section("Blur") {
+            if let shape {
+                BlurSelectorView(blur: .init(
+                    get: { shape.blur },
+                    set: { dispatch(.changeBlur($0)) }
                 ))
             }
         }

@@ -30,7 +30,8 @@ extension Collage {
                     size: .init(side: 1)
                 ))],
                 zPosition: 0,
-                blendMode: .normal
+                blendMode: .normal,
+                blur: .none
               ),
               id: "1")
     }
