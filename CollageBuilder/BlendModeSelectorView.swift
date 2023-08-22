@@ -19,9 +19,7 @@ struct BlendModeSelectorView: View {
                     Text($0.rawValue)
                 }
             }
-            .pickerStyle(.wheel)
         }
-        .frame(height: 100)
     }
 }
 

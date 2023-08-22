@@ -54,13 +54,15 @@ struct ShapeItemView: View {
         if let media = shape.media {
             switch media.resource {
             case .image(let image):
-                Image(uiImage: image.withModifiers(extractModifiers()))
-                    .resizable()
+                ModifiedImage(id: createImageID(),
+                              modifiers: extractModifiers(),
+                              initialImaga: image)
                     .scaledToFill()
             case .video(let video):
                 VideoPlayerView(videoURL: video.videoUrl,
                                 modifiers: extractModifiers(),
-                                settings: .defaultSettings)
+                                settings: .defaultSettings,
+                                context: SharedContext.context)
             case .color(let color):
                 Color(uiColor: color)
             }
@@ -72,6 +74,10 @@ struct ShapeItemView: View {
     func extractModifiers() -> [Modifier] {
         setupBlurModifier()
         return [blurModifier]
+    }
+    
+    func createImageID() -> Int {
+        shape.blur.hashValue
     }
     
     private func setupBlurModifier() {

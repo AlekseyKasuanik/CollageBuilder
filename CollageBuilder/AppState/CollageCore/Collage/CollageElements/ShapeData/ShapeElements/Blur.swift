@@ -7,7 +7,7 @@
 
 import CoreImage
 
-enum Blur: Codable, Equatable {
+enum Blur: Codable, Equatable, Hashable {
     
     case box(CGFloat)
     case disc(CGFloat)

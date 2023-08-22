@@ -19,9 +19,7 @@ struct ZPositionSelectorView: View {
                     Text($0.description)
                 }
             }
-            .pickerStyle(.wheel)
         }
-        .frame(height: 100)
     }
 }
 

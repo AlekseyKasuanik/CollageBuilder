@@ -16,9 +16,11 @@ final class VideoPlayer: UIView {
     private let queuePlayer: AVQueuePlayer
     private let playerItem: AVPlayerItem
     private let videoLayer: AVPlayerLayer
+    private let context: CIContext
     
     private var videoSize: CGSize?
     private var cancelable = Set<AnyCancellable>()
+    private var displayingRect: CGRect = .zero
     
     private(set) var settings: VideoSettings
 
@@ -26,11 +28,13 @@ final class VideoPlayer: UIView {
     
     init(videoURL: URL,
          modifiers: [Modifier],
-         settings: VideoSettings) {
+         settings: VideoSettings,
+         context: CIContext) {
         
         self.asset = AVURLAsset(url: videoURL)
         self.modifiers = modifiers
         self.settings = settings
+        self.context = context
         
         playerItem = AVPlayerItem(asset: asset)
         queuePlayer = AVQueuePlayer(playerItem: playerItem)
@@ -58,6 +62,7 @@ final class VideoPlayer: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         setCorrectFrameToVideoLayer()
+        setupDisplayingRect()
     }
     
     func play() {
@@ -110,10 +115,34 @@ final class VideoPlayer: UIView {
     }
     
     private func setupCompostion() {
-        playerItem.videoComposition = AVMutableVideoComposition(asset: asset) { request in
-            request.finish(with: request.sourceImage.withModifiers(self.modifiers),
-                           context: SharedContext.context)
+        playerItem.videoComposition = AVMutableVideoComposition(
+            asset: asset
+        ) { [weak self] request in
+            guard let self else { return }
+            
+            let image = request.sourceImage
+            
+            let cropRect = CGRect(
+                x: displayingRect.minX * image.extent.width,
+                y: displayingRect.minY * image.extent.width,
+                width: displayingRect.width * image.extent.width,
+                height: displayingRect.height * image.extent.height
+            )
+            
+            let croppedImgage = request.sourceImage.cropped(to: cropRect)
+            
+            request.finish(with: croppedImgage.withModifiers(self.modifiers),
+                           context: context)
         }
+    }
+    
+    private func setupDisplayingRect() {
+        displayingRect = .init(
+            x: -videoLayer.frame.minX / videoLayer.frame.width,
+            y: videoLayer.frame.minY / videoLayer.frame.height,
+            width: frame.width / videoLayer.frame.width,
+            height: frame.height / videoLayer.frame.height
+        )
     }
     
     private func setupVideoSize(for asset: AVURLAsset) async {

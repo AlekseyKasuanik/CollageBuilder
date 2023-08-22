@@ -13,10 +13,13 @@ struct VideoPlayerView: UIViewRepresentable {
     var modifiers: [Modifier]
     var settings: VideoSettings
     
+    let context: CIContext
+    
     func makeUIView(context: Context) -> VideoPlayer {
         let videoPlayer = VideoPlayer(videoURL: videoURL,
                                       modifiers: modifiers,
-                                      settings: settings)
+                                      settings: settings,
+                                      context: self.context)
         return videoPlayer
     }
     
@@ -31,6 +34,7 @@ struct VideoPlayerView_Previews: PreviewProvider {
         VideoPlayerView(videoURL: Bundle.main.url(forResource: "ExampleVideo",
                                                   withExtension: "mp4")!,
                         modifiers: [],
-                        settings: .defaultSettings)
+                        settings: .defaultSettings,
+                        context: CIContext())
     }
 }

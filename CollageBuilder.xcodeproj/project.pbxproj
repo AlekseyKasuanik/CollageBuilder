@@ -44,6 +44,7 @@
 		1F52FD912A81744B005ECBDD /* RectExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52FD902A81744B005ECBDD /* RectExtractor.swift */; };
 		1F53337C2A8AADC40068069B /* ZPositionSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F53337B2A8AADC40068069B /* ZPositionSelectorView.swift */; };
 		1F53337E2A8AB0B80068069B /* ContentBlendMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F53337D2A8AB0B80068069B /* ContentBlendMode.swift */; };
+		1F54DB312A9548CC0075DE94 /* ModifiedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F54DB302A9548CC0075DE94 /* ModifiedImage.swift */; };
 		1F562BB72A882C7B00302C22 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F562BB62A882C7B00302C22 /* Video.swift */; };
 		1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C002A8BF13500B0EC2E /* UIColor+.swift */; };
 		1F574C032A8BFFFA00B0EC2E /* CollageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */; };
@@ -117,6 +118,7 @@
 		1F52FD902A81744B005ECBDD /* RectExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectExtractor.swift; sourceTree = "<group>"; };
 		1F53337B2A8AADC40068069B /* ZPositionSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPositionSelectorView.swift; sourceTree = "<group>"; };
 		1F53337D2A8AB0B80068069B /* ContentBlendMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlendMode.swift; sourceTree = "<group>"; };
+		1F54DB302A9548CC0075DE94 /* ModifiedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiedImage.swift; sourceTree = "<group>"; };
 		1F562BB62A882C7B00302C22 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		1F574C002A8BF13500B0EC2E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageReducer.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				1F2D3F4B2A82A45B00EA6307 /* ShapeItemView.swift */,
+				1F54DB302A9548CC0075DE94 /* ModifiedImage.swift */,
 				1F660F462A7831ED0072925A /* CollageShape */,
 			);
 			path = ShapeItemView;
@@ -613,6 +616,7 @@
 				1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */,
 				1F660F452A782E6B0072925A /* CGPoint+.swift in Sources */,
 				1F2D3F542A82C6C800EA6307 /* VideoPlayerView.swift in Sources */,
+				1F54DB312A9548CC0075DE94 /* ModifiedImage.swift in Sources */,
 				1F47FE602A8FB76300E96210 /* ShapesTranslatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

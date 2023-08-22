@@ -47,12 +47,12 @@ struct BlurSelectorView: View {
         case .disc:
             createSlider(for: $discRadius, range: 0...100)
             
-        case .gaussian:
+        case .gaus:
             createSlider(for: $gaussianRadius, range: 0...100)
             
         case .motion:
             createSlider(for: $motionRadius, range: 0...100)
-            createSlider(for: $motionAngle, range: 0...360)
+            createSlider(for: $motionAngle, range: 0...180)
             
         case .none:
             EmptyView()
@@ -78,7 +78,7 @@ struct BlurSelectorView: View {
         case .disc:
             blur = .disc(discRadius)
             
-        case .gaussian:
+        case .gaus:
             blur = .gaussian(gaussianRadius)
             
         case .motion:
@@ -101,7 +101,7 @@ struct BlurSelectorView: View {
             discRadius = radius
             
         case .gaussian(let radius):
-            blurType = .gaussian
+            blurType = .gaus
             gaussianRadius = radius
             
         case .motion(let radius, let angle):
@@ -115,7 +115,7 @@ struct BlurSelectorView: View {
     }
     
     private enum BlurType: String, CaseIterable {
-        case box, disc, gaussian, motion, none
+        case box, disc, gaus, motion, none
     }
 }
 
