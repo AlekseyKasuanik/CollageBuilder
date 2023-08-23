@@ -31,7 +31,8 @@ extension Collage {
                 ))],
                 zPosition: 0,
                 blendMode: .normal,
-                blur: .none
+                blur: .none,
+                adjustments: .defaultAdjustments
               ),
               id: "1")
     }

@@ -23,6 +23,11 @@ struct ShapeItemView: View {
         blur: .none
     )
     
+    @State private var adjustmentsModifier = AdjustmentsModifier(
+        context: SharedContext.context,
+        adjustments: .defaultAdjustments
+    )
+    
     var body: some View {
         let collageShape = CollageShape(shape: shape, size: size)
         ZStack {
@@ -72,8 +77,9 @@ struct ShapeItemView: View {
     }
     
     func extractModifiers() -> [Modifier] {
+        setupAdjustmentsModifier()
         setupBlurModifier()
-        return [blurModifier]
+        return [adjustmentsModifier, blurModifier]
     }
     
     func createImageID() -> Int {
@@ -83,6 +89,12 @@ struct ShapeItemView: View {
     private func setupBlurModifier() {
         if blurModifier.blur != shape.blur {
             blurModifier.blur = shape.blur
+        }
+    }
+    
+    private func setupAdjustmentsModifier() {
+        if adjustmentsModifier.adjustments != shape.adjustments {
+            adjustmentsModifier.adjustments = shape.adjustments
         }
     }
     
@@ -105,7 +117,8 @@ struct ShapeItemView_Previews: PreviewProvider {
                              media: .init(resource: .image(image)),
                              zPosition: 1,
                              blendMode: .normal,
-                             blur: .none),
+                             blur: .none,
+                             adjustments: .defaultAdjustments),
                 size: .init(side: 500)
             )
             .background(.red)
