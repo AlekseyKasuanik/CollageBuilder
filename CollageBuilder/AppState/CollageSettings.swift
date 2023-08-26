@@ -8,6 +8,6 @@
 import Foundation
 
 struct CollageSettings {
-    var scale: CGFloat = 1
+    var scale: CGFloat = 0.4
     var translation: CGPoint = .zero
 }

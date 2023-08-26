@@ -13,4 +13,5 @@ enum ShapeModification {
     case changeBlendMode(ContentBlendMode)
     case changeZPozition(Int)
     case changeBlur(Blur)
+    case changeAdjustments(Adjustments)
 }

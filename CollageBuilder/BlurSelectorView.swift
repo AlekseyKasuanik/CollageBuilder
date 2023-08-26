@@ -42,30 +42,30 @@ struct BlurSelectorView: View {
     private var slidersView: some View {
         switch blurType {
         case .box:
-            createSlider(for: $boxRadius, range: 0...100)
+            CommonSliderView(value: $boxRadius,
+                             range: 0...100,
+                             title: "Radius")
             
         case .disc:
-            createSlider(for: $discRadius, range: 0...100)
+            CommonSliderView(value: $discRadius,
+                             range: 0...100,
+                             title: "Radius")
             
         case .gaus:
-            createSlider(for: $gaussianRadius, range: 0...100)
+            CommonSliderView(value: $gaussianRadius,
+                             range: 0...100,
+                             title: "Radius")
             
         case .motion:
-            createSlider(for: $motionRadius, range: 0...100)
-            createSlider(for: $motionAngle, range: 0...180)
+            CommonSliderView(value: $motionRadius,
+                             range: 0...100,
+                             title: "Radius")
+            CommonSliderView(value: $motionAngle,
+                             range: 0...180,
+                             title: "Angle")
             
         case .none:
             EmptyView()
-        }
-    }
-    
-    private func createSlider(for value: Binding<CGFloat>,
-                              range: ClosedRange<CGFloat>) -> some View {
-    
-        HStack {
-            Slider(value: value, in: range)
-            Text(Int(value.wrappedValue).description)
-                .frame(width: 40)
         }
     }
     

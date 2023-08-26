@@ -9,5 +9,4 @@ import SwiftUI
 
 protocol Modifier {
     func modify(_ image: CIImage) -> CIImage
-    func modify(_ image: UIImage) -> UIImage
 }

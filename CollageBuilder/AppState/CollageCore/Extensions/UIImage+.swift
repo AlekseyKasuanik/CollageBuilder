@@ -36,9 +36,4 @@ extension UIImage: DataRepresentable {
         }
     }
     
-    func withModifiers(_ modifiers: [Modifier]) -> UIImage {
-        modifiers.reduce(self) { resultImage, modifier in
-            modifier.modify(resultImage)
-        }
-    }
 }

@@ -23,7 +23,8 @@ struct CollageEditorView: View {
                 mediaPicker
             }
             Section("Corner radius") {
-                cornerRadiusSelector
+                CommonSliderView(value: $cornerRadius,
+                                 range: 0...100)
             }
         }
         .sheet(isPresented: $showMediaPicker) {
@@ -42,14 +43,6 @@ struct CollageEditorView: View {
         }
         .onAppear {
             cornerRadius = store.state.collage.cornerRadius
-        }
-    }
-    
-    private var cornerRadiusSelector: some View {
-        HStack {
-            Slider(value: $cornerRadius, in: 0...100)
-            Text(Int(cornerRadius).description)
-                .frame(width: 40)
         }
     }
     

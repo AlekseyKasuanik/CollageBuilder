@@ -7,29 +7,44 @@
 
 import Foundation
 
-struct Adjustments: Codable, Equatable {
+struct Adjustments: Codable, Equatable, Hashable {
     
-    var colorControls: ColorControls
+    var saturation: AdjustmentValue
+    var brightness: AdjustmentValue
+    var contrast: AdjustmentValue
+    var exposure: AdjustmentValue
+    var gamma: AdjustmentValue
+    var hue: AdjustmentValue
+    var temperature: AdjustmentValue
+    var tint: AdjustmentValue
+    var vibrance: AdjustmentValue
     
     static var defaultAdjustments: Adjustments {
-        .init(colorControls: ColorControls())
+        .init(saturation: AdjustmentValue(min: 0, max: 2, initial: 1),
+              brightness: AdjustmentValue(min: -1, max: 1, initial: 0),
+              contrast: AdjustmentValue(min: 0.25, max: 4, initial: 1),
+              exposure: AdjustmentValue(min: -10, max: 10, initial: 0),
+              gamma: AdjustmentValue(min: 0.25, max: 4, initial: 1),
+              hue: AdjustmentValue(min: -.pi, max: .pi, initial: 0),
+              temperature: AdjustmentValue(min: 3500, max: 9500, initial: 6500),
+              tint: AdjustmentValue(min: -100, max: 100, initial: 0),
+              vibrance: AdjustmentValue(min: -1, max: 1, initial: 0))
     }
     
-    struct ColorControls: Codable, Equatable {
-        var saturation = AdjustmentValue(min: -1, maxValue: 1, initial: 1)
-        var brightness = AdjustmentValue(min: 0, maxValue: 2, initial: 1)
-        var contrast = AdjustmentValue(min: 0, maxValue: 4, initial: 1, current: 1)
-    }
     
-    struct AdjustmentValue: Codable, Equatable {
+    struct AdjustmentValue: Codable, Equatable, Hashable {
         let min: CGFloat
-        let maxValue: CGFloat
+        let max: CGFloat
         let initial: CGFloat
         var current: CGFloat
         
-        init(min: CGFloat, maxValue: CGFloat, initial: CGFloat, current: CGFloat? = nil) {
+        init(min: CGFloat,
+             max: CGFloat,
+             initial: CGFloat,
+             current: CGFloat? = nil) {
+            
             self.min = min
-            self.maxValue = maxValue
+            self.max = max
             self.initial = initial
             self.current = current ?? initial
         }

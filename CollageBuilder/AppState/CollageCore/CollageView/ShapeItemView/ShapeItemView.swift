@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ShapeItemView: View {
     
@@ -28,14 +29,15 @@ struct ShapeItemView: View {
         adjustments: .defaultAdjustments
     )
     
+    @State private var changesHandler = PassthroughSubject<Void, Never>()
+    @State private var modifiers = [Modifier]()
+    
     var body: some View {
         let collageShape = CollageShape(shape: shape, size: size)
         ZStack {
             media
-                .frame(
-                    width: shape.fitRect.width * size.width,
-                    height: shape.fitRect.height * size.height
-                )
+                .frame(width: itemSize.width,
+                       height: itemSize.height)
                 .cornerRadius(cornerRadius)
         }
         .clipShape(collageShape)
@@ -52,6 +54,13 @@ struct ShapeItemView: View {
                     .cornerRadius(cornerRadius)
             }
         }
+        .onChange(of: shape.blur) { _ in changesHandler.send() }
+        .onChange(of: shape.adjustments) { _ in changesHandler.send() }
+        .onReceive(changesHandler.throttle(
+            for: 0.1,
+            scheduler: DispatchQueue.main,
+            latest: true
+        )) { setupModifiers() }
     }
     
     @ViewBuilder
@@ -59,13 +68,15 @@ struct ShapeItemView: View {
         if let media = shape.media {
             switch media.resource {
             case .image(let image):
-                ModifiedImage(id: createImageID(),
-                              modifiers: extractModifiers(),
-                              initialImaga: image)
-                    .scaledToFill()
+                ModifiedImage(
+                    modifiers: modifiers,
+                    image: image,
+                    size: itemSize,
+                    context: SharedContext.context
+                )
             case .video(let video):
                 VideoPlayerView(videoURL: video.videoUrl,
-                                modifiers: extractModifiers(),
+                                modifiers: modifiers,
                                 settings: .defaultSettings,
                                 context: SharedContext.context)
             case .color(let color):
@@ -76,14 +87,16 @@ struct ShapeItemView: View {
         }
     }
     
-    func extractModifiers() -> [Modifier] {
-        setupAdjustmentsModifier()
-        setupBlurModifier()
-        return [adjustmentsModifier, blurModifier]
+    private var itemSize: CGSize {
+        CGSize(width: shape.fitRect.width * size.width,
+               height: shape.fitRect.height * size.height)
+           
     }
     
-    func createImageID() -> Int {
-        shape.blur.hashValue
+    private func setupModifiers() {
+        setupAdjustmentsModifier()
+        setupBlurModifier()
+        modifiers = [adjustmentsModifier, blurModifier]
     }
     
     private func setupBlurModifier() {
