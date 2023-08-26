@@ -9,34 +9,46 @@ import SwiftUI
 
 struct ModifiedImage: View {
     
-    var id: Int
     var modifiers: [Modifier]
-    var initialImaga: UIImage
+    var image: UIImage
+    var size: CGSize
     
-    @State private var resultImage: UIImage?
-    @State private var task: Task<Void, Never>?
+    let context: CIContext
+    
+    @State private var scaledImage: CIImage?
     
     var body: some View {
         ZStack {
-            if let resultImage {
-                Image(uiImage: resultImage)
-                    .resizable()
+            if let uiImage {
+                Image(uiImage: uiImage)
             } else {
-                Image(uiImage: initialImaga)
-                    .resizable()
+                Image(uiImage: image)
             }
         }
-        .onChange(of: id) { _ in
-            task?.cancel()
-            task = Task.detached {
-                guard !Task.isCancelled else { return }
-                let image = initialImaga.withModifiers(modifiers)
-                guard !Task.isCancelled else { return }
-                await MainActor.run {
-                    resultImage = image
-                }
-            }
+        .onChange(of: image) { _ in setupScaledIamge() }
+        .onAppear { setupScaledIamge() }
+    }
+    
+    private var scale: CGFloat { UIScreen.current?.scale ?? 3 }
+    
+    private var uiImage: UIImage? {
+        guard let modifiedImage = scaledImage?.withModifiers(modifiers),
+              let cgImage = context.createCGImage(
+                modifiedImage,
+                from: modifiedImage.extent
+              ) else {
+            return nil
         }
+        
+        let uiImage = UIImage(cgImage: cgImage,
+                              scale: scale,
+                              orientation: .up)
+        return uiImage
+    }
+    
+    private func setupScaledIamge() {
+        let correctSize = size * scale
+        scaledImage = image.imageCI?.croppedAndScaled(to: correctSize)
     }
     
 }

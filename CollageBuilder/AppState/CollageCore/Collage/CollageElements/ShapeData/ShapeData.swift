@@ -13,6 +13,7 @@ struct ShapeData: Identifiable, Codable {
     var zPosition: Int
     var blendMode: ContentBlendMode
     var blur: Blur
+    var adjustments: Adjustments
     
     private(set) var id: String = UUID().uuidString
     

@@ -70,6 +70,7 @@ struct AddShapeElementView: View {
                     zPosition: 1,
                     blendMode: .normal,
                     blur: .none,
+                    adjustments: .defaultAdjustments,
                     id: mutatedShapeID
                 ))))
             } label: {

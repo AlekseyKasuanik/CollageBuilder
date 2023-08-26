@@ -30,6 +30,9 @@ struct ShapeReducer: ReducerProtocol {
             
         case .changeBlur(let blur):
             newShape.blur = blur
+            
+        case .changeAdjustments(let adjustments):
+            newShape.adjustments = adjustments
         }
         
         return newShape

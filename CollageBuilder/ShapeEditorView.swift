@@ -39,6 +39,14 @@ struct ShapeEditorView: View {
                 ))
             }
         }
+        Section("Adjustments") {
+            if let shape {
+                AdjustmentsSelectorView(adjustments: .init(
+                    get: { shape.adjustments },
+                    set: { dispatch(.changeAdjustments($0)) }
+                ))
+            }
+        }
     }
     
     private var addMedia: some View {

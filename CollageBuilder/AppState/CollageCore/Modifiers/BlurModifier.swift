@@ -11,14 +11,10 @@ final class BlurModifier: Modifier {
     
     var context: CIContext
     var blur: Blur {
-        didSet { claerHash() }
+        didSet { ciCash.clear()}
     }
     
-    private var ciHash: Int?
-    private var ciCashImage: CIImage?
-    
-    private var uiHash: Int?
-    private var uiCashImage: UIImage?
+    private var ciCash = CashManager<Int, CIImage>()
     
     init(context: CIContext, blur: Blur) {
         self.context = context
@@ -30,36 +26,12 @@ final class BlurModifier: Modifier {
             return image
         }
         
-        if image.hash == ciHash, let ciCashImage {
-            return ciCashImage
+        if let cashImage = ciCash.getValue(for: image.hash) {
+            return cashImage
         }
         
         let bluredImage = applyBlur(to: image)
-        ciCashImage = bluredImage
-        ciHash = image.hash
-        
-        return bluredImage
-    }
-    
-    func modify(_ image: UIImage) -> UIImage {
-        guard blur != .none else {
-            return image
-        }
-        
-        if image.hash == uiHash, let uiCashImage {
-            return uiCashImage
-        }
-        
-        guard let ciImage = image.imageCI else {
-            return image
-        }
-        
-        let bluredCIImage = modify(ciImage)
-        let bluredImage = UIImage(ciImage: bluredCIImage,
-                                  context: context)
-        
-        uiCashImage = bluredImage
-        uiHash = image.hash
+        ciCash.update(bluredImage, for: image.hash)
         
         return bluredImage
     }
@@ -75,12 +47,4 @@ final class BlurModifier: Modifier {
         return croppedImage ?? image
     }
     
-    private func claerHash() {
-        ciHash = nil
-        uiHash = nil
-        
-        ciCashImage = nil
-        uiCashImage = nil
-    }
 }
-

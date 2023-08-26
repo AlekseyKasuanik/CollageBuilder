@@ -9,6 +9,10 @@ import CoreImage
 
 extension CIImage {
     
+    func translated(by x: CGFloat, y: CGFloat) -> CIImage {
+        return self.transformed(by: CGAffineTransform(translationX: x, y: y))
+    }
+    
     func scaled(by scale: CGFloat) -> CIImage {
         return self.transformed(by: CGAffineTransform(scaleX: scale, y: scale))
     }
@@ -28,5 +32,24 @@ extension CIImage {
         ))
     }
     
+    func croppedAndScaled(to size: CGSize) -> CIImage {
+        let scale = min(extent.width / size.width,
+                        extent.height / size.height)
+        
+        let scaledImage = self.scaled(by: 1 / scale)
+        
+        let croppedImage = scaledImage.cropped(to: .init(
+            x: (scaledImage.extent.width - size.width) / 2,
+            y: (scaledImage.extent.height - size.height) / 2,
+            width: size.width,
+            height: size.height
+        ))
+        
+        return croppedImage.translattedToZero()
+    }
+    
+    func translattedToZero() -> CIImage {
+        self.translated(by: -extent.minX, y: -extent.minY)
+    }
 }
 

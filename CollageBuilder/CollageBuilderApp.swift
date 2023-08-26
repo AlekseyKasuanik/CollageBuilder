@@ -23,7 +23,8 @@ struct CollageBuilderApp: App {
             ))],
             zPosition: 0,
             blendMode: .normal,
-            blur: .none
+            blur: .none,
+            adjustments: .defaultAdjustments
           )
         
         let store = AppStore(

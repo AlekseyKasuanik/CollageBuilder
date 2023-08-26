@@ -20,12 +20,21 @@ extension AppStore {
             ))],
             zPosition: 0,
             blendMode: .normal,
-            blur: .none
+            blur: .none,
+            adjustments: .defaultAdjustments
         )
         
         let collage = Collage(
-            shapes: [.init(elements: [element1], zPosition: 1, blendMode: .normal, blur: .none),
-                     .init(elements: [element2], zPosition: 2, blendMode: .normal, blur: .none)],
+            shapes: [.init(elements: [element1],
+                           zPosition: 1,
+                           blendMode: .normal,
+                           blur: .none,
+                           adjustments: .defaultAdjustments),
+                     .init(elements: [element2],
+                           zPosition: 2,
+                           blendMode: .normal,
+                           blur: .none,
+                           adjustments: .defaultAdjustments)],
             dependencies: [],
             cornerRadius: 20,
             background: background,
