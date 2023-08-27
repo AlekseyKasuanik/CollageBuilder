@@ -17,11 +17,7 @@ struct CollageView<ViewType: View>: View {
     var strokeColor: UIColor = .green
     var strokeWidth: CGFloat = 7
     
-    var onTapGesture: ((CGPoint) -> ())?
-    var onLongTapGesture: ((CGPoint) -> ())?
-    var onScaleGesture: ((CGFloat) -> ())?
-    var onTranslateGesture: ((GestureState) -> ())?
-    var onTwoFingersTranslateGesture: ((CGPoint) -> ())?
+    var onReciveGesture: ((GestureType) -> ())?
     
     var body: some View {
         ZStack {
@@ -55,17 +51,7 @@ struct CollageView<ViewType: View>: View {
             )
         }
         .overlay {
-            GestureView() {
-                onTapGesture?($0)
-            } onLongTapGesture: {
-                onLongTapGesture?($0)
-            } onScaleGesture: {
-                onScaleGesture?($0)
-            } onTranslateGesture: {
-                onTranslateGesture?($0)
-            } onTwoFingersTranslateGesture: {
-                onTwoFingersTranslateGesture?($0)
-            }
+            GestureView() { onReciveGesture?($0) }
         }
     }
 }

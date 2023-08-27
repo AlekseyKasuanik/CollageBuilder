@@ -19,14 +19,15 @@ struct ShapeItemView: View {
     
     var emptyColor: UIColor = .systemGray3
     
-    @State private var blurModifier = BlurModifier(
-        context: SharedContext.context,
-        blur: .none
-    )
+    @State private var blurModifier = BlurModifier(blur: .none)
     
     @State private var adjustmentsModifier = AdjustmentsModifier(
-        context: SharedContext.context,
         adjustments: .defaultAdjustments
+    )
+    @State private var transformsModifier = TransformsModifier(
+        transforms: .defaultTransforms,
+        fitSize: .zero,
+        fullSize: .zero
     )
     
     @State private var changesHandler = PassthroughSubject<Void, Never>()
@@ -54,8 +55,10 @@ struct ShapeItemView: View {
                     .cornerRadius(cornerRadius)
             }
         }
+        .onAppear { setupProperties() }
         .onChange(of: shape.blur) { _ in changesHandler.send() }
         .onChange(of: shape.adjustments) { _ in changesHandler.send() }
+        .onChange(of: shape.mediaTransforms) { _ in setupModifiers() }
         .onReceive(changesHandler.throttle(
             for: 0.1,
             scheduler: DispatchQueue.main,
@@ -93,15 +96,42 @@ struct ShapeItemView: View {
            
     }
     
+    private func setupProperties() {
+        blurModifier.blur = shape.blur
+        adjustmentsModifier.adjustments = shape.adjustments
+        transformsModifier.transforms = shape.mediaTransforms
+        
+        let scale = UIScreen.current?.scale ?? 3
+        
+        transformsModifier.fullSize = size * scale
+        transformsModifier.fitSize = .init(
+            width: size.width * shape.fitRect.width * scale,
+            height: size.height * shape.fitRect.height * scale
+        )
+        
+        setupModifiers()
+    }
+    
     private func setupModifiers() {
         setupAdjustmentsModifier()
         setupBlurModifier()
-        modifiers = [adjustmentsModifier, blurModifier]
+        setupTransformsModifier()
+        modifiers = [
+            adjustmentsModifier,
+            blurModifier,
+            transformsModifier
+        ]
     }
     
     private func setupBlurModifier() {
         if blurModifier.blur != shape.blur {
             blurModifier.blur = shape.blur
+        }
+    }
+    
+    private func setupTransformsModifier() {
+        if transformsModifier.transforms != shape.mediaTransforms {
+            transformsModifier.transforms = shape.mediaTransforms
         }
     }
     
@@ -131,7 +161,8 @@ struct ShapeItemView_Previews: PreviewProvider {
                              zPosition: 1,
                              blendMode: .normal,
                              blur: .none,
-                             adjustments: .defaultAdjustments),
+                             adjustments: .defaultAdjustments,
+                             mediaTransforms: .defaultTransforms),
                 size: .init(side: 500)
             )
             .background(.red)

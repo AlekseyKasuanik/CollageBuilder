@@ -15,7 +15,7 @@ struct ModifiedImage: View {
     
     let context: CIContext
     
-    @State private var scaledImage: CIImage?
+    @State private var ciImage: CIImage?
     
     var body: some View {
         ZStack {
@@ -25,14 +25,16 @@ struct ModifiedImage: View {
                 Image(uiImage: image)
             }
         }
-        .onChange(of: image) { _ in setupScaledIamge() }
-        .onAppear { setupScaledIamge() }
+        .onAppear { ciImage = image.imageCI }
+        .onChange(of: image) {
+            ciImage = $0.imageCI
+        }
     }
     
     private var scale: CGFloat { UIScreen.current?.scale ?? 3 }
     
     private var uiImage: UIImage? {
-        guard let modifiedImage = scaledImage?.withModifiers(modifiers),
+        guard let modifiedImage = ciImage?.withModifiers(modifiers),
               let cgImage = context.createCGImage(
                 modifiedImage,
                 from: modifiedImage.extent
@@ -44,11 +46,6 @@ struct ModifiedImage: View {
                               scale: scale,
                               orientation: .up)
         return uiImage
-    }
-    
-    private func setupScaledIamge() {
-        let correctSize = size * scale
-        scaledImage = image.imageCI?.croppedAndScaled(to: correctSize)
     }
     
 }

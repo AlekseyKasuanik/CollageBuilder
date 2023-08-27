@@ -22,6 +22,7 @@ extension UIImage: DataRepresentable {
             return ciImage
         } else if let cgImage {
             return CIImage(cgImage: cgImage)
+                .oriented(.init(imageOrientation))
         } else {
             return nil
         }

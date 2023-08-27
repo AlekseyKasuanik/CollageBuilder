@@ -71,6 +71,7 @@ struct AddShapeElementView: View {
                     blendMode: .normal,
                     blur: .none,
                     adjustments: .defaultAdjustments,
+                    mediaTransforms: .defaultTransforms,
                     id: mutatedShapeID
                 ))))
             } label: {

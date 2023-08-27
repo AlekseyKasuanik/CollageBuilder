@@ -19,6 +19,7 @@
 		1F2D3F502A82C26000EA6307 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D3F4F2A82C26000EA6307 /* VideoPlayer.swift */; };
 		1F2D3F522A82C67F00EA6307 /* ExampleVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F2D3F512A82C67F00EA6307 /* ExampleVideo.mp4 */; };
 		1F2D3F542A82C6C800EA6307 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D3F532A82C6C800EA6307 /* VideoPlayerView.swift */; };
+		1F2D710F2A9A8ED90070714C /* MediaTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D710E2A9A8ED90070714C /* MediaTransforms.swift */; };
 		1F2E07D92A92730700A71926 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E07D82A92730700A71926 /* Blur.swift */; };
 		1F2E07DC2A92739500A71926 /* BlurModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E07DB2A92739500A71926 /* BlurModifier.swift */; };
 		1F2E07DE2A92888400A71926 /* BlurSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E07DD2A92888400A71926 /* BlurSelectorView.swift */; };
@@ -32,10 +33,8 @@
 		1F47FE4E2A8F9B8B00E96210 /* ShapeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE4D2A8F9B8B00E96210 /* ShapeReducer.swift */; };
 		1F47FE502A8FA5CD00E96210 /* BlendModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE4F2A8FA5CD00E96210 /* BlendModeSelectorView.swift */; };
 		1F47FE582A8FB38000E96210 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE572A8FB38000E96210 /* Resource.swift */; };
-		1F47FE602A8FB76300E96210 /* ShapesTranslatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE5F2A8FB76300E96210 /* ShapesTranslatable.swift */; };
 		1F47FE652A8FBA3400E96210 /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE642A8FBA3400E96210 /* CollageView.swift */; };
 		1F47FE672A8FC87600E96210 /* GestureReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE662A8FC87600E96210 /* GestureReducer.swift */; };
-		1F47FE692A8FC8D700E96210 /* GestureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE682A8FC8D700E96210 /* GestureAction.swift */; };
 		1F47FE6B2A8FE4E600E96210 /* CollageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE6A2A8FE4E600E96210 /* CollageSettings.swift */; };
 		1F47FE6D2A8FEEAB00E96210 /* DependentPointsConectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47FE6C2A8FEEAB00E96210 /* DependentPointsConectorView.swift */; };
 		1F4E86812A84FDBC0019AAB3 /* VideoTrim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E86802A84FDBC0019AAB3 /* VideoTrim.swift */; };
@@ -77,6 +76,10 @@
 		1F660F482A78321A0072925A /* CollageShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F472A78321A0072925A /* CollageShape.swift */; };
 		1F660F4A2A78324D0072925A /* ControlPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F492A78324D0072925A /* ControlPointsView.swift */; };
 		1F660F4C2A7839200072925A /* ElementsChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F4B2A7839200072925A /* ElementsChanger.swift */; };
+		1F682A6A2A9B738D003F846C /* MediaGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F682A692A9B738D003F846C /* MediaGestureHandler.swift */; };
+		1F682A6C2A9B74FE003F846C /* EditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F682A6B2A9B74FE003F846C /* EditMode.swift */; };
+		1F682A6E2A9B78BC003F846C /* TransformsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F682A6D2A9B78BC003F846C /* TransformsModifier.swift */; };
+		1F682A702A9BDB54003F846C /* CGImagePropertyOrientation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F682A6F2A9BDB54003F846C /* CGImagePropertyOrientation+.swift */; };
 		1F6869982A810E78006C2B6C /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6869972A810E78006C2B6C /* UIImage+.swift */; };
 		1F68699A2A810FD1006C2B6C /* CodableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6869992A810FD1006C2B6C /* CodableWrapper.swift */; };
 		1F70EA312A8D4BA70057D9FD /* CollageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70EA302A8D4BA70057D9FD /* CollageEditorView.swift */; };
@@ -99,6 +102,7 @@
 		1F2D3F4F2A82C26000EA6307 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		1F2D3F512A82C67F00EA6307 /* ExampleVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleVideo.mp4; sourceTree = "<group>"; };
 		1F2D3F532A82C6C800EA6307 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		1F2D710E2A9A8ED90070714C /* MediaTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTransforms.swift; sourceTree = "<group>"; };
 		1F2E07D82A92730700A71926 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		1F2E07DB2A92739500A71926 /* BlurModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurModifier.swift; sourceTree = "<group>"; };
 		1F2E07DD2A92888400A71926 /* BlurSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurSelectorView.swift; sourceTree = "<group>"; };
@@ -112,10 +116,8 @@
 		1F47FE4D2A8F9B8B00E96210 /* ShapeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeReducer.swift; sourceTree = "<group>"; };
 		1F47FE4F2A8FA5CD00E96210 /* BlendModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlendModeSelectorView.swift; sourceTree = "<group>"; };
 		1F47FE572A8FB38000E96210 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		1F47FE5F2A8FB76300E96210 /* ShapesTranslatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesTranslatable.swift; sourceTree = "<group>"; };
 		1F47FE642A8FBA3400E96210 /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
 		1F47FE662A8FC87600E96210 /* GestureReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureReducer.swift; sourceTree = "<group>"; };
-		1F47FE682A8FC8D700E96210 /* GestureAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureAction.swift; sourceTree = "<group>"; };
 		1F47FE6A2A8FE4E600E96210 /* CollageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageSettings.swift; sourceTree = "<group>"; };
 		1F47FE6C2A8FEEAB00E96210 /* DependentPointsConectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependentPointsConectorView.swift; sourceTree = "<group>"; };
 		1F4E86802A84FDBC0019AAB3 /* VideoTrim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTrim.swift; sourceTree = "<group>"; };
@@ -159,6 +161,10 @@
 		1F660F472A78321A0072925A /* CollageShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageShape.swift; sourceTree = "<group>"; };
 		1F660F492A78324D0072925A /* ControlPointsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPointsView.swift; sourceTree = "<group>"; };
 		1F660F4B2A7839200072925A /* ElementsChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsChanger.swift; sourceTree = "<group>"; };
+		1F682A692A9B738D003F846C /* MediaGestureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaGestureHandler.swift; sourceTree = "<group>"; };
+		1F682A6B2A9B74FE003F846C /* EditMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMode.swift; sourceTree = "<group>"; };
+		1F682A6D2A9B78BC003F846C /* TransformsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformsModifier.swift; sourceTree = "<group>"; };
+		1F682A6F2A9BDB54003F846C /* CGImagePropertyOrientation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+.swift"; sourceTree = "<group>"; };
 		1F6869972A810E78006C2B6C /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		1F6869992A810FD1006C2B6C /* CodableWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableWrapper.swift; sourceTree = "<group>"; };
 		1F70EA302A8D4BA70057D9FD /* CollageEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageEditorView.swift; sourceTree = "<group>"; };
@@ -208,6 +214,7 @@
 				1F24ABAD2A968B2900788F74 /* CashManager.swift */,
 				1F2E07DB2A92739500A71926 /* BlurModifier.swift */,
 				1F24ABAF2A968F5800788F74 /* AdjustmentsModifier.swift */,
+				1F682A6D2A9B78BC003F846C /* TransformsModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				1F660F302A7829700072925A /* ShapeElement.swift */,
+				1F2D710E2A9A8ED90070714C /* MediaTransforms.swift */,
 				1F24ABAB2A96842F00788F74 /* Adjustments.swift */,
 				1F2E07D82A92730700A71926 /* Blur.swift */,
 				1F53337D2A8AB0B80068069B /* ContentBlendMode.swift */,
@@ -281,7 +289,6 @@
 		1F47FE5E2A8FB6BE00E96210 /* ShapesTranslator */ = {
 			isa = PBXGroup;
 			children = (
-				1F47FE5F2A8FB76300E96210 /* ShapesTranslatable.swift */,
 				1F347B5C2A79950C008915BF /* ShapesTranslator.swift */,
 				1F660F4B2A7839200072925A /* ElementsChanger.swift */,
 			);
@@ -440,7 +447,7 @@
 				1F660F282A781F8C0072925A /* AppAction.swift */,
 				1F574C062A8C11AC00B0EC2E /* CollageModification.swift */,
 				1F47FE4B2A8F9B2B00E96210 /* ShapeModification.swift */,
-				1F47FE682A8FC8D700E96210 /* GestureAction.swift */,
+				1F682A6B2A9B74FE003F846C /* EditMode.swift */,
 			);
 			path = AppAction;
 			sourceTree = "<group>";
@@ -451,6 +458,7 @@
 				1F47FE512A8FB21300E96210 /* Collage */,
 				1F47FE612A8FB84B00E96210 /* CollageView */,
 				1F2E07DA2A92737B00A71926 /* Modifiers */,
+				1F682A682A9B737C003F846C /* MediaGestureHandler */,
 				1F47FE622A8FB94300E96210 /* SupportUtils */,
 				1F47FE5E2A8FB6BE00E96210 /* ShapesTranslator */,
 				1F52FD872A815509005ECBDD /* CodableWrapper */,
@@ -484,6 +492,7 @@
 				1F2B5CAF2A88F5C600BAEE19 /* UIScreen+.swift */,
 				1F2B5CB12A88FCD300BAEE19 /* CIImage+.swift */,
 				1F574C002A8BF13500B0EC2E /* UIColor+.swift */,
+				1F682A6F2A9BDB54003F846C /* CGImagePropertyOrientation+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -495,6 +504,14 @@
 				1F52FD8C2A815E36005ECBDD /* PathCreator.swift */,
 			);
 			path = CollageShape;
+			sourceTree = "<group>";
+		};
+		1F682A682A9B737C003F846C /* MediaGestureHandler */ = {
+			isa = PBXGroup;
+			children = (
+				1F682A692A9B738D003F846C /* MediaGestureHandler.swift */,
+			);
+			path = MediaGestureHandler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -595,6 +612,7 @@
 				1F52FD8B2A8156A6005ECBDD /* Media.swift in Sources */,
 				1F302C8D2A7FA3A2005956C0 /* DependentPoints.swift in Sources */,
 				1F24ABAE2A968B2900788F74 /* CashManager.swift in Sources */,
+				1F682A6C2A9B74FE003F846C /* EditMode.swift in Sources */,
 				1F660F232A781F050072925A /* ReducerProtocol.swift in Sources */,
 				1F660F4C2A7839200072925A /* ElementsChanger.swift in Sources */,
 				1F660F482A78321A0072925A /* CollageShape.swift in Sources */,
@@ -602,6 +620,8 @@
 				1F4E86832A84FE560019AAB3 /* VideoSettings.swift in Sources */,
 				1F24ABB02A968F5800788F74 /* AdjustmentsModifier.swift in Sources */,
 				1F70EA312A8D4BA70057D9FD /* CollageEditorView.swift in Sources */,
+				1F682A702A9BDB54003F846C /* CGImagePropertyOrientation+.swift in Sources */,
+				1F2D710F2A9A8ED90070714C /* MediaTransforms.swift in Sources */,
 				1F660F432A782E6B0072925A /* CGRect+.swift in Sources */,
 				1F2E07D92A92730700A71926 /* Blur.swift in Sources */,
 				1F660F4A2A78324D0072925A /* ControlPointsView.swift in Sources */,
@@ -620,13 +640,13 @@
 				1F47FE6D2A8FEEAB00E96210 /* DependentPointsConectorView.swift in Sources */,
 				1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */,
 				1F68699A2A810FD1006C2B6C /* CodableWrapper.swift in Sources */,
-				1F47FE692A8FC8D700E96210 /* GestureAction.swift in Sources */,
 				1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */,
 				1F47FE652A8FBA3400E96210 /* CollageView.swift in Sources */,
 				1F24ABB22A969AD200788F74 /* AdjustmentsSelectorView.swift in Sources */,
 				1F2638382A83B67C00022E1C /* Modifier.swift in Sources */,
 				1F53337E2A8AB0B80068069B /* ContentBlendMode.swift in Sources */,
 				1F32A2042A7C3A14006A4AAE /* PointsRecognizer.swift in Sources */,
+				1F682A6A2A9B738D003F846C /* MediaGestureHandler.swift in Sources */,
 				1F52FD892A815516005ECBDD /* DataRepresentable.swift in Sources */,
 				1F52FD8D2A815E36005ECBDD /* PathCreator.swift in Sources */,
 				1F53337C2A8AADC40068069B /* ZPositionSelectorView.swift in Sources */,
@@ -635,13 +655,13 @@
 				1F660F212A781EDC0072925A /* AppReducer.swift in Sources */,
 				1F26383A2A83B69900022E1C /* SharedContext.swift in Sources */,
 				1F47FE672A8FC87600E96210 /* GestureReducer.swift in Sources */,
+				1F682A6E2A9B78BC003F846C /* TransformsModifier.swift in Sources */,
 				1F4E86812A84FDBC0019AAB3 /* VideoTrim.swift in Sources */,
 				1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */,
 				1F660F452A782E6B0072925A /* CGPoint+.swift in Sources */,
 				1F7759662A97676B00A57060 /* CommonSliderView.swift in Sources */,
 				1F2D3F542A82C6C800EA6307 /* VideoPlayerView.swift in Sources */,
 				1F54DB312A9548CC0075DE94 /* ModifiedImage.swift in Sources */,
-				1F47FE602A8FB76300E96210 /* ShapesTranslatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

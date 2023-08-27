@@ -23,6 +23,14 @@ extension CIImage {
         }
     }
     
+    func scaled(by x: CGFloat, y: CGFloat) -> CIImage {
+        transformed(by: CGAffineTransform(scaleX: x, y: y))
+    }
+    
+    func rotated(by rotation: CGFloat) -> CIImage {
+        transformed(by: CGAffineTransform(rotationAngle: rotation))
+    }
+    
     func cropped(to size: CGSize) -> CIImage {
         self.cropped(to: .init(
             x: (extent.width - size.width) / 2,
@@ -46,6 +54,37 @@ extension CIImage {
         ))
         
         return croppedImage.translattedToZero()
+    }
+    
+    func scaledAroundCenter(by scale: CGFloat) -> CIImage {
+        scaledAroundCenter(by: scale, y: scale)
+    }
+    
+    func scaledAroundCenter(by x: CGFloat, y: CGFloat) -> CIImage {
+        let centerPoint = CGPoint(
+            x: extent.minX + extent.width / 2,
+            y: extent.minY + extent.height / 2
+        )
+        
+        let result = self
+            .translated(by: -extent.minX, y: -extent.minY)
+            .scaled(by: x, y: y)
+        
+        return result.translated(
+            by: centerPoint.x - result.extent.width / 2,
+            y: centerPoint.y - result.extent.height / 2
+        )
+    }
+    
+    func rotatedAroundCenter(by rotation: CGFloat) -> CIImage {
+        let centerPoint = CGPoint(
+            x: extent.minX + extent.width / 2,
+            y: extent.minY + extent.height / 2
+        )
+        
+        return self.translated(by: -centerPoint.x, y:  -centerPoint.y)
+            .rotated(by: rotation)
+            .translated(by: centerPoint.x, y:  centerPoint.y)
     }
     
     func translattedToZero() -> CIImage {

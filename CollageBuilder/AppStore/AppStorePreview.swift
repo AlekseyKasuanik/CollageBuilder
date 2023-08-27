@@ -21,7 +21,8 @@ extension AppStore {
             zPosition: 0,
             blendMode: .normal,
             blur: .none,
-            adjustments: .defaultAdjustments
+            adjustments: .defaultAdjustments,
+            mediaTransforms: .defaultTransforms
         )
         
         let collage = Collage(
@@ -29,12 +30,14 @@ extension AppStore {
                            zPosition: 1,
                            blendMode: .normal,
                            blur: .none,
-                           adjustments: .defaultAdjustments),
+                           adjustments: .defaultAdjustments,
+                           mediaTransforms: .defaultTransforms),
                      .init(elements: [element2],
                            zPosition: 2,
                            blendMode: .normal,
                            blur: .none,
-                           adjustments: .defaultAdjustments)],
+                           adjustments: .defaultAdjustments,
+                           mediaTransforms: .defaultTransforms)],
             dependencies: [],
             cornerRadius: 20,
             background: background,

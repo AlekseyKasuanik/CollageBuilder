@@ -9,15 +9,13 @@ import SwiftUI
 
 final class BlurModifier: Modifier {
     
-    var context: CIContext
     var blur: Blur {
         didSet { ciCash.clear()}
     }
     
     private var ciCash = CashManager<Int, CIImage>()
     
-    init(context: CIContext, blur: Blur) {
-        self.context = context
+    init(blur: Blur) {
         self.blur = blur
     }
     

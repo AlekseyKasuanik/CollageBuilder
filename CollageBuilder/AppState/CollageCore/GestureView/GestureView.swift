@@ -9,21 +9,12 @@ import SwiftUI
 
 struct GestureView: UIViewRepresentable {
     
-    var onTapGesture: ((CGPoint) -> ())?
-    var onLongTapGesture: ((CGPoint) -> ())?
-    var onScaleGesture: ((CGFloat) -> ())?
-    var onTranslateGesture: ((GestureState) -> ())?
-    var onTwoFingersTranslateGesture: ((CGPoint) -> ())?
+    var onRecive: ((GestureType) -> ())?
     
     func makeUIView(context: Context) -> UIView {
         
         let view = GestureUIView()
-        
-        view.onTapGesture = onTapGesture
-        view.onLongTapGesture = onLongTapGesture
-        view.onScaleGesture = onScaleGesture
-        view.onTranslateGesture = onTranslateGesture
-        view.onTwoFingersTranslateGesture = onTwoFingersTranslateGesture
+        view.onRecive = onRecive
         
         return view
     }

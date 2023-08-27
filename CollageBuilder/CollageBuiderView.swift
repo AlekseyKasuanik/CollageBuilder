@@ -47,6 +47,11 @@ struct CollageBuiderView: View {
     
     private var gridEditor: some View {
         HStack {
+            Button {
+                store.dispatch(.swithEditMode)
+            } label: {
+                Text(store.state.editMode.rawValue)
+            }
             Spacer()
             Button {
                 showGrid.toggle()
@@ -91,17 +96,7 @@ struct CollageBuiderView: View {
             collageSize: collageSize,
             selectedShapeID: store.state.selectedShapeID,
             intermediateView: gridView
-        ) {
-            store.dispatch(.gesture(.tap($0)))
-        } onLongTapGesture: {
-            store.dispatch(.gesture(.longTap($0)))
-        } onScaleGesture: {
-            store.dispatch(.gesture(.scale($0)))
-        } onTranslateGesture: {
-            store.dispatch(.gesture(.translate($0)))
-        } onTwoFingersTranslateGesture: {
-            store.dispatch(.gesture(.twoFingersTranslate($0)))
-        }
+        ) { store.dispatch(.gesture($0)) }
     }
     
 }

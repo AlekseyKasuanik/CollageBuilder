@@ -9,13 +9,10 @@ import SwiftUI
 
 final class GestureUIView: UIView {
     
-    var onTapGesture: ((CGPoint) -> ())?
-    var onLongTapGesture: ((CGPoint) -> ())?
-    var onScaleGesture: ((CGFloat) -> ())?
-    var onTranslateGesture: ((GestureState) -> ())?
-    var onTwoFingersTranslateGesture: ((CGPoint) -> ())?
+    var onRecive: ((GestureType) -> ())?
     
     private var lastScale: CGFloat?
+    private var lastRotation: CGFloat?
     
     init() {
         super.init(frame: .zero)
@@ -58,6 +55,12 @@ final class GestureUIView: UIView {
         twoFingersPanGesture.minimumNumberOfTouches = 2
         addGestureRecognizer(twoFingersPanGesture)
         
+        let rotateGesture = UIRotationGestureRecognizer(
+            target: self,
+            action: #selector(rotateGestureRecognizer)
+        )
+        addGestureRecognizer(rotateGesture)
+        
     }
     
     @objc private func panGestureRecognizer(gesture: UIPanGestureRecognizer)  {
@@ -65,21 +68,17 @@ final class GestureUIView: UIView {
         switch gesture.state {
         case .began:
             let location = gesture.location(in: self)
-            onTranslateGesture?(.began(
-                position: CGPoint(
-                    x: location.x / frame.width,
-                    y: location.y / frame.height
-                )
-            ))
+            onRecive?(.translate(.began(CGPoint(
+                x: location.x / frame.width,
+                y: location.y / frame.height
+            ))))
             
         case .changed:
             let translation = gesture.translation(in: self)
-            onTranslateGesture?(.changed(
-                translation: CGPoint(
-                    x: translation.x / frame.width,
-                    y: translation.y / frame.height
-                )
-            ))
+            onRecive?(.translate(.changed(CGPoint(
+                x: translation.x / frame.width,
+                y: translation.y / frame.height
+            ))))
             
         default:
             break
@@ -89,23 +88,46 @@ final class GestureUIView: UIView {
     }
     
     @objc private func twoFingersPanGestureRecognizer(gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: self)
-        onTwoFingersTranslateGesture?(CGPoint(
-            x: translation.x / frame.width,
-            y: translation.y / frame.height
-        ))
+
+        switch gesture.state {
+        case .began:
+            let location = gesture.location(in: self)
+            onRecive?(.twoFingersTranslate(.began(CGPoint(
+                x: location.x / frame.width,
+                y: location.y / frame.height
+            ))))
+            
+        case .changed:
+            let translation = gesture.translation(in: self)
+            onRecive?(.twoFingersTranslate(.changed(CGPoint(
+                x: translation.x / frame.width,
+                y: translation.y / frame.height
+            ))))
+            
+        default:
+            break
+        }
         
         gesture.setTranslation(.zero, in: self)
     }
     
     @objc private func pinchGestureRecognizer(gesture: UIPinchGestureRecognizer) {
         
-        if let lastScale {
-            onScaleGesture?(gesture.scale / lastScale)
-        }
-        
         switch gesture.state {
-        case .began, .changed:
+        case .began:
+            let location = gesture.location(in: self)
+            onRecive?(.scale(.began(CGPoint(
+                x: location.x / frame.width,
+                y: location.y / frame.height
+            ))))
+            
+            lastScale = gesture.scale
+            
+        case .changed:
+            if let lastScale {
+                onRecive?(.scale(.changed(gesture.scale / lastScale)))
+            }
+            
             lastScale = gesture.scale
             
         case .ended:
@@ -120,19 +142,41 @@ final class GestureUIView: UIView {
         guard gesture.state == .began else { return }
         
         let location = gesture.location(in: self)
-        onLongTapGesture?(CGPoint(
+        onRecive?(.longTap(CGPoint(
             x: location.x / frame.width,
             y: location.y / frame.height
-        ))
+        )))
         
     }
     
     @objc private func tapGestureRecognizer(gesture: UITapGestureRecognizer) {
         let location = gesture.location(in: self)
-        onTapGesture?(CGPoint(
+        onRecive?(.tap(CGPoint(
             x: location.x / frame.width,
             y: location.y / frame.height
-        ))
+        )))
+    }
+    
+    @objc private func rotateGestureRecognizer(gesture: UIRotationGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            let location = gesture.location(in: self)
+            onRecive?(.rotate(.began(CGPoint(
+                x: location.x / frame.width,
+                y: location.y / frame.height
+            ))))
+            
+            lastRotation = gesture.rotation
+            
+        case .changed:
+            if let lastRotation {
+                onRecive?(.rotate(.changed(gesture.rotation - lastRotation)))
+            }
+            
+            lastRotation = gesture.rotation
+        default:
+            break
+        }
     }
     
 }

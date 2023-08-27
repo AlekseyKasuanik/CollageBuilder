@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShapesTranslator: ShapesTranslatable {
+struct ShapesTranslator {
     let pointTouchSide: CGFloat
     let transalationStep: CGFloat
     
@@ -21,7 +21,7 @@ struct ShapesTranslator: ShapesTranslatable {
         self.transalationStep = transalationStep
     }
     
-    mutating func translate(_ translation: GestureState,
+    mutating func translate(_ translation: GestureType.GestureState<CGPoint>,
                             in collage: Collage) -> Collage {
         
         switch translation {

@@ -33,6 +33,9 @@ struct AppReducer: ReducerProtocol {
             
         case .removeSelectedPoints:
             newState.selectedPointsIDs.removeAll()
+            
+        case .swithEditMode:
+            newState.editMode.next()
         }
         
         return newState
