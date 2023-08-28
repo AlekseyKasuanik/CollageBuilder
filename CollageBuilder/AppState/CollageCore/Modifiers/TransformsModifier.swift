@@ -9,8 +9,14 @@ import SwiftUI
 
 final class TransformsModifier: Modifier {
     
-    var fitSize: CGSize
-    var fullSize: CGSize
+    var fitSize: CGSize {
+        didSet { ciCash.clear()}
+    }
+    
+    var fullSize: CGSize {
+        didSet { ciCash.clear()}
+    }
+    
     var transforms: MediaTransforms {
         didSet { ciCash.clear()}
     }

@@ -85,6 +85,9 @@
 		1F70EA312A8D4BA70057D9FD /* CollageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70EA302A8D4BA70057D9FD /* CollageEditorView.swift */; };
 		1F7759662A97676B00A57060 /* CommonSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7759652A97676B00A57060 /* CommonSliderView.swift */; };
 		1F7759692A976AB300A57060 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7759682A976AB300A57060 /* CGFloat+.swift */; };
+		1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */; };
+		1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */; };
+		1F7B718E2A9D1F44004E5A2E /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B718D2A9D1F44004E5A2E /* View+.swift */; };
 		1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */; };
 		1FED663E2A7FBC9C009FF7A4 /* DataExporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663D2A7FBC9C009FF7A4 /* DataExporterView.swift */; };
 /* End PBXBuildFile section */
@@ -170,6 +173,9 @@
 		1F70EA302A8D4BA70057D9FD /* CollageEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageEditorView.swift; sourceTree = "<group>"; };
 		1F7759652A97676B00A57060 /* CommonSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSliderView.swift; sourceTree = "<group>"; };
 		1F7759682A976AB300A57060 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVURLAsset+.swift"; sourceTree = "<group>"; };
+		1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		1F7B718D2A9D1F44004E5A2E /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporterView.swift; sourceTree = "<group>"; };
 		1FED663D2A7FBC9C009FF7A4 /* DataExporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExporterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -493,6 +499,9 @@
 				1F2B5CB12A88FCD300BAEE19 /* CIImage+.swift */,
 				1F574C002A8BF13500B0EC2E /* UIColor+.swift */,
 				1F682A6F2A9BDB54003F846C /* CGImagePropertyOrientation+.swift */,
+				1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */,
+				1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */,
+				1F7B718D2A9D1F44004E5A2E /* View+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -594,6 +603,7 @@
 				1F660F352A782D010072925A /* AppStorePreview.swift in Sources */,
 				1F562BB72A882C7B00302C22 /* Video.swift in Sources */,
 				1F52FD8F2A81685D005ECBDD /* MediaPickerView.swift in Sources */,
+				1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */,
 				1F660F3C2A782D820072925A /* GestureState.swift in Sources */,
 				1F660F292A781F8C0072925A /* AppAction.swift in Sources */,
 				1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */,
@@ -606,11 +616,13 @@
 				1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */,
 				1F302C8B2A7F9EEB005956C0 /* TopBarView.swift in Sources */,
 				1F2B5CB02A88F5C700BAEE19 /* UIScreen+.swift in Sources */,
+				1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */,
 				1F2B5CB22A88FCD300BAEE19 /* CIImage+.swift in Sources */,
 				1F52FD912A81744B005ECBDD /* RectExtractor.swift in Sources */,
 				1F660F312A7829700072925A /* ShapeElement.swift in Sources */,
 				1F52FD8B2A8156A6005ECBDD /* Media.swift in Sources */,
 				1F302C8D2A7FA3A2005956C0 /* DependentPoints.swift in Sources */,
+				1F7B718E2A9D1F44004E5A2E /* View+.swift in Sources */,
 				1F24ABAE2A968B2900788F74 /* CashManager.swift in Sources */,
 				1F682A6C2A9B74FE003F846C /* EditMode.swift in Sources */,
 				1F660F232A781F050072925A /* ReducerProtocol.swift in Sources */,

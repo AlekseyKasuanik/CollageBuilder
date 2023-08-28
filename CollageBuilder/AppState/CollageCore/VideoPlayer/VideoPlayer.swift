@@ -18,12 +18,10 @@ final class VideoPlayer: UIView {
     private let videoLayer: AVPlayerLayer
     private let context: CIContext
     
-    private var videoSize: CGSize?
     private var cancelable = Set<AnyCancellable>()
-    private var displayingRect: CGRect = .zero
     
     private(set) var settings: VideoSettings
-
+    
     var modifiers: [Modifier]
     
     init(videoURL: URL,
@@ -39,20 +37,17 @@ final class VideoPlayer: UIView {
         playerItem = AVPlayerItem(asset: asset)
         queuePlayer = AVQueuePlayer(playerItem: playerItem)
         queuePlayer.actionAtItemEnd = .none
-       
+        
         videoLayer = AVPlayerLayer(player: queuePlayer)
         
         super.init(frame: .zero)
         
         layer.addSublayer(videoLayer)
-        layer.masksToBounds = true
         
-        Task { await setupVideoSize(for: asset) }
-        
-        setupCompostion()
         setutPlayerNotification()
         
         try? setupTrim()
+        setupVideoLayer()
     }
     
     required init?(coder: NSCoder) {
@@ -61,8 +56,10 @@ final class VideoPlayer: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setCorrectFrameToVideoLayer()
-        setupDisplayingRect()
+        videoLayer.frame = frame
+        if frame.size != .zero {
+            Task { await setupCompostion(for: frame.size * screenScale) }
+        }
     }
     
     func play() {
@@ -100,7 +97,6 @@ final class VideoPlayer: UIView {
     
     private func setupTrim() throws {
         Task {
-        
             let duration = try await asset.load(.duration).seconds
             let trim = settings.trim ?? .init(start: 0, end: duration)
             
@@ -110,68 +106,34 @@ final class VideoPlayer: UIView {
             
             queuePlayer.currentItem?.forwardPlaybackEndTime = trim.endTime
             queuePlayer.play()
+            
+            setupMute()
+            setupSpeed()
         }
         
     }
     
-    private func setupCompostion() {
-        playerItem.videoComposition = AVMutableVideoComposition(
+    private func setupCompostion(for size: CGSize) async {
+        var scale: CGFloat = 1
+        
+        if let videoSize = await asset.videoSize {
+            scale = max(size.width / videoSize.width,
+                        size.width / videoSize.height)
+        }
+        
+        let composition = AVMutableVideoComposition(
             asset: asset
         ) { [weak self] request in
             guard let self else { return }
             
-            let image = request.sourceImage
+            request.finish(with: request.sourceImage.withModifiers(self.modifiers),
+                           context: self.context)
             
-            let cropRect = CGRect(
-                x: displayingRect.minX * image.extent.width,
-                y: displayingRect.minY * image.extent.width,
-                width: displayingRect.width * image.extent.width,
-                height: displayingRect.height * image.extent.height
-            )
-            
-            let croppedImgage = request.sourceImage.cropped(to: cropRect)
-            
-            request.finish(with: croppedImgage.withModifiers(self.modifiers),
-                           context: context)
-        }
-    }
-    
-    private func setupDisplayingRect() {
-        displayingRect = .init(
-            x: -videoLayer.frame.minX / videoLayer.frame.width,
-            y: videoLayer.frame.minY / videoLayer.frame.height,
-            width: frame.width / videoLayer.frame.width,
-            height: frame.height / videoLayer.frame.height
-        )
-    }
-    
-    private func setupVideoSize(for asset: AVURLAsset) async {
-        guard let tracks = try? await asset.loadTracks(withMediaType: .video),
-              let track = tracks.first,
-              let size = try? await track.load(.naturalSize) else {
-            return
         }
         
-        videoSize = size
+        composition.renderScale = Float(scale)
+        playerItem.videoComposition = composition
         
-        Task { @MainActor in
-            setCorrectFrameToVideoLayer()
-        }
-    }
-    
-    private func setCorrectFrameToVideoLayer() {
-        guard let videoSize else { return }
-        
-        let scale = max(frame.width / videoSize.width,
-                        frame.height / videoSize.height)
-        
-        let videoWidth = videoSize.width * scale
-        let videoHeight = videoSize.height * scale
-
-        videoLayer.frame = CGRect(x: (frame.width - videoWidth) / 2,
-                                  y: (frame.height - videoHeight) / 2,
-                                  width: videoWidth,
-                                  height: videoHeight)
     }
     
     private func setutPlayerNotification() {
@@ -188,5 +150,12 @@ final class VideoPlayer: UIView {
             .store(in: &cancelable)
     }
     
+    private func setupVideoLayer() {
+        videoLayer.videoGravity = .resizeAspectFill
+        videoLayer.backgroundColor = UIColor.clear.cgColor
+        videoLayer.pixelBufferAttributes = [
+            (kCVPixelBufferPixelFormatTypeKey as String) : kCVPixelFormatType_32BGRA
+        ]
+    }
 }
 

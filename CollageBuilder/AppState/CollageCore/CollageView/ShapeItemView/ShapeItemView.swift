@@ -59,6 +59,13 @@ struct ShapeItemView: View {
         .onChange(of: shape.blur) { _ in changesHandler.send() }
         .onChange(of: shape.adjustments) { _ in changesHandler.send() }
         .onChange(of: shape.mediaTransforms) { _ in setupModifiers() }
+        .onChange(of: shape.fitRect) {
+            transformsModifier.fitSize = .init(
+                width: size.width * $0.width * screenScale,
+                height: size.height * $0.height * screenScale
+            )
+            setupModifiers()
+        }
         .onReceive(changesHandler.throttle(
             for: 0.1,
             scheduler: DispatchQueue.main,
@@ -101,12 +108,10 @@ struct ShapeItemView: View {
         adjustmentsModifier.adjustments = shape.adjustments
         transformsModifier.transforms = shape.mediaTransforms
         
-        let scale = UIScreen.current?.scale ?? 3
-        
-        transformsModifier.fullSize = size * scale
+        transformsModifier.fullSize = size * screenScale
         transformsModifier.fitSize = .init(
-            width: size.width * shape.fitRect.width * scale,
-            height: size.height * shape.fitRect.height * scale
+            width: size.width * shape.fitRect.width * screenScale,
+            height: size.height * shape.fitRect.height * screenScale
         )
         
         setupModifiers()

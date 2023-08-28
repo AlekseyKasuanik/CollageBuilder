@@ -31,8 +31,6 @@ struct ModifiedImage: View {
         }
     }
     
-    private var scale: CGFloat { UIScreen.current?.scale ?? 3 }
-    
     private var uiImage: UIImage? {
         guard let modifiedImage = ciImage?.withModifiers(modifiers),
               let cgImage = context.createCGImage(
@@ -43,7 +41,7 @@ struct ModifiedImage: View {
         }
         
         let uiImage = UIImage(cgImage: cgImage,
-                              scale: scale,
+                              scale: screenScale,
                               orientation: .up)
         return uiImage
     }
