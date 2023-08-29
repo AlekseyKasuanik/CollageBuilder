@@ -17,4 +17,11 @@ extension CGSize {
         CGSize(width: lhs.width * rhs,
                height: lhs.height * rhs)
     }
+    
+    func fill(_ size: CGSize) -> CGSize {
+        let scale = max(size.width / width,
+                        size.height / height)
+        
+        return self * scale
+    }
 }

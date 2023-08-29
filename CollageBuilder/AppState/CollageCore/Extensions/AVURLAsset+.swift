@@ -6,6 +6,7 @@
 //
 
 import AVFoundation
+import SwiftUI
 
 extension AVURLAsset {
     
@@ -19,4 +20,17 @@ extension AVURLAsset {
             return size
         }
     }
+    
+    var firstImage: UIImage? {
+        get async {
+            let imageGenerator = AVAssetImageGenerator(asset: self)
+            imageGenerator.appliesPreferredTrackTransform = true
+            guard let image = try? await imageGenerator.image(at: .zero).image else {
+                return nil
+            }
+            
+            return UIImage(cgImage: image)
+        }
+    }
 }
+

@@ -13,8 +13,6 @@ struct CollageBuiderView: View {
     
     @ObservedObject private(set) var store: AppStore
     
-    @State private var showGrid = true
-    
     private var collage: Collage { store.state.collage }
     
     var body: some View {
@@ -54,12 +52,21 @@ struct CollageBuiderView: View {
             }
             Spacer()
             Button {
-                showGrid.toggle()
+                store.dispatch(.togglePlayColalge)
+            } label: {
+                Image(systemName: store.state.isPlayingCollage
+                      ? "pause.circle"
+                      : "play.circle")
+            }
+            .font(.title2)
+            Spacer()
+            Button {
+                store.dispatch(.toggleGrid)
             } label: {
                 Image(systemName: "squareshape.split.3x3")
             }
             .font(.largeTitle)
-            .foregroundColor(showGrid ? .red : .blue)
+            .foregroundColor(store.state.isShowingGrid ? .red : .blue)
         }
         .padding(.horizontal, 12)
         .frame(height: 50)
@@ -89,13 +96,14 @@ struct CollageBuiderView: View {
     @ViewBuilder
     private var collageView: some View {
         let gridView = GridView(xLines: 100, yLines: 100)
-            .opacity(showGrid ? 1 : 0)
+            .opacity(store.state.isShowingGrid ? 1 : 0)
         
         CollageView(
             collage: collage,
             collageSize: collageSize,
             selectedShapeID: store.state.selectedShapeID,
-            intermediateView: gridView
+            intermediateView: gridView,
+            isPlaying: store.state.isPlayingCollage
         ) { store.dispatch(.gesture($0)) }
     }
     

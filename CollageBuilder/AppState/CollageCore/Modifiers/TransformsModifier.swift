@@ -63,6 +63,6 @@ final class TransformsModifier: Modifier {
             height: fitSize.height
         ))
         
-        return croppedImage
+        return croppedImage.translatedToZero()
     }
 }

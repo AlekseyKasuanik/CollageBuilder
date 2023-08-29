@@ -37,4 +37,12 @@ extension UIImage: DataRepresentable {
         }
     }
     
+    func resize(to size: CGSize, with scale: CGFloat = 1) -> UIImage {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = scale
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            draw(in: .init(origin: .zero, size: size))
+        }
+    }
+    
 }

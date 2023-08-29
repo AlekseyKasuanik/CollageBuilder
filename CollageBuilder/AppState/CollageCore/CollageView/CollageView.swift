@@ -14,6 +14,7 @@ struct CollageView<ViewType: View>: View {
     let selectedShapeID: String?
     let intermediateView: ViewType
     
+    var isPlaying: Bool
     var strokeColor: UIColor = .green
     var strokeWidth: CGFloat = 7
     
@@ -29,6 +30,7 @@ struct CollageView<ViewType: View>: View {
                         cornerRadius: collage.cornerRadius,
                         shape: shape,
                         size: collageSize,
+                        isPlaying: isPlaying,
                         strokeColor: isSelected ? strokeColor : .clear,
                         strokeWidth: strokeWidth
                     )
@@ -47,6 +49,7 @@ struct CollageView<ViewType: View>: View {
                 cornerRadius: 0,
                 shape: collage.background,
                 size: collageSize,
+                isPlaying: isPlaying,
                 strokeColor: .clear
             )
         }
@@ -61,6 +64,7 @@ struct CollageView_Previews: PreviewProvider {
         CollageView(collage: .empty,
                     collageSize: .init(side: 1000),
                     selectedShapeID: nil,
-                    intermediateView: EmptyView())
+                    intermediateView: EmptyView(),
+                    isPlaying: true)
     }
 }

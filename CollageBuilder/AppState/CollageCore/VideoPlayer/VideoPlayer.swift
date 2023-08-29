@@ -44,7 +44,7 @@ final class VideoPlayer: UIView {
         
         layer.addSublayer(videoLayer)
         
-        setutPlayerNotification()
+        setupPlayerNotification()
         
         try? setupTrim()
         setupVideoLayer()
@@ -58,12 +58,17 @@ final class VideoPlayer: UIView {
         super.layoutSubviews()
         videoLayer.frame = frame
         if frame.size != .zero {
-            Task { await setupCompostion(for: frame.size * screenScale) }
+            Task { await setupComposition(for: frame.size * screenScale) }
         }
     }
     
     func play() {
-        queuePlayer.play()
+        setupMute()
+        setupSpeed()
+    }
+    
+    func restart() {
+        try? setupTrim()
     }
     
     func pause() {
@@ -105,38 +110,42 @@ final class VideoPlayer: UIView {
                                    toleranceAfter: .zero)
             
             queuePlayer.currentItem?.forwardPlaybackEndTime = trim.endTime
-            queuePlayer.play()
-            
-            setupMute()
-            setupSpeed()
         }
         
     }
     
-    private func setupCompostion(for size: CGSize) async {
-        var scale: CGFloat = 1
-        
-        if let videoSize = await asset.videoSize {
-            scale = max(size.width / videoSize.width,
-                        size.width / videoSize.height)
+    private func setupComposition(for size: CGSize) async {
+        guard let videoSize = await asset.videoSize else {
+            return
         }
+        
+        let fillSize = videoSize.fill(size)
+        let baseTranslation = CGPoint(
+            x: (fillSize.width - size.width) / 2,
+            y: (fillSize.height - size.height) / 2
+        )
+        
+        let scale = max(size.width / videoSize.width,
+                        size.width / videoSize.height)
         
         let composition = AVMutableVideoComposition(
             asset: asset
         ) { [weak self] request in
             guard let self else { return }
             
-            request.finish(with: request.sourceImage.withModifiers(self.modifiers),
-                           context: self.context)
+            let modifiedImage = request.sourceImage
+                .withModifiers(self.modifiers)
+                .translated(by: baseTranslation)
             
+            request.finish(with: modifiedImage,
+                           context: self.context)
         }
         
         composition.renderScale = Float(scale)
         playerItem.videoComposition = composition
-        
     }
     
-    private func setutPlayerNotification() {
+    private func setupPlayerNotification() {
         NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime)
             .sink { [weak self] player in
                 guard let self,

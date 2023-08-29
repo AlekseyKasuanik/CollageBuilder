@@ -36,6 +36,12 @@ struct AppReducer: ReducerProtocol {
             
         case .swithEditMode:
             newState.editMode.next()
+            
+        case .toggleGrid:
+            newState.isShowingGrid.toggle()
+            
+        case .togglePlayColalge:
+            newState.isPlayingCollage.toggle()
         }
         
         return newState

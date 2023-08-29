@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AVFoundation
 
 struct ShapeItemView: View {
     
@@ -14,6 +15,7 @@ struct ShapeItemView: View {
     let shape: ShapeData
     let size: CGSize
     
+    var isPlaying: Bool
     var strokeColor: UIColor = .clear
     var strokeWidth: CGFloat = 7
     
@@ -36,7 +38,11 @@ struct ShapeItemView: View {
     var body: some View {
         let collageShape = CollageShape(shape: shape, size: size)
         ZStack {
-            media
+            MediaView(media: shape.media,
+                      modifiers: modifiers,
+                      size: itemSize,
+                      emptyColor: emptyColor,
+                      isPlaying: isPlaying)
                 .frame(width: itemSize.width,
                        height: itemSize.height)
                 .cornerRadius(cornerRadius)
@@ -71,30 +77,6 @@ struct ShapeItemView: View {
             scheduler: DispatchQueue.main,
             latest: true
         )) { setupModifiers() }
-    }
-    
-    @ViewBuilder
-    private var media: some View {
-        if let media = shape.media {
-            switch media.resource {
-            case .image(let image):
-                ModifiedImage(
-                    modifiers: modifiers,
-                    image: image,
-                    size: itemSize,
-                    context: SharedContext.context
-                )
-            case .video(let video):
-                VideoPlayerView(videoURL: video.videoUrl,
-                                modifiers: modifiers,
-                                settings: .defaultSettings,
-                                context: SharedContext.context)
-            case .color(let color):
-                Color(uiColor: color)
-            }
-        } else {
-            Color(uiColor: emptyColor)
-        }
     }
     
     private var itemSize: CGSize {
@@ -168,7 +150,8 @@ struct ShapeItemView_Previews: PreviewProvider {
                              blur: .none,
                              adjustments: .defaultAdjustments,
                              mediaTransforms: .defaultTransforms),
-                size: .init(side: 500)
+                size: .init(side: 500),
+                isPlaying: true
             )
             .background(.red)
         }

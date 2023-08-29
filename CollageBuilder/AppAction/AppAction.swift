@@ -14,4 +14,6 @@ enum AppAction {
     case selectShape(String?)
     case removeSelectedPoints
     case swithEditMode
+    case toggleGrid
+    case togglePlayColalge
 }

@@ -10,11 +10,15 @@ import CoreImage
 extension CIImage {
     
     func translated(by x: CGFloat, y: CGFloat) -> CIImage {
-        return self.transformed(by: CGAffineTransform(translationX: x, y: y))
+        transformed(by: CGAffineTransform(translationX: x, y: y))
+    }
+    
+    func translated(by point: CGPoint) -> CIImage {
+        translated(by: point.x, y: point.y)
     }
     
     func scaled(by scale: CGFloat) -> CIImage {
-        return self.transformed(by: CGAffineTransform(scaleX: scale, y: scale))
+        transformed(by: CGAffineTransform(scaleX: scale, y: scale))
     }
     
     func withModifiers(_ modifiers: [Modifier]) -> CIImage {
@@ -38,6 +42,7 @@ extension CIImage {
             width: size.width,
             height: size.height
         ))
+        .translatedToZero()
     }
     
     func croppedAndScaled(to size: CGSize) -> CIImage {
@@ -53,7 +58,7 @@ extension CIImage {
             height: size.height
         ))
         
-        return croppedImage.translattedToZero()
+        return croppedImage.translatedToZero()
     }
     
     func scaledAroundCenter(by scale: CGFloat) -> CIImage {
@@ -87,7 +92,7 @@ extension CIImage {
             .translated(by: centerPoint.x, y:  centerPoint.y)
     }
     
-    func translattedToZero() -> CIImage {
+    func translatedToZero() -> CIImage {
         self.translated(by: -extent.minX, y: -extent.minY)
     }
 }
