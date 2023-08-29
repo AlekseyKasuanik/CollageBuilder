@@ -25,7 +25,7 @@ struct ShapeReducer: ReducerProtocol {
         case .changeBlendMode(let blendMode):
             newShape.blendMode = blendMode
             
-        case .changeZPozition(let position):
+        case .changeZPosition(let position):
             newShape.zPosition = position
             
         case .changeBlur(let blur):

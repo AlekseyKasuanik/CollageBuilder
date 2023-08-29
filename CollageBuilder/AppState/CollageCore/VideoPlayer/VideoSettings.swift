@@ -13,6 +13,6 @@ struct VideoSettings: Codable {
     var speed: Float
     var isMuted: Bool
     
-    static let defaultSettings = VideoSettings(speed: 1, isMuted: false)
+    static let defaultSettings = VideoSettings(speed: 1, isMuted: true)
     
 }

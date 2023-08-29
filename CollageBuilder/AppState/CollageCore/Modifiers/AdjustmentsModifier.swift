@@ -9,15 +9,13 @@ import SwiftUI
 
 final class AdjustmentsModifier: Modifier {
     
-    var context: CIContext
     var adjustments: Adjustments {
         didSet { ciCash.clear() }
     }
     
     private var ciCash = CashManager<Int, CIImage>()
     
-    init(context: CIContext, adjustments: Adjustments) {
-        self.context = context
+    init(adjustments: Adjustments) {
         self.adjustments = adjustments
     }
     

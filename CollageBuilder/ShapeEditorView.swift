@@ -21,7 +21,7 @@ struct ShapeEditorView: View {
             ))
             ZPositionSelectorView(zPosition: .init(
                 get: { shape?.zPosition ?? 0 },
-                set: { dispatch(.changeZPozition($0)) }
+                set: { dispatch(.changeZPosition($0)) }
             ))
             addMedia
                 .sheet(isPresented: $showMediaPicker) {

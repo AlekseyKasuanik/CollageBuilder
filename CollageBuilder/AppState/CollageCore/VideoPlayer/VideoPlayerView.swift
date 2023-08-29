@@ -12,6 +12,7 @@ struct VideoPlayerView: UIViewRepresentable {
     var videoURL: URL
     var modifiers: [Modifier]
     var settings: VideoSettings
+    var isPlaying: Bool
     
     let context: CIContext
     
@@ -20,12 +21,21 @@ struct VideoPlayerView: UIViewRepresentable {
                                       modifiers: modifiers,
                                       settings: settings,
                                       context: self.context)
+        
+        if isPlaying { videoPlayer.play() }
         return videoPlayer
     }
     
     func updateUIView(_ uiView: VideoPlayer, context: Context) {
         uiView.modifiers = modifiers
         uiView.changeSettings(settings)
+        
+        if isPlaying {
+            uiView.play()
+        } else {
+            uiView.pause()
+            uiView.restart()
+        }
     }
 }
 
@@ -35,6 +45,7 @@ struct VideoPlayerView_Previews: PreviewProvider {
                                                   withExtension: "mp4")!,
                         modifiers: [],
                         settings: .defaultSettings,
+                        isPlaying: true,
                         context: CIContext())
     }
 }

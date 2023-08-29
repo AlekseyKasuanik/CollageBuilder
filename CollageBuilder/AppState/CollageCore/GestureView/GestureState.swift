@@ -7,7 +7,16 @@
 
 import Foundation
 
-enum GestureState {
-    case began(position: CGPoint)
-    case changed(translation: CGPoint)
+enum GestureType {
+    case tap(CGPoint)
+    case longTap(CGPoint)
+    case scale(GestureState<CGFloat>)
+    case translate(GestureState<CGPoint>)
+    case twoFingersTranslate(GestureState<CGPoint>)
+    case rotate(GestureState<CGFloat>)
+    
+    enum GestureState<T> {
+        case began(CGPoint)
+        case changed(T)
+    }
 }

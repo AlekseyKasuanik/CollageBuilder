@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AVFoundation
 
 struct ShapeItemView: View {
     
@@ -14,19 +15,21 @@ struct ShapeItemView: View {
     let shape: ShapeData
     let size: CGSize
     
+    var isPlaying: Bool
     var strokeColor: UIColor = .clear
     var strokeWidth: CGFloat = 7
     
     var emptyColor: UIColor = .systemGray3
     
-    @State private var blurModifier = BlurModifier(
-        context: SharedContext.context,
-        blur: .none
-    )
+    @State private var blurModifier = BlurModifier(blur: .none)
     
     @State private var adjustmentsModifier = AdjustmentsModifier(
-        context: SharedContext.context,
         adjustments: .defaultAdjustments
+    )
+    @State private var transformsModifier = TransformsModifier(
+        transforms: .defaultTransforms,
+        fitSize: .zero,
+        fullSize: .zero
     )
     
     @State private var changesHandler = PassthroughSubject<Void, Never>()
@@ -35,7 +38,11 @@ struct ShapeItemView: View {
     var body: some View {
         let collageShape = CollageShape(shape: shape, size: size)
         ZStack {
-            media
+            MediaView(media: shape.media,
+                      modifiers: modifiers,
+                      size: itemSize,
+                      emptyColor: emptyColor,
+                      isPlaying: isPlaying)
                 .frame(width: itemSize.width,
                        height: itemSize.height)
                 .cornerRadius(cornerRadius)
@@ -54,37 +61,22 @@ struct ShapeItemView: View {
                     .cornerRadius(cornerRadius)
             }
         }
+        .onAppear { setupProperties() }
         .onChange(of: shape.blur) { _ in changesHandler.send() }
         .onChange(of: shape.adjustments) { _ in changesHandler.send() }
+        .onChange(of: shape.mediaTransforms) { _ in setupModifiers() }
+        .onChange(of: shape.fitRect) {
+            transformsModifier.fitSize = .init(
+                width: size.width * $0.width * screenScale,
+                height: size.height * $0.height * screenScale
+            )
+            setupModifiers()
+        }
         .onReceive(changesHandler.throttle(
             for: 0.1,
             scheduler: DispatchQueue.main,
             latest: true
         )) { setupModifiers() }
-    }
-    
-    @ViewBuilder
-    private var media: some View {
-        if let media = shape.media {
-            switch media.resource {
-            case .image(let image):
-                ModifiedImage(
-                    modifiers: modifiers,
-                    image: image,
-                    size: itemSize,
-                    context: SharedContext.context
-                )
-            case .video(let video):
-                VideoPlayerView(videoURL: video.videoUrl,
-                                modifiers: modifiers,
-                                settings: .defaultSettings,
-                                context: SharedContext.context)
-            case .color(let color):
-                Color(uiColor: color)
-            }
-        } else {
-            Color(uiColor: emptyColor)
-        }
     }
     
     private var itemSize: CGSize {
@@ -93,15 +85,40 @@ struct ShapeItemView: View {
            
     }
     
+    private func setupProperties() {
+        blurModifier.blur = shape.blur
+        adjustmentsModifier.adjustments = shape.adjustments
+        transformsModifier.transforms = shape.mediaTransforms
+        
+        transformsModifier.fullSize = size * screenScale
+        transformsModifier.fitSize = .init(
+            width: size.width * shape.fitRect.width * screenScale,
+            height: size.height * shape.fitRect.height * screenScale
+        )
+        
+        setupModifiers()
+    }
+    
     private func setupModifiers() {
         setupAdjustmentsModifier()
         setupBlurModifier()
-        modifiers = [adjustmentsModifier, blurModifier]
+        setupTransformsModifier()
+        modifiers = [
+            adjustmentsModifier,
+            blurModifier,
+            transformsModifier
+        ]
     }
     
     private func setupBlurModifier() {
         if blurModifier.blur != shape.blur {
             blurModifier.blur = shape.blur
+        }
+    }
+    
+    private func setupTransformsModifier() {
+        if transformsModifier.transforms != shape.mediaTransforms {
+            transformsModifier.transforms = shape.mediaTransforms
         }
     }
     
@@ -131,8 +148,10 @@ struct ShapeItemView_Previews: PreviewProvider {
                              zPosition: 1,
                              blendMode: .normal,
                              blur: .none,
-                             adjustments: .defaultAdjustments),
-                size: .init(side: 500)
+                             adjustments: .defaultAdjustments,
+                             mediaTransforms: .defaultTransforms),
+                size: .init(side: 500),
+                isPlaying: true
             )
             .background(.red)
         }

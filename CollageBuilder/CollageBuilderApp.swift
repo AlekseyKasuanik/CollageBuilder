@@ -24,8 +24,9 @@ struct CollageBuilderApp: App {
             zPosition: 0,
             blendMode: .normal,
             blur: .none,
-            adjustments: .defaultAdjustments
-          )
+            adjustments: .defaultAdjustments,
+            mediaTransforms: .defaultTransforms
+        )
         
         let store = AppStore(
             initial: .init(collage: .init(shapes: [],

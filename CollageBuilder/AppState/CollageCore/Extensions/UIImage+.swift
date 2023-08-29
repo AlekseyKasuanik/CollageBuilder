@@ -22,6 +22,7 @@ extension UIImage: DataRepresentable {
             return ciImage
         } else if let cgImage {
             return CIImage(cgImage: cgImage)
+                .oriented(.init(imageOrientation))
         } else {
             return nil
         }
@@ -33,6 +34,14 @@ extension UIImage: DataRepresentable {
             self.init(cgImage: cgImage)
         } else {
             self.init(ciImage: ciImage)
+        }
+    }
+    
+    func resize(to size: CGSize, with scale: CGFloat = 1) -> UIImage {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = scale
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            draw(in: .init(origin: .zero, size: size))
         }
     }
     
