@@ -28,10 +28,10 @@ final class BlurModifier: Modifier {
             return cashImage
         }
         
-        let bluredImage = applyBlur(to: image)
-        ciCash.update(bluredImage, for: image.hash)
+        let blurredImage = applyBlur(to: image)
+        ciCash.update(blurredImage, for: image.hash)
         
-        return bluredImage
+        return blurredImage
     }
     
     private func applyBlur(to image: CIImage) -> CIImage {
