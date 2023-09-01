@@ -33,6 +33,9 @@ struct ShapeReducer: ReducerProtocol {
             
         case .changeAdjustments(let adjustments):
             newShape.adjustments = adjustments
+            
+        case .changeFilter(let filter):
+            newShape.filter = filter
         }
         
         return newShape

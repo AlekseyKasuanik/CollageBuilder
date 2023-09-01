@@ -12,6 +12,7 @@ struct ShapeEditorView: View {
     @EnvironmentObject private var store: AppStore
     
     @State private var showMediaPicker = false
+    @State private var previewImage: CIImage?
     
     var body: some View {
         Section("Common settings") {
@@ -47,6 +48,21 @@ struct ShapeEditorView: View {
                 ))
             }
         }
+        Section("Filters") {
+            if let previewImage {
+                FiltersSelectorView(
+                    filter: .init(
+                        get: { shape?.filter },
+                        set: { dispatch(.changeFilter($0)) }
+                    ),
+                    preview: previewImage
+                )
+            }
+        }
+        .onChange(of: shape?.id) { _ in
+            Task { previewImage = await shape?.media?.image }
+        }
+        .task { previewImage = await shape?.media?.image }
     }
     
     private var addMedia: some View {

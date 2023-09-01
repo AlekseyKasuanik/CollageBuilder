@@ -6,12 +6,28 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct Media: Codable {
     
     @CodableWrapper var resource: Resource
     private(set) var id = UUID().uuidString
     
+    var image: CIImage? {
+        get async {
+            switch resource {
+            case .image(let image):
+                return image.imageCI
+                
+            case .video(let video):
+                let asset = AVURLAsset(url: video.videoUrl)
+                return await asset.firstCIImage
+                
+            default:
+                return nil
+            }
+        }
+    }
 }
 
 extension Media: Equatable {

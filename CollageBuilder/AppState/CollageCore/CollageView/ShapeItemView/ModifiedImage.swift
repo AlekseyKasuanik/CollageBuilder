@@ -32,18 +32,17 @@ struct ModifiedImage: View {
     }
     
     private var uiImage: UIImage? {
-        guard let modifiedImage = ciImage?.withModifiers(modifiers),
-              let cgImage = context.createCGImage(
-                modifiedImage,
-                from: modifiedImage.extent
-              ) else {
+        guard let modifiedImage = ciImage?.withModifiers(modifiers) else {
             return nil
         }
         
-        let uiImage = UIImage(cgImage: cgImage,
-                              scale: screenScale,
-                              orientation: .up)
-        return uiImage
+        let image = UIImage(
+            ciImage: modifiedImage,
+            context: context,
+            scale: screenScale
+        )
+        
+        return image
     }
     
 }

@@ -31,6 +31,7 @@ struct ShapeItemView: View {
         fitSize: .zero,
         fullSize: .zero
     )
+    @State private var filtersModifier = FiltersModifier()
     
     @State private var changesHandler = PassthroughSubject<Void, Never>()
     @State private var modifiers = [Modifier]()
@@ -64,19 +65,20 @@ struct ShapeItemView: View {
         .onAppear { setupProperties() }
         .onChange(of: shape.blur) { _ in changesHandler.send() }
         .onChange(of: shape.adjustments) { _ in changesHandler.send() }
-        .onChange(of: shape.mediaTransforms) { _ in setupModifiers() }
+        .onChange(of: shape.mediaTransforms) { setupTransformsModifier($0) }
+        .onChange(of: shape.filter) { setupFiltersModifier($0) }
         .onChange(of: shape.fitRect) {
             transformsModifier.fitSize = .init(
                 width: size.width * $0.width * screenScale,
                 height: size.height * $0.height * screenScale
             )
-            setupModifiers()
+            changeModifiers()
         }
         .onReceive(changesHandler.throttle(
             for: 0.1,
             scheduler: DispatchQueue.main,
             latest: true
-        )) { setupModifiers() }
+        )) { setupBlurAndAdjustments() }
     }
     
     private var itemSize: CGSize {
@@ -95,37 +97,46 @@ struct ShapeItemView: View {
             width: size.width * shape.fitRect.width * screenScale,
             height: size.height * shape.fitRect.height * screenScale
         )
+        filtersModifier.filter = shape.filter
         
-        setupModifiers()
+        changeModifiers()
     }
     
-    private func setupModifiers() {
-        setupAdjustmentsModifier()
-        setupBlurModifier()
-        setupTransformsModifier()
+    private func setupBlurAndAdjustments() {
+        if blurModifier.blur != shape.blur {
+            blurModifier.blur = shape.blur
+        }
+        
+        if adjustmentsModifier.adjustments != shape.adjustments {
+            adjustmentsModifier.adjustments = shape.adjustments
+        }
+        
+        changeModifiers()
+    }
+    
+    private func changeModifiers() {
         modifiers = [
             adjustmentsModifier,
             blurModifier,
+            filtersModifier,
             transformsModifier
         ]
     }
     
-    private func setupBlurModifier() {
-        if blurModifier.blur != shape.blur {
-            blurModifier.blur = shape.blur
-        }
-    }
-    
-    private func setupTransformsModifier() {
-        if transformsModifier.transforms != shape.mediaTransforms {
+    private func setupTransformsModifier(_ transform: MediaTransforms) {
+        if transformsModifier.transforms != transform {
             transformsModifier.transforms = shape.mediaTransforms
         }
+        
+        changeModifiers()
     }
     
-    private func setupAdjustmentsModifier() {
-        if adjustmentsModifier.adjustments != shape.adjustments {
-            adjustmentsModifier.adjustments = shape.adjustments
+    private func setupFiltersModifier(_ filter: ColorFilter?) {
+        if filtersModifier.filter != filter {
+            filtersModifier.filter = filter
         }
+        
+        changeModifiers()
     }
     
 }

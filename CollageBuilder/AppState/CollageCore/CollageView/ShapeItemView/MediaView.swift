@@ -62,7 +62,7 @@ struct MediaView: View {
     
     private func setupVideoImage(for url: URL, scale: CGFloat) async {
         let asset = AVURLAsset(url: url)
-        guard let image = await asset.firstImage else {
+        guard let image = await asset.firstUIImage else {
             return
         }
         

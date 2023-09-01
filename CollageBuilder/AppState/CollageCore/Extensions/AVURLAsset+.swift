@@ -21,15 +21,34 @@ extension AVURLAsset {
         }
     }
     
-    var firstImage: UIImage? {
+    var firstCGImage: CGImage? {
         get async {
             let imageGenerator = AVAssetImageGenerator(asset: self)
             imageGenerator.appliesPreferredTrackTransform = true
             guard let image = try? await imageGenerator.image(at: .zero).image else {
                 return nil
             }
+            return image
+        }
+    }
+    
+    var firstUIImage: UIImage? {
+        get async {
+            guard let image = await firstCGImage else {
+                return nil
+            }
             
             return UIImage(cgImage: image)
+        }
+    }
+    
+    var firstCIImage: CIImage? {
+        get async {
+            guard let image = await firstCGImage else {
+                return nil
+            }
+            
+            return CIImage(cgImage: image)
         }
     }
 }
