@@ -28,10 +28,16 @@ extension UIImage: DataRepresentable {
         }
     }
     
-    convenience init(ciImage: CIImage, context: CIContext?) {
+    convenience init(ciImage: CIImage,
+                     context: CIContext?,
+                     scale: CGFloat = 1,
+                     orientation: UIImage.Orientation = .up) {
+        
         if let context,
            let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
-            self.init(cgImage: cgImage)
+            self.init(cgImage: cgImage,
+                      scale: scale,
+                      orientation: orientation)
         } else {
             self.init(ciImage: ciImage)
         }

@@ -14,4 +14,5 @@ enum ShapeModification {
     case changeZPosition(Int)
     case changeBlur(Blur)
     case changeAdjustments(Adjustments)
+    case changeFilter(ColorFilter?)
 }
