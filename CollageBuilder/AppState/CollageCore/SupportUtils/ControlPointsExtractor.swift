@@ -11,12 +11,12 @@ enum ControlPointsExtractor {
     
     static func extract(from shape: ShapeData) -> [ControlPoint] {
         shape.elements.enumerated().flatMap {
-            convert($0.element,                                 with: $0.offset, shapeID: shape.id)
+            convert($0.element, with: $0.offset, shapeID: shape.id)
         }
     }
     
     private static func convert(_ element: ShapeElement,
-                                                                with index: Int,
+                                with index: Int,
                                 shapeID: String) -> [ControlPoint] {
         switch element {
         case .point(let point):

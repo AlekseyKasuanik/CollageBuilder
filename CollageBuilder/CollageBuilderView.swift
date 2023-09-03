@@ -1,5 +1,5 @@
 //
-//  CollageBuiderView.swift
+//  CollageBuilderView.swift
 //  CollageBuilder
 //
 //  Created by Алексей Касьяник on 30.07.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CollageBuiderView: View {
+struct CollageBuilderView: View {
     
     private let collageSize: CGSize = .init(side: 1000)
     
@@ -111,6 +111,6 @@ struct CollageBuiderView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CollageBuiderView(store: .preview)
+        CollageBuilderView(store: .preview)
     }
 }

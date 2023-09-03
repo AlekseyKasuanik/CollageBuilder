@@ -58,9 +58,15 @@
 		1F574C032A8BFFFA00B0EC2E /* CollageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */; };
 		1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C062A8C11AC00B0EC2E /* CollageModification.swift */; };
 		1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */; };
-		1F5DF5C82A76726A00430AF1 /* CollageBuiderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */; };
+		1F5DF5C82A76726A00430AF1 /* CollageBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* CollageBuilderView.swift */; };
 		1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C92A76726C00430AF1 /* Assets.xcassets */; };
 		1F5DF5CE2A76726C00430AF1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5CD2A76726C00430AF1 /* Preview Assets.xcassets */; };
+		1F5FF8DC2AA4B0C500CF7B7F /* TextSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8DB2AA4B0C500CF7B7F /* TextSelectorView.swift */; };
+		1F5FF8DF2AA51D2F00CF7B7F /* TextSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8DE2AA51D2F00CF7B7F /* TextSettings.swift */; };
+		1F5FF8E22AA51DCD00CF7B7F /* TextTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8E12AA51DCD00CF7B7F /* TextTransforms.swift */; };
+		1F5FF8E42AA51E8100CF7B7F /* AttributedStringCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8E32AA51E8100CF7B7F /* AttributedStringCreator.swift */; };
+		1F5FF8E72AA51F2D00CF7B7F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8E62AA51F2D00CF7B7F /* TextView.swift */; };
+		1F5FF8E92AA51F4300CF7B7F /* TextUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8E82AA51F4300CF7B7F /* TextUIView.swift */; };
 		1F660F1E2A78174D0072925A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F1D2A78174D0072925A /* Store.swift */; };
 		1F660F212A781EDC0072925A /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F202A781EDC0072925A /* AppReducer.swift */; };
 		1F660F232A781F050072925A /* ReducerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F222A781F050072925A /* ReducerProtocol.swift */; };
@@ -153,10 +159,16 @@
 		1F574C062A8C11AC00B0EC2E /* CollageModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageModification.swift; sourceTree = "<group>"; };
 		1F5DF5C22A76726A00430AF1 /* CollageBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollageBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderApp.swift; sourceTree = "<group>"; };
-		1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuiderView.swift; sourceTree = "<group>"; };
+		1F5DF5C72A76726A00430AF1 /* CollageBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderView.swift; sourceTree = "<group>"; };
 		1F5DF5C92A76726C00430AF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F5DF5CB2A76726C00430AF1 /* CollageBuilder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollageBuilder.entitlements; sourceTree = "<group>"; };
 		1F5DF5CD2A76726C00430AF1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1F5FF8DB2AA4B0C500CF7B7F /* TextSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectorView.swift; sourceTree = "<group>"; };
+		1F5FF8DE2AA51D2F00CF7B7F /* TextSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSettings.swift; sourceTree = "<group>"; };
+		1F5FF8E12AA51DCD00CF7B7F /* TextTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTransforms.swift; sourceTree = "<group>"; };
+		1F5FF8E32AA51E8100CF7B7F /* AttributedStringCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringCreator.swift; sourceTree = "<group>"; };
+		1F5FF8E62AA51F2D00CF7B7F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		1F5FF8E82AA51F4300CF7B7F /* TextUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextUIView.swift; sourceTree = "<group>"; };
 		1F660F1D2A78174D0072925A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		1F660F202A781EDC0072925A /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		1F660F222A781F050072925A /* ReducerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerProtocol.swift; sourceTree = "<group>"; };
@@ -264,6 +276,7 @@
 		1F47FE532A8FB27D00E96210 /* ShapeData */ = {
 			isa = PBXGroup;
 			children = (
+				1F5FF8DD2AA51D1300CF7B7F /* TextSettings */,
 				1F660F2C2A7825560072925A /* ShapeData.swift */,
 				1F47FE542A8FB28D00E96210 /* ShapeElements */,
 			);
@@ -334,6 +347,7 @@
 			children = (
 				1F32A2032A7C3A14006A4AAE /* PointsRecognizer.swift */,
 				1F660F2E2A7829580072925A /* ControlPointsExtractor.swift */,
+				1F5FF8E32AA51E8100CF7B7F /* AttributedStringCreator.swift */,
 				1F52FD902A81744B005ECBDD /* RectExtractor.swift */,
 			);
 			path = SupportUtils;
@@ -350,7 +364,7 @@
 		1F4B86A52A90A26000D8B99A /* CollageBuiderView */ = {
 			isa = PBXGroup;
 			children = (
-				1F5DF5C72A76726A00430AF1 /* CollageBuiderView.swift */,
+				1F5DF5C72A76726A00430AF1 /* CollageBuilderView.swift */,
 				1F4B86A62A90A28B00D8B99A /* AdditionalViews */,
 			);
 			name = CollageBuiderView;
@@ -383,6 +397,7 @@
 				1F24ABB12A969AD100788F74 /* AdjustmentsSelectorView.swift */,
 				1F4E69732AA12C5E00D45B84 /* FiltersSelectorView.swift */,
 				1F7759652A97676B00A57060 /* CommonSliderView.swift */,
+				1F5FF8DB2AA4B0C500CF7B7F /* TextSelectorView.swift */,
 			);
 			name = Selectors;
 			sourceTree = "<group>";
@@ -447,6 +462,32 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1F5FF8DD2AA51D1300CF7B7F /* TextSettings */ = {
+			isa = PBXGroup;
+			children = (
+				1F5FF8DE2AA51D2F00CF7B7F /* TextSettings.swift */,
+				1F5FF8E02AA51DA400CF7B7F /* TextSettingsElements */,
+			);
+			path = TextSettings;
+			sourceTree = "<group>";
+		};
+		1F5FF8E02AA51DA400CF7B7F /* TextSettingsElements */ = {
+			isa = PBXGroup;
+			children = (
+				1F5FF8E12AA51DCD00CF7B7F /* TextTransforms.swift */,
+			);
+			path = TextSettingsElements;
+			sourceTree = "<group>";
+		};
+		1F5FF8E52AA51F0100CF7B7F /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				1F5FF8E62AA51F2D00CF7B7F /* TextView.swift */,
+				1F5FF8E82AA51F4300CF7B7F /* TextUIView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
 		1F660F1C2A78172A0072925A /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				1F47FE512A8FB21300E96210 /* Collage */,
+				1F5FF8E52AA51F0100CF7B7F /* TextView */,
 				1F47FE612A8FB84B00E96210 /* CollageView */,
 				1F2E07DA2A92737B00A71926 /* Modifiers */,
 				1F682A682A9B737C003F846C /* MediaGestureHandler */,
@@ -645,11 +687,13 @@
 				1F660F3A2A782D640072925A /* GestureUIView.swift in Sources */,
 				1F3D2DCA2A8EB9B100217749 /* ShapeEditorView.swift in Sources */,
 				1F660F352A782D010072925A /* AppStorePreview.swift in Sources */,
+				1F5FF8E92AA51F4300CF7B7F /* TextUIView.swift in Sources */,
 				1F562BB72A882C7B00302C22 /* Video.swift in Sources */,
 				1F52FD8F2A81685D005ECBDD /* MediaPickerView.swift in Sources */,
 				1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */,
 				1F660F3C2A782D820072925A /* GestureState.swift in Sources */,
 				1F660F292A781F8C0072925A /* AppAction.swift in Sources */,
+				1F5FF8E42AA51E8100CF7B7F /* AttributedStringCreator.swift in Sources */,
 				1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */,
 				1F660F1E2A78174D0072925A /* Store.swift in Sources */,
 				1F3BD2762A7AB3B9001E7ACB /* Collage.swift in Sources */,
@@ -683,25 +727,29 @@
 				1F660F432A782E6B0072925A /* CGRect+.swift in Sources */,
 				1F2E07D92A92730700A71926 /* Blur.swift in Sources */,
 				1F660F4A2A78324D0072925A /* ControlPointsView.swift in Sources */,
-				1F5DF5C82A76726A00430AF1 /* CollageBuiderView.swift in Sources */,
+				1F5DF5C82A76726A00430AF1 /* CollageBuilderView.swift in Sources */,
 				1F47FE582A8FB38000E96210 /* Resource.swift in Sources */,
 				1F660F3E2A782DEF0072925A /* GridView.swift in Sources */,
 				1F660F262A781F570072925A /* AppState.swift in Sources */,
 				1F47FE502A8FA5CD00E96210 /* BlendModeSelectorView.swift in Sources */,
+				1F5FF8E22AA51DCD00CF7B7F /* TextTransforms.swift in Sources */,
 				1F7759692A976AB300A57060 /* CGFloat+.swift in Sources */,
 				1F660F332A78298F0072925A /* ControlPoint.swift in Sources */,
 				1F47FE4E2A8F9B8B00E96210 /* ShapeReducer.swift in Sources */,
 				1F4EC4DD2A9E7752008701DE /* ColorFilter.swift in Sources */,
+				1F5FF8DF2AA51D2F00CF7B7F /* TextSettings.swift in Sources */,
 				1F24ABAC2A96842F00788F74 /* Adjustments.swift in Sources */,
 				1F660F2D2A7825560072925A /* ShapeData.swift in Sources */,
 				1F2E07DC2A92739500A71926 /* BlurModifier.swift in Sources */,
 				1F2D3F502A82C26000EA6307 /* VideoPlayer.swift in Sources */,
 				1F47FE6D2A8FEEAB00E96210 /* DependentPointsConectorView.swift in Sources */,
+				1F5FF8DC2AA4B0C500CF7B7F /* TextSelectorView.swift in Sources */,
 				1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */,
 				1F68699A2A810FD1006C2B6C /* CodableWrapper.swift in Sources */,
 				1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */,
 				1F47FE652A8FBA3400E96210 /* CollageView.swift in Sources */,
 				1F24ABB22A969AD200788F74 /* AdjustmentsSelectorView.swift in Sources */,
+				1F5FF8E72AA51F2D00CF7B7F /* TextView.swift in Sources */,
 				1F2638382A83B67C00022E1C /* Modifier.swift in Sources */,
 				1F53337E2A8AB0B80068069B /* ContentBlendMode.swift in Sources */,
 				1F32A2042A7C3A14006A4AAE /* PointsRecognizer.swift in Sources */,

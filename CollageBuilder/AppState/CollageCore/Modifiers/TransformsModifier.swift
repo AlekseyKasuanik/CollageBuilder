@@ -49,7 +49,7 @@ final class TransformsModifier: Modifier {
                         image.extent.height / fitSize.height)
         
         let scaledImage = image.scaled(by: 1 / scale * transforms.scale)
-        let rotatedImage = scaledImage.rotatedAroundCenter(by: -transforms.rotaion)
+        let rotatedImage = scaledImage.rotatedAroundCenter(by: -transforms.rotation)
         
         let translatedImage = rotatedImage.translated(
             by: transforms.translation.x * fullSize.width,

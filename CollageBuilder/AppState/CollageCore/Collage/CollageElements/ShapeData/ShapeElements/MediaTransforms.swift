@@ -10,11 +10,11 @@ import Foundation
 struct MediaTransforms: Codable, Equatable {
     var scale: CGFloat
     var translation: CGPoint
-    var rotaion: CGFloat
+    var rotation: CGFloat
     
     static var defaultTransforms: MediaTransforms {
         .init(scale: 1,
               translation: .zero,
-              rotaion: 0)
+              rotation: 0)
     }
 }

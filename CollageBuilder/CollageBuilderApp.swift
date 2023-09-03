@@ -11,7 +11,7 @@ import SwiftUI
 struct CollageBuilderApp: App {
     var body: some Scene {
         WindowGroup {
-            CollageBuiderView(store: .preview)
+            CollageBuilderView(store: .preview)
         }
     }
     

@@ -99,7 +99,7 @@ struct MediaGestureHandler {
         var newCollage = collage
         var newShape = collage.shapes[shapeIndex]
         
-        newShape.mediaTransforms.rotaion += rotation
+        newShape.mediaTransforms.rotation += rotation
         newCollage.shapes[shapeIndex] = newShape
         
         return newCollage
