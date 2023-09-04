@@ -12,6 +12,7 @@ struct Collage: Codable {
     var dependencies: [DependentPoints]
     var cornerRadius: CGFloat
     var background: ShapeData
+    var texts: [TextSettings]
     let id: String
     
     var controlPoints: [ControlPoint] {
@@ -35,6 +36,7 @@ extension Collage {
                 adjustments: .defaultAdjustments,
                 mediaTransforms: .defaultTransforms
               ),
+              texts: [],
               id: "1")
     }
 }

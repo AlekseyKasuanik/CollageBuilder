@@ -33,6 +33,7 @@ struct CollageBuilderApp: App {
                                           dependencies: [],
                                           cornerRadius: 0,
                                           background: background,
+                                          texts: [],
                                           id: UUID().uuidString)),
             reducer: .init()
         )

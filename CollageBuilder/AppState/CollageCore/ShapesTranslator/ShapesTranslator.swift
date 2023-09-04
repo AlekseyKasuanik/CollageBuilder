@@ -9,16 +9,16 @@ import Foundation
 
 struct ShapesTranslator {
     let pointTouchSide: CGFloat
-    let transalationStep: CGFloat
+    let translationStep: CGFloat
     
     private var movedPointsIDs = [String]()
     private var accumulatedTranslation = CGPoint.zero
     
     init(pointTouchSide: CGFloat = 0.05,
-         transalationStep: CGFloat = 0) {
+         translationStep: CGFloat = 0) {
         
         self.pointTouchSide = pointTouchSide
-        self.transalationStep = transalationStep
+        self.translationStep = translationStep
     }
     
     mutating func translate(_ translation: GestureType.GestureState<CGPoint>,
@@ -75,8 +75,8 @@ struct ShapesTranslator {
     private mutating func getCoorectTranslation(_ translation: CGPoint) -> CGPoint {
         let sumTranslation = accumulatedTranslation + translation
         
-        let remainderX = sumTranslation.x.truncatingRemainder(dividingBy: transalationStep)
-        let remainderY = sumTranslation.y.truncatingRemainder(dividingBy: transalationStep)
+        let remainderX = sumTranslation.x.truncatingRemainder(dividingBy: translationStep)
+        let remainderY = sumTranslation.y.truncatingRemainder(dividingBy: translationStep)
         
         let resultTranslation = CGPoint(
             x: sumTranslation.x - remainderX,

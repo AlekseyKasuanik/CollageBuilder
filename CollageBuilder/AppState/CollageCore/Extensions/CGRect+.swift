@@ -9,9 +9,9 @@ import Foundation
 
 extension CGRect {
     
-    init(size: CGSize, araund: CGPoint) {
-        self.init(origin: .init(x: araund.x - size.width / 2,
-                                y: araund.y - size.width / 2),
+    init(size: CGSize, around: CGPoint) {
+        self.init(origin: .init(x: around.x - size.width / 2,
+                                y: around.y - size.width / 2),
                   size: size)
     }
 }

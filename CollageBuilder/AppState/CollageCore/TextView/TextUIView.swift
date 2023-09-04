@@ -15,6 +15,7 @@ final class TextUIView: UITextView {
         self._settings = settings
         super.init(frame: .zero, textContainer: nil)
         self.delegate = self
+        self.isUserInteractionEnabled = false
     }
     
     required init?(coder: NSCoder) {

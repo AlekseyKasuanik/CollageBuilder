@@ -12,14 +12,15 @@ struct TextSelectorView: View {
     @State private var settings: TextSettings = .init(text: "Test \n text",
                                                       fontSize: 30,
                                                       lineSpacing: 10,
-                                                      transforms: .defaultTransforms)
+                                                      transforms: .init(),
+                                                      zPosition: 2)
     
     var body: some View {
         VStack {
             Spacer()
             TextView(settings: $settings)
-                .frame(width: settings.size.width + 15,
-                       height: settings.size.height + 15)
+                .frame(width: settings.rect.size.width + 15,
+                       height: settings.rect.size.height + 15)
             Spacer()
         }
     }

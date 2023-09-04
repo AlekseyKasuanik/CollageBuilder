@@ -41,6 +41,7 @@ extension AppStore {
             dependencies: [],
             cornerRadius: 20,
             background: background,
+            texts: [],
             id: collageID
         )
         

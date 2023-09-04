@@ -18,7 +18,7 @@ enum PointsRecognizer {
         let resultPoint = allPoints.first(where: {
             CGRect(
                 size: .init(side: radius),
-                araund: $0.point
+                around: $0.point
             ).contains(point)
         })
         
@@ -28,7 +28,7 @@ enum PointsRecognizer {
     static func findShape(_ point: CGPoint,
                           in collage: Collage) -> ShapeData? {
         
-        let resultShapes = collage.shapes.first(where: { shape in
+        let shapes = collage.shapes.filter { shape in
             shape.fitRect.contains(point) &&
             PathCreator.create(
                 size: .init(side: 1),
@@ -37,8 +37,50 @@ enum PointsRecognizer {
                 CGPoint(x: point.x - shape.fitRect.minX,
                         y: point.y - shape.fitRect.minY)
             )
+        }
+        
+        let filteredShapes = shapes.sorted(by: {
+            $0.zPosition > $1.zPosition
         })
         
-        return resultShapes
+        return filteredShapes.first
+    }
+    
+    static func findText(_ point: CGPoint,
+                          in collage: Collage) -> TextSettings? {
+        
+        let texts = collage.texts.filter {
+            $0.rect.contains(point)
+        }
+        
+        let filteredTexts = texts.sorted(by: {
+            $0.zPosition > $1.zPosition
+        })
+        
+        return filteredTexts.first
+    }
+    
+    static func detectElementType(_ point: CGPoint,
+                                  in collage: Collage) -> ElementType {
+        
+        let shapeZPosition = findShape(point, in: collage)?.zPosition
+        let textZPosition = findText(point, in: collage)?.zPosition
+        
+        guard shapeZPosition != nil ||
+                textZPosition != nil else {
+            return .empty
+        }
+        
+        let type = [(ElementType.shape, shapeZPosition ?? .min),
+                    (ElementType.text, shapeZPosition ?? .min)]
+            .sorted(by: { $0.1 > $1.1})
+            .first?.0 ?? .empty
+        
+        return type
+        
+    }
+    
+    enum ElementType {
+        case shape, text, empty
     }
 }

@@ -11,7 +11,7 @@ struct GestureReducer: ReducerProtocol {
     
     private var mediaGestureHandler = MediaGestureHandler()
     private var shapesTranslator = ShapesTranslator(pointTouchSide: 0.1,
-                                                    transalationStep: 0.01)
+                                                    translationStep: 0.01)
     
     mutating func reduce(_ currentState: AppState,
                          _ action: GestureType) -> AppState {
@@ -47,7 +47,7 @@ struct GestureReducer: ReducerProtocol {
         
         var newState = state
         switch state.editMode {
-        case .priview:
+        case .preview:
             newState.collage = mediaGestureHandler.translate(
                 gestureState,
                 in: state.collage
@@ -68,7 +68,7 @@ struct GestureReducer: ReducerProtocol {
         
         var newState = state
         switch state.editMode {
-        case .priview:
+        case .preview:
             newState.collage = mediaGestureHandler.scale(
                 gestureState,
                 in: state.collage
@@ -86,7 +86,7 @@ struct GestureReducer: ReducerProtocol {
     private mutating func onRotate(_ gestureState: GestureType.GestureState<CGFloat>,
                                    in state: AppState) -> AppState {
         
-        guard state.editMode == .priview else {
+        guard state.editMode == .preview else {
             return state
         }
         
