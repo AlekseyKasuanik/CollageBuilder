@@ -9,11 +9,10 @@ import SwiftUI
 
 struct CollageBuilderView: View {
     
-    private let collageSize: CGSize = .init(side: 1000)
-    
     @ObservedObject private(set) var store: AppStore
     
     private var collage: Collage { store.state.collage }
+    private var collageSize: CGSize { store.state.collageSize }
     
     var body: some View {
         ZStack {

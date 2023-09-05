@@ -11,7 +11,7 @@ extension CGRect {
     
     init(size: CGSize, around: CGPoint) {
         self.init(origin: .init(x: around.x - size.width / 2,
-                                y: around.y - size.width / 2),
+                                y: around.y - size.height / 2),
                   size: size)
     }
 }

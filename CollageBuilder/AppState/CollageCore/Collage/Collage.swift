@@ -34,7 +34,7 @@ extension Collage {
                 blendMode: .normal,
                 blur: .none,
                 adjustments: .defaultAdjustments,
-                mediaTransforms: .defaultTransforms
+                transforms: .init()
               ),
               texts: [],
               id: "1")

@@ -27,7 +27,7 @@ struct ShapeItemView: View {
         adjustments: .defaultAdjustments
     )
     @State private var transformsModifier = TransformsModifier(
-        transforms: .defaultTransforms,
+        transforms: .init(),
         fitSize: .zero,
         fullSize: .zero
     )
@@ -62,10 +62,15 @@ struct ShapeItemView: View {
                     .cornerRadius(cornerRadius)
             }
         }
+        .zIndex(Double(shape.zPosition))
+        .position(
+            x: shape.fitRect.midX * size.width,
+            y: shape.fitRect.midY * size.height
+        )
         .onAppear { setupProperties() }
         .onChange(of: shape.blur) { _ in changesHandler.send() }
         .onChange(of: shape.adjustments) { _ in changesHandler.send() }
-        .onChange(of: shape.mediaTransforms) { setupTransformsModifier($0) }
+        .onChange(of: shape.transforms) { setupTransformsModifier($0) }
         .onChange(of: shape.filter) { setupFiltersModifier($0) }
         .onChange(of: shape.fitRect) {
             transformsModifier.fitSize = .init(
@@ -90,7 +95,7 @@ struct ShapeItemView: View {
     private func setupProperties() {
         blurModifier.blur = shape.blur
         adjustmentsModifier.adjustments = shape.adjustments
-        transformsModifier.transforms = shape.mediaTransforms
+        transformsModifier.transforms = shape.transforms
         
         transformsModifier.fullSize = size * screenScale
         transformsModifier.fitSize = .init(
@@ -123,9 +128,9 @@ struct ShapeItemView: View {
         ]
     }
     
-    private func setupTransformsModifier(_ transform: MediaTransforms) {
+    private func setupTransformsModifier(_ transform: Transforms) {
         if transformsModifier.transforms != transform {
-            transformsModifier.transforms = shape.mediaTransforms
+            transformsModifier.transforms = shape.transforms
         }
         
         changeModifiers()
@@ -160,7 +165,7 @@ struct ShapeItemView_Previews: PreviewProvider {
                              blendMode: .normal,
                              blur: .none,
                              adjustments: .defaultAdjustments,
-                             mediaTransforms: .defaultTransforms),
+                             transforms: .init()),
                 size: .init(side: 500),
                 isPlaying: true
             )

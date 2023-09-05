@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Transforms: Codable {
+struct Transforms: Codable, Equatable {
     var scale: CGFloat = 1
     var position: CGPoint = .zero
     var rotation: CGFloat = 0

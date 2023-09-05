@@ -50,7 +50,7 @@ enum PointsRecognizer {
                           in collage: Collage) -> TextSettings? {
         
         let texts = collage.texts.filter {
-            $0.rect.contains(point)
+            $0.normalizedRect.contains(point)
         }
         
         let filteredTexts = texts.sorted(by: {
@@ -60,27 +60,4 @@ enum PointsRecognizer {
         return filteredTexts.first
     }
     
-    static func detectElementType(_ point: CGPoint,
-                                  in collage: Collage) -> ElementType {
-        
-        let shapeZPosition = findShape(point, in: collage)?.zPosition
-        let textZPosition = findText(point, in: collage)?.zPosition
-        
-        guard shapeZPosition != nil ||
-                textZPosition != nil else {
-            return .empty
-        }
-        
-        let type = [(ElementType.shape, shapeZPosition ?? .min),
-                    (ElementType.text, shapeZPosition ?? .min)]
-            .sorted(by: { $0.1 > $1.1})
-            .first?.0 ?? .empty
-        
-        return type
-        
-    }
-    
-    enum ElementType {
-        case shape, text, empty
-    }
 }

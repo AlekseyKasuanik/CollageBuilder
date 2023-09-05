@@ -25,11 +25,12 @@ struct CollageBuilderApp: App {
             blendMode: .normal,
             blur: .none,
             adjustments: .defaultAdjustments,
-            mediaTransforms: .defaultTransforms
+            transforms: .init()
         )
         
         let store = AppStore(
-            initial: .init(collage: .init(shapes: [],
+            initial: .init(collageSize: .init(side: 1000),
+                           collage: .init(shapes: [],
                                           dependencies: [],
                                           cornerRadius: 0,
                                           background: background,
@@ -38,6 +39,6 @@ struct CollageBuilderApp: App {
             reducer: .init()
         )
         
-       return store
+        return store
     }
 }

@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct TextSettings: Codable {
+struct TextSettings: Codable, Identifiable {
     private(set) var id = UUID().uuidString
+    private(set) var collageSize: CGSize
     
+    var boundsSpacing: CGFloat = 15
     var text: String
     var fontSize: CGFloat
     var lineSpacing: CGFloat
@@ -20,9 +22,21 @@ struct TextSettings: Codable {
         AttributedStringCreator.create(from: self)
     }
     
-    var rect: CGRect {
-        .init(size: attributedString.size(),
-              around: transforms.position)
+    var size: CGSize {
+        let size = attributedString.size()
+        
+        return .init(width: size.width + boundsSpacing,
+                     height: size.height + boundsSpacing)
+    }
+    
+    var normalizedRect: CGRect {
+        let normalizedSize = CGSize(
+            width: size.width / collageSize.width,
+            height: size.height / collageSize.height
+        )
+        
+        return .init(size: normalizedSize,
+                     around: transforms.position)
     }
     
 }

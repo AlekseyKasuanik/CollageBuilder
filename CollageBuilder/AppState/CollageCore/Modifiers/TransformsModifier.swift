@@ -17,13 +17,13 @@ final class TransformsModifier: Modifier {
         didSet { ciCash.clear()}
     }
     
-    var transforms: MediaTransforms {
+    var transforms: Transforms {
         didSet { ciCash.clear()}
     }
     
     private var ciCash = CashManager<Int, CIImage>()
     
-    init(transforms: MediaTransforms,
+    init(transforms: Transforms,
          fitSize: CGSize,
          fullSize: CGSize) {
         
@@ -52,8 +52,8 @@ final class TransformsModifier: Modifier {
         let rotatedImage = scaledImage.rotatedAroundCenter(by: -transforms.rotation)
         
         let translatedImage = rotatedImage.translated(
-            by: transforms.translation.x * fullSize.width,
-            y: -transforms.translation.y * fullSize.height
+            by: transforms.position.x * fullSize.width,
+            y: -transforms.position.y * fullSize.height
         ).composited(over: CIImage.clear.cropped(to: scaledImage.extent))
         
         let croppedImage = translatedImage.cropped(to: .init(

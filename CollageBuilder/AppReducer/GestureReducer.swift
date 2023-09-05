@@ -9,9 +9,9 @@ import Foundation
 
 struct GestureReducer: ReducerProtocol {
     
-    private var mediaGestureHandler = MediaGestureHandler()
     private var shapesTranslator = ShapesTranslator(pointTouchSide: 0.1,
                                                     translationStep: 0.01)
+    private var elementsTransformer = ElementsTransformer()
     
     mutating func reduce(_ currentState: AppState,
                          _ action: GestureType) -> AppState {
@@ -48,7 +48,7 @@ struct GestureReducer: ReducerProtocol {
         var newState = state
         switch state.editMode {
         case .preview:
-            newState.collage = mediaGestureHandler.translate(
+            newState.collage = elementsTransformer.translate(
                 gestureState,
                 in: state.collage
             )
@@ -69,7 +69,7 @@ struct GestureReducer: ReducerProtocol {
         var newState = state
         switch state.editMode {
         case .preview:
-            newState.collage = mediaGestureHandler.scale(
+            newState.collage = elementsTransformer.scale(
                 gestureState,
                 in: state.collage
             )
@@ -91,7 +91,7 @@ struct GestureReducer: ReducerProtocol {
         }
         
         var newState = state
-        newState.collage = mediaGestureHandler.rotate(
+        newState.collage = elementsTransformer.rotate(
             gestureState,
             in: state.collage
         )

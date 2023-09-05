@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TextSelectorView: View {
     
-    @State private var settings: TextSettings = .init(text: "Test \n text",
+    @State private var settings: TextSettings = .init(collageSize: .init(side: 1000),
+                                                      text: "Test \n text",
                                                       fontSize: 30,
                                                       lineSpacing: 10,
                                                       transforms: .init(),
@@ -19,8 +20,8 @@ struct TextSelectorView: View {
         VStack {
             Spacer()
             TextView(settings: $settings)
-                .frame(width: settings.rect.size.width + 15,
-                       height: settings.rect.size.height + 15)
+                .frame(width: settings.size.width,
+                       height: settings.size.height)
             Spacer()
         }
     }

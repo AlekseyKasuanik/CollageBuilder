@@ -24,6 +24,12 @@ struct CollageView<ViewType: View>: View {
         ZStack {
             ZStack {
                 intermediateView
+                
+                ForEach(collage.texts) {
+                    TextItemView(settings: $0,
+                                 collageSize: collageSize)
+                }
+                
                 ForEach(collage.shapes) { shape in
                     let isSelected = selectedShapeID == shape.id
                     ShapeItemView(
@@ -33,11 +39,6 @@ struct CollageView<ViewType: View>: View {
                         isPlaying: isPlaying,
                         strokeColor: isSelected ? strokeColor : .clear,
                         strokeWidth: strokeWidth
-                    )
-                    .zIndex(Double(shape.zPosition))
-                    .position(
-                        x: shape.fitRect.midX * collageSize.width,
-                        y: shape.fitRect.midY * collageSize.height
                     )
                 }
             }
@@ -57,6 +58,7 @@ struct CollageView<ViewType: View>: View {
             GestureView() { onReciveGesture?($0) }
         }
     }
+    
 }
 
 struct CollageView_Previews: PreviewProvider {

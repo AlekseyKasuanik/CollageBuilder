@@ -8,6 +8,7 @@
 import Foundation
 
 struct AppState {
+    let collageSize: CGSize
     var collage: Collage
     var selectedShapeID: String?
     var selectedPointsIDs = Set<String>()
