@@ -40,6 +40,7 @@ struct CollageBuilderView: View {
             }
         }
         .environmentObject(store)
+        .ignoresSafeArea(.keyboard)
     }
     
     private var gridEditor: some View {

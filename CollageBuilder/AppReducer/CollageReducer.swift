@@ -29,7 +29,7 @@ struct CollageReducer: ReducerProtocol {
         case .disconectControlPoints(let ids):
             newCollage = disconectControlPoints(ids, in: newCollage)
             
-        case .cnahgeCornerRadius(let radius):
+        case .changeCornerRadius(let radius):
             newCollage = changeCornerRadius(radius, in: newCollage)
             
         case .changeShape(let action, id: let id):

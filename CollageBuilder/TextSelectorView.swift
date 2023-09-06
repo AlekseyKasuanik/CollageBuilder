@@ -9,12 +9,14 @@ import SwiftUI
 
 struct TextSelectorView: View {
     
-    @State private var settings: TextSettings = .init(collageSize: .init(side: 1000),
-                                                      text: "Test \n text",
-                                                      fontSize: 30,
-                                                      lineSpacing: 10,
-                                                      transforms: .init(),
-                                                      zPosition: 2)
+    @State private var settings: TextSettings = .init(
+        collageSize: .init(side: 1000),
+        text: "Test \n text",
+        fontSize: 30,
+        lineSpacing: 10,
+        transforms: .init(),
+        zPosition: 2
+    )
     
     var body: some View {
         VStack {
@@ -32,3 +34,4 @@ struct TextSelectorView_Previews: PreviewProvider {
         TextSelectorView()
     }
 }
+

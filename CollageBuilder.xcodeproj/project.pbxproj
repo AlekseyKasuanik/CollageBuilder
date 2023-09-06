@@ -101,6 +101,7 @@
 		1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */; };
 		1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */; };
 		1F7B718E2A9D1F44004E5A2E /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B718D2A9D1F44004E5A2E /* View+.swift */; };
+		1F85E2CC2AA9195B00D7E7A7 /* AddTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */; };
 		1FCF56122AA6608400CC2355 /* ElementsTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */; };
 		1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */; };
 		1FED663E2A7FBC9C009FF7A4 /* DataExporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663D2A7FBC9C009FF7A4 /* DataExporterView.swift */; };
@@ -203,6 +204,7 @@
 		1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVURLAsset+.swift"; sourceTree = "<group>"; };
 		1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		1F7B718D2A9D1F44004E5A2E /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextView.swift; sourceTree = "<group>"; };
 		1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTransformer.swift; sourceTree = "<group>"; };
 		1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporterView.swift; sourceTree = "<group>"; };
 		1FED663D2A7FBC9C009FF7A4 /* DataExporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExporterView.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				1F4E69732AA12C5E00D45B84 /* FiltersSelectorView.swift */,
 				1F7759652A97676B00A57060 /* CommonSliderView.swift */,
 				1F5FF8DB2AA4B0C500CF7B7F /* TextSelectorView.swift */,
+				1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */,
 			);
 			name = Selectors;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				1FCF56122AA6608400CC2355 /* ElementsTransformer.swift in Sources */,
 				1F660F382A782D4B0072925A /* GestureView.swift in Sources */,
 				1F2E07DE2A92888400A71926 /* BlurSelectorView.swift in Sources */,
+				1F85E2CC2AA9195B00D7E7A7 /* AddTextView.swift in Sources */,
 				1FED663E2A7FBC9C009FF7A4 /* DataExporterView.swift in Sources */,
 				1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */,
 				1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */,

@@ -15,7 +15,7 @@ final class TextUIView: UITextView {
         self._settings = settings
         super.init(frame: .zero, textContainer: nil)
         self.delegate = self
-        self.isUserInteractionEnabled = false
+        self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -24,7 +24,14 @@ final class TextUIView: UITextView {
     
     func changeSettings(_ settings: TextSettings) {
         attributedText = settings.attributedString
-        backgroundColor = .red
+    }
+    
+    func showKeyboard() {
+        becomeFirstResponder()
+    }
+    
+    func hideKeyboard() {
+        resignFirstResponder()
     }
 }
 
