@@ -14,12 +14,14 @@ enum AttributedStringCreator {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = settings.lineSpacing
-        paragraphStyle.alignment = .center
-
+        paragraphStyle.alignment = .init(textAlignment: settings.alignment)
+ 
 
         attributedString.addAttributes(
-            [.font : UIFont.systemFont(ofSize: settings.fontSize),
-             .paragraphStyle: paragraphStyle,
+            [.font : settings.font,
+             .paragraphStyle : paragraphStyle,
+             .kern : settings.kern,
+             .foregroundColor : settings.textColor
             ],
             range: NSMakeRange(0, attributedString.length)
         )

@@ -87,20 +87,7 @@ struct ElementsTransformer {
     private mutating func detectChangedElement(_ position: CGPoint,
                                              in collage: Collage) {
         
-        let shape = PointsRecognizer.findShape(position, in: collage)
-        let text = PointsRecognizer.findText(position, in: collage)
-        
-        guard shape != nil || text != nil else {
-            element = nil
-            return
-        }
-        
-        let element = [(ElementType.shape(shape?.id ?? ""), shape?.zPosition ?? .min),
-                    (ElementType.text(text?.id ?? ""), text?.zPosition ?? .min)]
-            .sorted(by: { $0.1 > $1.1})
-            .first?.0
-        
-        self.element = element
+        element = PointsRecognizer.findElement(position, in: collage)
     }
     
     private func change(_ transforms: Transforms,
@@ -113,17 +100,5 @@ struct ElementsTransformer {
         resultTransforms.scale *= newTransforms.scale
         
         return resultTransforms
-    }
-    
-   private enum ElementType {
-        case shape(String)
-        case text(String)
-        
-        var id: String {
-            switch self {
-            case .shape(let id), .text(let id):
-                return id
-            }
-        }
     }
 }

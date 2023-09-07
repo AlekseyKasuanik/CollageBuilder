@@ -24,7 +24,7 @@ struct DependentPointsConectorView: View {
     
     private var disconectButton: some View {
         Button {
-            store.dispatch(.changeCollage(.disconectControlPoints(pointsIds)))
+            store.dispatch(.changeCollage(.disconnectControlPoints(pointsIds)))
             store.dispatch(.removeSelectedPoints)
         } label: {
             createButtonBody(with: "Disconect")
@@ -33,7 +33,7 @@ struct DependentPointsConectorView: View {
     
     private var conectButton: some View {
         Button {
-            store.dispatch(.changeCollage(.conectControlPoints(pointsIds)))
+            store.dispatch(.changeCollage(.connectControlPoints(pointsIds)))
             store.dispatch(.removeSelectedPoints)
         } label: {
             createButtonBody(with: "Conect")

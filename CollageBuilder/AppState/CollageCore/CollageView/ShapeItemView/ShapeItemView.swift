@@ -16,8 +16,8 @@ struct ShapeItemView: View {
     let size: CGSize
     
     var isPlaying: Bool
-    var strokeColor: UIColor = .clear
-    var strokeWidth: CGFloat = 7
+    var strokeColor: UIColor
+    var strokeWidth: CGFloat
     
     var emptyColor: UIColor = .systemGray3
     
@@ -167,7 +167,9 @@ struct ShapeItemView_Previews: PreviewProvider {
                              adjustments: .defaultAdjustments,
                              transforms: .init()),
                 size: .init(side: 500),
-                isPlaying: true
+                isPlaying: true,
+                strokeColor: .green,
+                strokeWidth: 7
             )
             .background(.red)
         }

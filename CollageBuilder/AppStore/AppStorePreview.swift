@@ -14,11 +14,8 @@ extension AppStore {
         let element2 = ShapeElement.rectangle(.init(x: 0.55, y: 0.05, width: 0.4, height: 0.4))
         let collageID = UUID().uuidString
         let text = TextSettings(collageSize: collageSize,
-                                text: "test Text",
-                                fontSize: 20,
-                                lineSpacing: 1,
-                                transforms: .init(position: .init(x: 0.5, y: 0.5)),
-                                zPosition: 10)
+                                zPosition: 10,
+                                text: "Text example")
         let background = ShapeData(
             elements: [.rectangle(.init(
                 origin: .zero,

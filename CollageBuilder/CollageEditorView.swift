@@ -51,7 +51,8 @@ struct CollageEditorView: View {
             cornerRadius = store.state.collage.cornerRadius
         }
         .sheet(isPresented: $showTextPicker) {
-            AddTextView(collageSize: store.state.collageSize)
+            AddTextView(collageSize: store.state.collageSize,
+                        maxZPosition: store.state.collage.maxZPosition)
                 .presentationBackground(.thinMaterial)
         }
     }

@@ -11,34 +11,39 @@ struct CollageView<ViewType: View>: View {
     
     let collage: Collage
     let collageSize: CGSize
-    let selectedShapeID: String?
+    let selectedElement: ElementType?
     let intermediateView: ViewType
     
     var isPlaying: Bool
     var strokeColor: UIColor = .green
-    var strokeWidth: CGFloat = 7
+    var strokeWidth: CGFloat = 3
     
-    var onReciveGesture: ((GestureType) -> ())?
+    var onReceiveGesture: ((GestureType) -> ())?
     
     var body: some View {
         ZStack {
             ZStack {
                 intermediateView
                 
-                ForEach(collage.texts) {
-                    TextItemView(settings: $0,
-                                 collageSize: collageSize)
+                ForEach(collage.texts) { text in
+                    let isSelected = selectedElement?.textId == text.id
+                    TextItemView(
+                        settings: text,
+                        collageSize: collageSize,
+                        strokeColor: isSelected ? strokeColor : .clear,
+                        strokeWidth: strokeWidth
+                    )
                 }
                 
                 ForEach(collage.shapes) { shape in
-                    let isSelected = selectedShapeID == shape.id
+                    let isSelected = selectedElement?.shapeId == shape.id
                     ShapeItemView(
                         cornerRadius: collage.cornerRadius,
                         shape: shape,
                         size: collageSize,
                         isPlaying: isPlaying,
                         strokeColor: isSelected ? strokeColor : .clear,
-                        strokeWidth: strokeWidth
+                        strokeWidth: strokeWidth * 2
                     )
                 }
             }
@@ -51,11 +56,12 @@ struct CollageView<ViewType: View>: View {
                 shape: collage.background,
                 size: collageSize,
                 isPlaying: isPlaying,
-                strokeColor: .clear
+                strokeColor: .clear,
+                strokeWidth: strokeWidth
             )
         }
         .overlay {
-            GestureView() { onReciveGesture?($0) }
+            GestureView() { onReceiveGesture?($0) }
         }
     }
     
@@ -65,7 +71,7 @@ struct CollageView_Previews: PreviewProvider {
     static var previews: some View {
         CollageView(collage: .empty,
                     collageSize: .init(side: 1000),
-                    selectedShapeID: nil,
+                    selectedElement: nil,
                     intermediateView: EmptyView(),
                     isPlaying: true)
     }

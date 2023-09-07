@@ -18,6 +18,11 @@ struct Collage: Codable {
     var controlPoints: [ControlPoint] {
         shapes.flatMap { $0.controlPoints }
     }
+    
+    var maxZPosition: Int {
+        (shapes.map(\.zPosition) +
+         texts.map(\.zPosition)).max() ?? 1
+    }
 }
 
 extension Collage {

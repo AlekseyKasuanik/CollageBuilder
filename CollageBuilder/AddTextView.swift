@@ -10,18 +10,15 @@ import SwiftUI
 struct AddTextView: View {
     
     @EnvironmentObject private var store: AppStore
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     @State private var settings: TextSettings
     
-    init(collageSize: CGSize) {
+    init(collageSize: CGSize, maxZPosition: Int) {
         _settings = State(initialValue: .init(
             collageSize: collageSize,
-            text: "",
-            fontSize: 15,
-            lineSpacing: 1,
-            transforms: .init(position: .init(x: 0.5, y: 0.5)),
-            zPosition: 10))
+            zPosition: maxZPosition + 1
+        ))
     }
     
     var body: some View {
@@ -45,6 +42,8 @@ struct AddTextView: View {
                 }
                 Spacer()
                 Button {
+                    store.dispatch(.changeCollage(.addText(settings)))
+                    dismiss()
                 } label: {
                     Image(systemName: "")
                     Text("Add Text")
@@ -58,7 +57,8 @@ struct AddTextView: View {
 
 struct AddTextView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTextView(collageSize: .init(side: 1000))
+        AddTextView(collageSize: .init(side: 1000),
+                    maxZPosition: 0)
             .environmentObject(AppStore.preview)
     }
 }

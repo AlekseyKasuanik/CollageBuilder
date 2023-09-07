@@ -102,13 +102,13 @@ struct GestureReducer: ReducerProtocol {
     private func onTap(_ point: CGPoint,
                        in state: AppState) -> AppState {
         
-        let shape = PointsRecognizer.findShape(
+        let element = PointsRecognizer.findElement(
             point,
             in: state.collage
         )
         
         var newState = state
-        newState.selectedShapeID = shape?.id
+        newState.selectedElement = element
         
         return newState
     }

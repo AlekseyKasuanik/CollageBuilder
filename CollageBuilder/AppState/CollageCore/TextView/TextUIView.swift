@@ -24,6 +24,20 @@ final class TextUIView: UITextView {
     
     func changeSettings(_ settings: TextSettings) {
         attributedText = settings.attributedString
+        backgroundColor = settings.backgroundColor
+        layer.cornerRadius = settings.cornerRadius
+        setupContentInset()
+    }
+    
+    private func setupContentInset() {
+        let horizontal = (frame.width - contentSize.width) / 2
+        let vertical = (frame.height - contentSize.height) / 2
+        contentInset = .init(
+            top: vertical,
+            left: horizontal,
+            bottom: vertical,
+            right: horizontal
+        )
     }
     
     func showKeyboard() {

@@ -74,17 +74,18 @@ struct CollageBuilderView: View {
     
     private var editor: some View {
         VStack {
-            Text(store.state.selectedShapeID == nil
-                 ? "Collage Editor"
-                 : "ShapeEditor")
+            Text(editorDescription)
             .font(.title2)
             .padding()
             List {
-                if store.state.selectedShapeID == nil {
+                switch store.state.selectedElement {
+                case .shape:
+                    ShapeEditorView()
+                case .text:
+                    TextSelectorView()
+                case .none:
                     AddShapeElementView(size: collageSize)
                     CollageEditorView()
-                } else {
-                    ShapeEditorView()
                 }
             }
             .buttonStyle(.borderless)
@@ -101,10 +102,21 @@ struct CollageBuilderView: View {
         CollageView(
             collage: collage,
             collageSize: collageSize,
-            selectedShapeID: store.state.selectedShapeID,
+            selectedElement: store.state.selectedElement,
             intermediateView: gridView,
             isPlaying: store.state.isPlayingCollage
         ) { store.dispatch(.gesture($0)) }
+    }
+    
+    var editorDescription: String {
+        switch store.state.selectedElement {
+        case .shape:
+            return "Shape Editor"
+        case .text:
+            return "Text Editor"
+        case .none:
+            return "Collage Editor"
+        }
     }
     
 }
