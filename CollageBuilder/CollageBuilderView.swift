@@ -1,5 +1,5 @@
 //
-//  CollageBuiderView.swift
+//  CollageBuilderView.swift
 //  CollageBuilder
 //
 //  Created by Алексей Касьяник on 30.07.2023.
@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct CollageBuiderView: View {
-    
-    private let collageSize: CGSize = .init(side: 1000)
+struct CollageBuilderView: View {
     
     @ObservedObject private(set) var store: AppStore
     
     private var collage: Collage { store.state.collage }
+    private var collageSize: CGSize { store.state.collageSize }
     
     var body: some View {
         ZStack {
@@ -41,6 +40,7 @@ struct CollageBuiderView: View {
             }
         }
         .environmentObject(store)
+        .ignoresSafeArea(.keyboard)
     }
     
     private var gridEditor: some View {
@@ -74,17 +74,18 @@ struct CollageBuiderView: View {
     
     private var editor: some View {
         VStack {
-            Text(store.state.selectedShapeID == nil
-                 ? "Collage Editor"
-                 : "ShapeEditor")
+            Text(editorDescription)
             .font(.title2)
             .padding()
             List {
-                if store.state.selectedShapeID == nil {
+                switch store.state.selectedElement {
+                case .shape:
+                    ShapeEditorView()
+                case .text:
+                    TextSelectorView()
+                case .none:
                     AddShapeElementView(size: collageSize)
                     CollageEditorView()
-                } else {
-                    ShapeEditorView()
                 }
             }
             .buttonStyle(.borderless)
@@ -101,16 +102,27 @@ struct CollageBuiderView: View {
         CollageView(
             collage: collage,
             collageSize: collageSize,
-            selectedShapeID: store.state.selectedShapeID,
+            selectedElement: store.state.selectedElement,
             intermediateView: gridView,
             isPlaying: store.state.isPlayingCollage
         ) { store.dispatch(.gesture($0)) }
+    }
+    
+    var editorDescription: String {
+        switch store.state.selectedElement {
+        case .shape:
+            return "Shape Editor"
+        case .text:
+            return "Text Editor"
+        case .none:
+            return "Collage Editor"
+        }
     }
     
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CollageBuiderView(store: .preview)
+        CollageBuilderView(store: .preview)
     }
 }

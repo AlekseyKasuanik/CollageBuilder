@@ -12,10 +12,16 @@ struct Collage: Codable {
     var dependencies: [DependentPoints]
     var cornerRadius: CGFloat
     var background: ShapeData
+    var texts: [TextSettings]
     let id: String
     
     var controlPoints: [ControlPoint] {
         shapes.flatMap { $0.controlPoints }
+    }
+    
+    var maxZPosition: Int {
+        (shapes.map(\.zPosition) +
+         texts.map(\.zPosition)).max() ?? 1
     }
 }
 
@@ -33,8 +39,9 @@ extension Collage {
                 blendMode: .normal,
                 blur: .none,
                 adjustments: .defaultAdjustments,
-                mediaTransforms: .defaultTransforms
+                transforms: .init()
               ),
+              texts: [],
               id: "1")
     }
 }

@@ -79,15 +79,18 @@ struct ShapeEditorView: View {
     }
     
     private var shape: ShapeData? {
-        store.state.collage.shapes.first(where: {
-            $0.id == store.state.selectedShapeID ?? ""
+        let shape = store.state.collage.shapes.first(where: {
+            $0.id == store.state.selectedElement?.shapeId
         })
+        
+        return shape
     }
     
     private func dispatch(_ action: ShapeModification) {
-        guard let id = store.state.selectedShapeID else {
+        guard let id = store.state.selectedElement?.shapeId else {
             return
         }
+        
         store.dispatch(.changeCollage(.changeShape(action, id: id)))
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 struct CollageReducer: ReducerProtocol {
     
     private var shapeReducer = ShapeReducer()
+    private var textReducer = TextReducer()
     
     mutating func reduce(_ currentState: Collage,
                          _ action: CollageModification) -> Collage {
@@ -23,17 +24,23 @@ struct CollageReducer: ReducerProtocol {
         case .changeBackground(let collageBackground):
             newCollage = changeBackground(collageBackground, in: newCollage)
             
-        case .conectControlPoints(let ids):
-            newCollage = conectControlPoints(ids, in: newCollage)
+        case .connectControlPoints(let ids):
+            newCollage = connectControlPoints(ids, in: newCollage)
             
-        case .disconectControlPoints(let ids):
-            newCollage = disconectControlPoints(ids, in: newCollage)
+        case .disconnectControlPoints(let ids):
+            newCollage = disconnectControlPoints(ids, in: newCollage)
             
-        case .cnahgeCornerRadius(let radius):
+        case .changeCornerRadius(let radius):
             newCollage = changeCornerRadius(radius, in: newCollage)
             
         case .changeShape(let action, id: let id):
             newCollage = changeShape(action, id: id, in: newCollage)
+            
+        case .addText(let text):
+            newCollage = addText(text, to: newCollage)
+            
+        case .changeText(let action, id: let id):
+            newCollage = changeText(action, id: id, in: newCollage)
         }
         
         return newCollage
@@ -44,7 +51,7 @@ struct CollageReducer: ReducerProtocol {
                              id: String,
                              in collage: Collage) -> Collage {
         
-        guard let shpaeIndex = collage.shapes.firstIndex(where: {
+        guard let shapeIndex = collage.shapes.firstIndex(where: {
             $0.id == id
         }) else {
             return collage
@@ -52,8 +59,28 @@ struct CollageReducer: ReducerProtocol {
         
         var newCollage = collage
         
-        newCollage.shapes[shpaeIndex] = shapeReducer.reduce(
-            newCollage.shapes[shpaeIndex],
+        newCollage.shapes[shapeIndex] = shapeReducer.reduce(
+            newCollage.shapes[shapeIndex],
+            action
+        )
+        
+        return newCollage
+    }
+    
+    private mutating func changeText(_ action: TextModification,
+                                     id: String,
+                                     in collage: Collage) -> Collage {
+        
+        guard let textIndex = collage.texts.firstIndex(where: {
+            $0.id == id
+        }) else {
+            return collage
+        }
+        
+        var newCollage = collage
+        
+        newCollage.texts[textIndex] = textReducer.reduce(
+            newCollage.texts[textIndex],
             action
         )
         
@@ -76,7 +103,7 @@ struct CollageReducer: ReducerProtocol {
         return newCollage
     }
     
-    private func conectControlPoints(_ ids: Set<String>,
+    private func connectControlPoints(_ ids: Set<String>,
                                      in collage: Collage) -> Collage {
         
         var newCollage = collage
@@ -92,7 +119,7 @@ struct CollageReducer: ReducerProtocol {
         return newCollage
     }
     
-    private func disconectControlPoints(_ ids: Set<String>,
+    private func disconnectControlPoints(_ ids: Set<String>,
                                         in collage: Collage) -> Collage {
         
         guard let index = collage.dependencies.firstIndex(where: {
@@ -112,6 +139,14 @@ struct CollageReducer: ReducerProtocol {
         
         var newCollage = collage
         newCollage.cornerRadius = radius
+        return newCollage
+    }
+    
+    private func addText(_ text: TextSettings,
+                          to collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.texts.append(text)
         return newCollage
     }
 }

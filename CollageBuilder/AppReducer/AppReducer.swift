@@ -25,8 +25,8 @@ struct AppReducer: ReducerProtocol {
         case .setCollage(let collage):
             newState.collage = collage
             
-        case .selectShape(let id):
-            newState.selectedShapeID = id
+        case .selectElement(let element):
+            newState.selectedElement = element
             
         case .gesture(let action):
             newState = gestureReducer.reduce(newState, action)

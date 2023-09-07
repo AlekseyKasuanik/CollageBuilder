@@ -9,10 +9,13 @@ import Foundation
 
 extension AppStore {
     static var preview: AppStore {
+        let collageSize = CGSize(side: 1000)
         let element1 = ShapeElement.rectangle(.init(x: 0.05, y: 0.05, width: 0.4, height: 0.4))
         let element2 = ShapeElement.rectangle(.init(x: 0.55, y: 0.05, width: 0.4, height: 0.4))
         let collageID = UUID().uuidString
-        
+        let text = TextSettings(collageSize: collageSize,
+                                zPosition: 10,
+                                text: "Text example")
         let background = ShapeData(
             elements: [.rectangle(.init(
                 origin: .zero,
@@ -22,7 +25,7 @@ extension AppStore {
             blendMode: .normal,
             blur: .none,
             adjustments: .defaultAdjustments,
-            mediaTransforms: .defaultTransforms
+            transforms: .init()
         )
         
         let collage = Collage(
@@ -31,21 +34,22 @@ extension AppStore {
                            blendMode: .normal,
                            blur: .none,
                            adjustments: .defaultAdjustments,
-                           mediaTransforms: .defaultTransforms),
+                           transforms: .init()),
                      .init(elements: [element2],
                            zPosition: 2,
                            blendMode: .normal,
                            blur: .none,
                            adjustments: .defaultAdjustments,
-                           mediaTransforms: .defaultTransforms)],
+                           transforms: .init())],
             dependencies: [],
             cornerRadius: 20,
             background: background,
+            texts: [text],
             id: collageID
         )
         
         return AppStore(
-            initial: AppState(collage: collage),
+            initial: AppState(collageSize: collageSize, collage: collage),
             reducer: AppReducer()
         )
     }

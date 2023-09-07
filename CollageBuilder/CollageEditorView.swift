@@ -14,6 +14,7 @@ struct CollageEditorView: View {
     @State private var selectedColor: Color = .clear
     @State private var selectedMedia: Media?
     @State private var showMediaPicker = false
+    @State private var showTextPicker = false
     @State private var cornerRadius: CGFloat = 0
     
     var body: some View {
@@ -22,9 +23,14 @@ struct CollageEditorView: View {
                 colorPicker
                 mediaPicker
             }
+            
             Section("Corner radius") {
                 CommonSliderView(value: $cornerRadius,
                                  range: 0...100)
+            }
+            
+            Section("Text") {
+                textPicker
             }
         }
         .sheet(isPresented: $showMediaPicker) {
@@ -39,15 +45,20 @@ struct CollageEditorView: View {
             dispatch(.changeBackground(.changeMedia(media)))
         }
         .onChange(of: cornerRadius) { radius in
-            dispatch(.cnahgeCornerRadius(radius))
+            dispatch(.changeCornerRadius(radius))
         }
         .onAppear {
             cornerRadius = store.state.collage.cornerRadius
         }
+        .sheet(isPresented: $showTextPicker) {
+            AddTextView(collageSize: store.state.collageSize,
+                        maxZPosition: store.state.collage.maxZPosition)
+                .presentationBackground(.thinMaterial)
+        }
     }
     
-    private func dispatch(_ modifiacion: CollageModification) {
-        store.dispatch(.changeCollage(modifiacion))
+    private func dispatch(_ modification: CollageModification) {
+        store.dispatch(.changeCollage(modification))
     }
     
     private var mediaPicker: some View {
@@ -59,6 +70,19 @@ struct CollageEditorView: View {
             } label: {
                 Image(systemName: "photo.circle")
                     .font(.largeTitle)
+            }
+        }
+    }
+    
+    private var textPicker: some View {
+        HStack {
+            Text("add text")
+            Spacer()
+            Button {
+                showTextPicker.toggle()
+            } label: {
+                Image(systemName: "textformat.abc")
+                    .font(.title2)
             }
         }
     }

@@ -9,9 +9,9 @@ import Foundation
 
 struct GestureReducer: ReducerProtocol {
     
-    private var mediaGestureHandler = MediaGestureHandler()
     private var shapesTranslator = ShapesTranslator(pointTouchSide: 0.1,
-                                                    transalationStep: 0.01)
+                                                    translationStep: 0.01)
+    private var elementsTransformer = ElementsTransformer()
     
     mutating func reduce(_ currentState: AppState,
                          _ action: GestureType) -> AppState {
@@ -47,8 +47,8 @@ struct GestureReducer: ReducerProtocol {
         
         var newState = state
         switch state.editMode {
-        case .priview:
-            newState.collage = mediaGestureHandler.translate(
+        case .preview:
+            newState.collage = elementsTransformer.translate(
                 gestureState,
                 in: state.collage
             )
@@ -68,8 +68,8 @@ struct GestureReducer: ReducerProtocol {
         
         var newState = state
         switch state.editMode {
-        case .priview:
-            newState.collage = mediaGestureHandler.scale(
+        case .preview:
+            newState.collage = elementsTransformer.scale(
                 gestureState,
                 in: state.collage
             )
@@ -86,12 +86,12 @@ struct GestureReducer: ReducerProtocol {
     private mutating func onRotate(_ gestureState: GestureType.GestureState<CGFloat>,
                                    in state: AppState) -> AppState {
         
-        guard state.editMode == .priview else {
+        guard state.editMode == .preview else {
             return state
         }
         
         var newState = state
-        newState.collage = mediaGestureHandler.rotate(
+        newState.collage = elementsTransformer.rotate(
             gestureState,
             in: state.collage
         )
@@ -102,13 +102,13 @@ struct GestureReducer: ReducerProtocol {
     private func onTap(_ point: CGPoint,
                        in state: AppState) -> AppState {
         
-        let shape = PointsRecognizer.findShape(
+        let element = PointsRecognizer.findElement(
             point,
             in: state.collage
         )
         
         var newState = state
-        newState.selectedShapeID = shape?.id
+        newState.selectedElement = element
         
         return newState
     }

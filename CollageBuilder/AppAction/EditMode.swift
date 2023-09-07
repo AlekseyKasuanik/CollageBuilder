@@ -8,14 +8,14 @@
 import Foundation
 
 enum EditMode: String {
-    case priview, edit
+    case preview, edit
     
     mutating func next() {
         switch self {
-        case .priview:
+        case .preview:
             self = .edit
         case .edit:
-            self = .priview
+            self = .preview
         }
     }
 }

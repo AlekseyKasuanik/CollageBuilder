@@ -11,7 +11,7 @@ enum AppAction {
     case gesture(GestureType)
     case setCollage(Collage)
     case changeCollage(CollageModification)
-    case selectShape(String?)
+    case selectElement(ElementType)
     case removeSelectedPoints
     case swithEditMode
     case toggleGrid
