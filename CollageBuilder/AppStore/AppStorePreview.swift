@@ -16,6 +16,10 @@ extension AppStore {
         let text = TextSettings(collageSize: collageSize,
                                 zPosition: 10,
                                 text: "Text example")
+        
+        var sticker = StickersProvider.allStickers[2]
+        sticker.zPosition = 20
+        
         let background = ShapeData(
             elements: [.rectangle(.init(
                 origin: .zero,
@@ -45,6 +49,7 @@ extension AppStore {
             cornerRadius: 20,
             background: background,
             texts: [text],
+            stickers: [sticker],
             id: collageID
         )
         

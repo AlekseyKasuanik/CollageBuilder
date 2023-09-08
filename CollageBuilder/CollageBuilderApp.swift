@@ -35,6 +35,7 @@ struct CollageBuilderApp: App {
                                           cornerRadius: 0,
                                           background: background,
                                           texts: [],
+                                          stickers: [],
                                           id: UUID().uuidString)),
             reducer: .init()
         )

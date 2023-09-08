@@ -60,18 +60,36 @@ enum PointsRecognizer {
         return filteredTexts.first
     }
     
+    static func findSticker(_ point: CGPoint,
+                          in collage: Collage) -> Sticker? {
+        
+        let stickers = collage.stickers.filter {
+            $0.normalizedRect.contains(point)
+        }
+        
+        let filteredStickers = stickers.sorted(by: {
+            $0.zPosition > $1.zPosition
+        })
+        
+        return filteredStickers.first
+    }
+    
     static func findElement(_ point: CGPoint,
                             in collage: Collage) -> ElementType? {
         
         let shape = PointsRecognizer.findShape(point, in: collage)
         let text = PointsRecognizer.findText(point, in: collage)
+        let sticker = PointsRecognizer.findSticker(point, in: collage)
         
-        guard shape != nil || text != nil else {
+        guard shape != nil ||
+                text != nil ||
+                sticker != nil else {
             return nil
         }
         
         let element = [(ElementType.shape(shape?.id ?? ""), shape?.zPosition ?? .min),
-                       (ElementType.text(text?.id ?? ""), text?.zPosition ?? .min)]
+                       (ElementType.text(text?.id ?? ""), text?.zPosition ?? .min),
+                       (ElementType.sticker(sticker?.id ?? ""), sticker?.zPosition ?? .min)]
             .sorted(by: { $0.1 > $1.1})
             .first?.0
         

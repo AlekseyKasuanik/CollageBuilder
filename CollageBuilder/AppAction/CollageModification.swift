@@ -16,4 +16,6 @@ enum CollageModification {
     case changeShape(ShapeModification, id: String)
     case addText(TextSettings)
     case changeText(TextModification, id: String)
+    case addSticker(Sticker)
+    case changeSticker(StickerModification, id: String)
 }

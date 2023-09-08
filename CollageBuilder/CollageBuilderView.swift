@@ -46,13 +46,13 @@ struct CollageBuilderView: View {
     private var gridEditor: some View {
         HStack {
             Button {
-                store.dispatch(.swithEditMode)
+                store.dispatch(.switchEditMode)
             } label: {
                 Text(store.state.editMode.rawValue)
             }
             Spacer()
             Button {
-                store.dispatch(.togglePlayColalge)
+                store.dispatch(.togglePlayCollage)
             } label: {
                 Image(systemName: store.state.isPlayingCollage
                       ? "pause.circle"
@@ -83,6 +83,8 @@ struct CollageBuilderView: View {
                     ShapeEditorView()
                 case .text:
                     TextSelectorView()
+                case .sticker:
+                    EmptyView()
                 case .none:
                     AddShapeElementView(size: collageSize)
                     CollageEditorView()
@@ -114,8 +116,11 @@ struct CollageBuilderView: View {
             return "Shape Editor"
         case .text:
             return "Text Editor"
+        case .sticker:
+            return "Sticker Editor"
         case .none:
             return "Collage Editor"
+
         }
     }
     

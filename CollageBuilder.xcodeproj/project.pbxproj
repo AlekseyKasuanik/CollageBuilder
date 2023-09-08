@@ -57,6 +57,33 @@
 		1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C002A8BF13500B0EC2E /* UIColor+.swift */; };
 		1F574C032A8BFFFA00B0EC2E /* CollageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */; };
 		1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C062A8C11AC00B0EC2E /* CollageModification.swift */; };
+		1F5C7A072AAB52C6003DD9E0 /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7A062AAB52C6003DD9E0 /* Optional+.swift */; };
+		1F5C7A092AAB54FC003DD9E0 /* StickerModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7A082AAB54FC003DD9E0 /* StickerModification.swift */; };
+		1F5C7A0B2AAB558C003DD9E0 /* StickerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7A0A2AAB558C003DD9E0 /* StickerReducer.swift */; };
+		1F5C7A0E2AAB9ABD003DD9E0 /* StickersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7A0D2AAB9ABD003DD9E0 /* StickersProvider.swift */; };
+		1F5C7AA42AAB9C0E003DD9E0 /* coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A8E2AAB9C0D003DD9E0 /* coffee.png */; };
+		1F5C7AA52AAB9C0E003DD9E0 /* koala5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A8F2AAB9C0D003DD9E0 /* koala5.png */; };
+		1F5C7AA62AAB9C0E003DD9E0 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A902AAB9C0D003DD9E0 /* read.png */; };
+		1F5C7AA72AAB9C0E003DD9E0 /* rock-n-roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A912AAB9C0D003DD9E0 /* rock-n-roll.png */; };
+		1F5C7AA82AAB9C0E003DD9E0 /* spa.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A922AAB9C0D003DD9E0 /* spa.png */; };
+		1F5C7AA92AAB9C0E003DD9E0 /* summer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A932AAB9C0D003DD9E0 /* summer.png */; };
+		1F5C7AAA2AAB9C0E003DD9E0 /* bottle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A942AAB9C0D003DD9E0 /* bottle.png */; };
+		1F5C7AAB2AAB9C0E003DD9E0 /* hacker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A952AAB9C0D003DD9E0 /* hacker.png */; };
+		1F5C7AAC2AAB9C0E003DD9E0 /* koala7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A962AAB9C0D003DD9E0 /* koala7.png */; };
+		1F5C7AAD2AAB9C0E003DD9E0 /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A972AAB9C0D003DD9E0 /* question.png */; };
+		1F5C7AAE2AAB9C0E003DD9E0 /* boom-box.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A982AAB9C0D003DD9E0 /* boom-box.png */; };
+		1F5C7AAF2AAB9C0E003DD9E0 /* maloik.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A992AAB9C0E003DD9E0 /* maloik.png */; };
+		1F5C7AB02AAB9C0E003DD9E0 /* koala8.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A9A2AAB9C0E003DD9E0 /* koala8.png */; };
+		1F5C7AB12AAB9C0E003DD9E0 /* french.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A9B2AAB9C0E003DD9E0 /* french.png */; };
+		1F5C7AB22AAB9C0E003DD9E0 /* in-love.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A9C2AAB9C0E003DD9E0 /* in-love.png */; };
+		1F5C7AB32AAB9C0E003DD9E0 /* bonsai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A9D2AAB9C0E003DD9E0 /* bonsai.png */; };
+		1F5C7AB42AAB9C0E003DD9E0 /* koala.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A9E2AAB9C0E003DD9E0 /* koala.png */; };
+		1F5C7AB52AAB9C0E003DD9E0 /* broken-heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7A9F2AAB9C0E003DD9E0 /* broken-heart.png */; };
+		1F5C7AB62AAB9C0E003DD9E0 /* meditation.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7AA02AAB9C0E003DD9E0 /* meditation.png */; };
+		1F5C7AB72AAB9C0E003DD9E0 /* work-from-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7AA12AAB9C0E003DD9E0 /* work-from-home.png */; };
+		1F5C7AB82AAB9C0E003DD9E0 /* koala6.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7AA22AAB9C0E003DD9E0 /* koala6.png */; };
+		1F5C7AB92AAB9C0E003DD9E0 /* koala4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C7AA32AAB9C0E003DD9E0 /* koala4.png */; };
+		1F5C7ABB2AAB9FD0003DD9E0 /* StickerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7ABA2AAB9FD0003DD9E0 /* StickerItemView.swift */; };
 		1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */; };
 		1F5DF5C82A76726A00430AF1 /* CollageBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C72A76726A00430AF1 /* CollageBuilderView.swift */; };
 		1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DF5C92A76726C00430AF1 /* Assets.xcassets */; };
@@ -107,6 +134,7 @@
 		1F83E6692AA9F10D006A2704 /* FontSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83E6682AA9F10D006A2704 /* FontSelectorView.swift */; };
 		1F83E66B2AA9F7C1006A2704 /* NSTextAlignment+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83E66A2AA9F7C1006A2704 /* NSTextAlignment+.swift */; };
 		1F83E66D2AAA0116006A2704 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83E66C2AAA0116006A2704 /* TextEditorView.swift */; };
+		1F83E66F2AAA57C0006A2704 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83E66E2AAA57C0006A2704 /* Sticker.swift */; };
 		1F85E2CC2AA9195B00D7E7A7 /* AddTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */; };
 		1FCF56122AA6608400CC2355 /* ElementsTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */; };
 		1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */; };
@@ -164,6 +192,33 @@
 		1F574C002A8BF13500B0EC2E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageReducer.swift; sourceTree = "<group>"; };
 		1F574C062A8C11AC00B0EC2E /* CollageModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageModification.swift; sourceTree = "<group>"; };
+		1F5C7A062AAB52C6003DD9E0 /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
+		1F5C7A082AAB54FC003DD9E0 /* StickerModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerModification.swift; sourceTree = "<group>"; };
+		1F5C7A0A2AAB558C003DD9E0 /* StickerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerReducer.swift; sourceTree = "<group>"; };
+		1F5C7A0D2AAB9ABD003DD9E0 /* StickersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickersProvider.swift; sourceTree = "<group>"; };
+		1F5C7A8E2AAB9C0D003DD9E0 /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
+		1F5C7A8F2AAB9C0D003DD9E0 /* koala5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koala5.png; sourceTree = "<group>"; };
+		1F5C7A902AAB9C0D003DD9E0 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
+		1F5C7A912AAB9C0D003DD9E0 /* rock-n-roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock-n-roll.png"; sourceTree = "<group>"; };
+		1F5C7A922AAB9C0D003DD9E0 /* spa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spa.png; sourceTree = "<group>"; };
+		1F5C7A932AAB9C0D003DD9E0 /* summer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summer.png; sourceTree = "<group>"; };
+		1F5C7A942AAB9C0D003DD9E0 /* bottle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottle.png; sourceTree = "<group>"; };
+		1F5C7A952AAB9C0D003DD9E0 /* hacker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hacker.png; sourceTree = "<group>"; };
+		1F5C7A962AAB9C0D003DD9E0 /* koala7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koala7.png; sourceTree = "<group>"; };
+		1F5C7A972AAB9C0D003DD9E0 /* question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question.png; sourceTree = "<group>"; };
+		1F5C7A982AAB9C0D003DD9E0 /* boom-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boom-box.png"; sourceTree = "<group>"; };
+		1F5C7A992AAB9C0E003DD9E0 /* maloik.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maloik.png; sourceTree = "<group>"; };
+		1F5C7A9A2AAB9C0E003DD9E0 /* koala8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koala8.png; sourceTree = "<group>"; };
+		1F5C7A9B2AAB9C0E003DD9E0 /* french.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = french.png; sourceTree = "<group>"; };
+		1F5C7A9C2AAB9C0E003DD9E0 /* in-love.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "in-love.png"; sourceTree = "<group>"; };
+		1F5C7A9D2AAB9C0E003DD9E0 /* bonsai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonsai.png; sourceTree = "<group>"; };
+		1F5C7A9E2AAB9C0E003DD9E0 /* koala.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koala.png; sourceTree = "<group>"; };
+		1F5C7A9F2AAB9C0E003DD9E0 /* broken-heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "broken-heart.png"; sourceTree = "<group>"; };
+		1F5C7AA02AAB9C0E003DD9E0 /* meditation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meditation.png; sourceTree = "<group>"; };
+		1F5C7AA12AAB9C0E003DD9E0 /* work-from-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "work-from-home.png"; sourceTree = "<group>"; };
+		1F5C7AA22AAB9C0E003DD9E0 /* koala6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koala6.png; sourceTree = "<group>"; };
+		1F5C7AA32AAB9C0E003DD9E0 /* koala4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koala4.png; sourceTree = "<group>"; };
+		1F5C7ABA2AAB9FD0003DD9E0 /* StickerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerItemView.swift; sourceTree = "<group>"; };
 		1F5DF5C22A76726A00430AF1 /* CollageBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollageBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5DF5C52A76726A00430AF1 /* CollageBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderApp.swift; sourceTree = "<group>"; };
 		1F5DF5C72A76726A00430AF1 /* CollageBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageBuilderView.swift; sourceTree = "<group>"; };
@@ -216,6 +271,7 @@
 		1F83E6682AA9F10D006A2704 /* FontSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectorView.swift; sourceTree = "<group>"; };
 		1F83E66A2AA9F7C1006A2704 /* NSTextAlignment+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextAlignment+.swift"; sourceTree = "<group>"; };
 		1F83E66C2AAA0116006A2704 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
+		1F83E66E2AAA57C0006A2704 /* Sticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
 		1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextView.swift; sourceTree = "<group>"; };
 		1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTransformer.swift; sourceTree = "<group>"; };
 		1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporterView.swift; sourceTree = "<group>"; };
@@ -282,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				1F302C8C2A7FA3A2005956C0 /* DependentPoints.swift */,
+				1F83E66E2AAA57C0006A2704 /* Sticker.swift */,
+				1F5FF8DD2AA51D1300CF7B7F /* TextSettings */,
 				1F47FE532A8FB27D00E96210 /* ShapeData */,
 			);
 			path = CollageElements;
@@ -290,7 +348,6 @@
 		1F47FE532A8FB27D00E96210 /* ShapeData */ = {
 			isa = PBXGroup;
 			children = (
-				1F5FF8DD2AA51D1300CF7B7F /* TextSettings */,
 				1F660F2C2A7825560072925A /* ShapeData.swift */,
 				1F47FE542A8FB28D00E96210 /* ShapeElements */,
 			);
@@ -351,6 +408,7 @@
 			children = (
 				1F47FE642A8FBA3400E96210 /* CollageView.swift */,
 				1F2CB9742AA7C83800725D2F /* TextItemView.swift */,
+				1F5C7ABA2AAB9FD0003DD9E0 /* StickerItemView.swift */,
 				1F2D3F4D2A82A46E00EA6307 /* ShapeItemView */,
 			);
 			path = CollageView;
@@ -420,6 +478,8 @@
 			isa = PBXGroup;
 			children = (
 				1F4EC4E32A9E836F008701DE /* FiltersProvider.swift */,
+				1F5C7A0D2AAB9ABD003DD9E0 /* StickersProvider.swift */,
+				1F5C7A8D2AAB9BDF003DD9E0 /* Stickers */,
 				1F78833F2AA21F9700B2AA5F /* Filters */,
 			);
 			path = Content;
@@ -432,6 +492,35 @@
 				1F52FD882A815516005ECBDD /* DataRepresentable.swift */,
 			);
 			path = CodableWrapper;
+			sourceTree = "<group>";
+		};
+		1F5C7A8D2AAB9BDF003DD9E0 /* Stickers */ = {
+			isa = PBXGroup;
+			children = (
+				1F5C7A9D2AAB9C0E003DD9E0 /* bonsai.png */,
+				1F5C7A982AAB9C0D003DD9E0 /* boom-box.png */,
+				1F5C7A942AAB9C0D003DD9E0 /* bottle.png */,
+				1F5C7A9F2AAB9C0E003DD9E0 /* broken-heart.png */,
+				1F5C7A8E2AAB9C0D003DD9E0 /* coffee.png */,
+				1F5C7A9B2AAB9C0E003DD9E0 /* french.png */,
+				1F5C7A952AAB9C0D003DD9E0 /* hacker.png */,
+				1F5C7A9C2AAB9C0E003DD9E0 /* in-love.png */,
+				1F5C7A9E2AAB9C0E003DD9E0 /* koala.png */,
+				1F5C7AA32AAB9C0E003DD9E0 /* koala4.png */,
+				1F5C7A8F2AAB9C0D003DD9E0 /* koala5.png */,
+				1F5C7AA22AAB9C0E003DD9E0 /* koala6.png */,
+				1F5C7A962AAB9C0D003DD9E0 /* koala7.png */,
+				1F5C7A9A2AAB9C0E003DD9E0 /* koala8.png */,
+				1F5C7A992AAB9C0E003DD9E0 /* maloik.png */,
+				1F5C7AA02AAB9C0E003DD9E0 /* meditation.png */,
+				1F5C7A972AAB9C0D003DD9E0 /* question.png */,
+				1F5C7A902AAB9C0D003DD9E0 /* read.png */,
+				1F5C7A912AAB9C0D003DD9E0 /* rock-n-roll.png */,
+				1F5C7A922AAB9C0D003DD9E0 /* spa.png */,
+				1F5C7A932AAB9C0D003DD9E0 /* summer.png */,
+				1F5C7AA12AAB9C0E003DD9E0 /* work-from-home.png */,
+			);
+			path = Stickers;
 			sourceTree = "<group>";
 		};
 		1F5DF5B92A76726A00430AF1 = {
@@ -517,9 +606,10 @@
 				1F660F202A781EDC0072925A /* AppReducer.swift */,
 				1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */,
 				1F47FE4D2A8F9B8B00E96210 /* ShapeReducer.swift */,
-				1F660F222A781F050072925A /* ReducerProtocol.swift */,
+				1F5C7A0A2AAB558C003DD9E0 /* StickerReducer.swift */,
 				1F83E6652AA9E53A006A2704 /* TextReducer.swift */,
 				1F47FE662A8FC87600E96210 /* GestureReducer.swift */,
+				1F660F222A781F050072925A /* ReducerProtocol.swift */,
 			);
 			path = AppReducer;
 			sourceTree = "<group>";
@@ -540,6 +630,7 @@
 				1F574C062A8C11AC00B0EC2E /* CollageModification.swift */,
 				1F47FE4B2A8F9B2B00E96210 /* ShapeModification.swift */,
 				1F83E6632AA9E456006A2704 /* TextModification.swift */,
+				1F5C7A082AAB54FC003DD9E0 /* StickerModification.swift */,
 				1F682A6B2A9B74FE003F846C /* EditMode.swift */,
 			);
 			path = AppAction;
@@ -583,6 +674,7 @@
 				1F660F412A782E6B0072925A /* CGSize+.swift */,
 				1F7759682A976AB300A57060 /* CGFloat+.swift */,
 				1F6869972A810E78006C2B6C /* UIImage+.swift */,
+				1F5C7A062AAB52C6003DD9E0 /* Optional+.swift */,
 				1F2B5CAF2A88F5C600BAEE19 /* UIScreen+.swift */,
 				1F2B5CB12A88FCD300BAEE19 /* CIImage+.swift */,
 				1F574C002A8BF13500B0EC2E /* UIColor+.swift */,
@@ -692,11 +784,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5C7AA42AAB9C0E003DD9E0 /* coffee.png in Resources */,
+				1F5C7AA82AAB9C0E003DD9E0 /* spa.png in Resources */,
+				1F5C7AB62AAB9C0E003DD9E0 /* meditation.png in Resources */,
 				1F5DF5CE2A76726C00430AF1 /* Preview Assets.xcassets in Resources */,
+				1F5C7AA62AAB9C0E003DD9E0 /* read.png in Resources */,
+				1F5C7AA52AAB9C0E003DD9E0 /* koala5.png in Resources */,
+				1F5C7AB52AAB9C0E003DD9E0 /* broken-heart.png in Resources */,
+				1F5C7AA72AAB9C0E003DD9E0 /* rock-n-roll.png in Resources */,
+				1F5C7AA92AAB9C0E003DD9E0 /* summer.png in Resources */,
+				1F5C7AAD2AAB9C0E003DD9E0 /* question.png in Resources */,
 				1F7883492AA24E0700B2AA5F /* cube1.png in Resources */,
 				1F78834A2AA24E0700B2AA5F /* cube3.png in Resources */,
+				1F5C7AAF2AAB9C0E003DD9E0 /* maloik.png in Resources */,
+				1F5C7AB42AAB9C0E003DD9E0 /* koala.png in Resources */,
+				1F5C7AAE2AAB9C0E003DD9E0 /* boom-box.png in Resources */,
+				1F5C7AB22AAB9C0E003DD9E0 /* in-love.png in Resources */,
 				1F2D3F522A82C67F00EA6307 /* ExampleVideo.mp4 in Resources */,
+				1F5C7AB92AAB9C0E003DD9E0 /* koala4.png in Resources */,
 				1F78834B2AA24E0700B2AA5F /* cube2.png in Resources */,
+				1F5C7AAB2AAB9C0E003DD9E0 /* hacker.png in Resources */,
+				1F5C7AB72AAB9C0E003DD9E0 /* work-from-home.png in Resources */,
+				1F5C7AB82AAB9C0E003DD9E0 /* koala6.png in Resources */,
+				1F5C7AB12AAB9C0E003DD9E0 /* french.png in Resources */,
+				1F5C7AAA2AAB9C0E003DD9E0 /* bottle.png in Resources */,
+				1F5C7AB02AAB9C0E003DD9E0 /* koala8.png in Resources */,
+				1F5C7AB32AAB9C0E003DD9E0 /* bonsai.png in Resources */,
+				1F5C7AAC2AAB9C0E003DD9E0 /* koala7.png in Resources */,
 				1F5DF5CA2A76726C00430AF1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,6 +828,7 @@
 				1F347B5D2A79950C008915BF /* ShapesTranslator.swift in Sources */,
 				1F4EC4E42A9E836F008701DE /* FiltersProvider.swift in Sources */,
 				1F660F3A2A782D640072925A /* GestureUIView.swift in Sources */,
+				1F5C7A0B2AAB558C003DD9E0 /* StickerReducer.swift in Sources */,
 				1F3D2DCA2A8EB9B100217749 /* ShapeEditorView.swift in Sources */,
 				1F660F352A782D010072925A /* AppStorePreview.swift in Sources */,
 				1F5FF8E92AA51F4300CF7B7F /* TextUIView.swift in Sources */,
@@ -722,7 +837,9 @@
 				1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */,
 				1F660F3C2A782D820072925A /* GestureState.swift in Sources */,
 				1F660F292A781F8C0072925A /* AppAction.swift in Sources */,
+				1F5C7A092AAB54FC003DD9E0 /* StickerModification.swift in Sources */,
 				1F5FF8E42AA51E8100CF7B7F /* AttributedStringCreator.swift in Sources */,
+				1F5C7A072AAB52C6003DD9E0 /* Optional+.swift in Sources */,
 				1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */,
 				1F660F1E2A78174D0072925A /* Store.swift in Sources */,
 				1F3BD2762A7AB3B9001E7ACB /* Collage.swift in Sources */,
@@ -737,6 +854,7 @@
 				1F83E66B2AA9F7C1006A2704 /* NSTextAlignment+.swift in Sources */,
 				1F302C8B2A7F9EEB005956C0 /* TopBarView.swift in Sources */,
 				1F2B5CB02A88F5C700BAEE19 /* UIScreen+.swift in Sources */,
+				1F5C7A0E2AAB9ABD003DD9E0 /* StickersProvider.swift in Sources */,
 				1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */,
 				1F2B5CB22A88FCD300BAEE19 /* CIImage+.swift in Sources */,
 				1F52FD912A81744B005ECBDD /* RectExtractor.swift in Sources */,
@@ -772,6 +890,7 @@
 				1F660F332A78298F0072925A /* ControlPoint.swift in Sources */,
 				1F83E66D2AAA0116006A2704 /* TextEditorView.swift in Sources */,
 				1F47FE4E2A8F9B8B00E96210 /* ShapeReducer.swift in Sources */,
+				1F5C7ABB2AAB9FD0003DD9E0 /* StickerItemView.swift in Sources */,
 				1F4EC4DD2A9E7752008701DE /* ColorFilter.swift in Sources */,
 				1F5FF8DF2AA51D2F00CF7B7F /* TextSettings.swift in Sources */,
 				1F24ABAC2A96842F00788F74 /* Adjustments.swift in Sources */,
@@ -802,6 +921,7 @@
 				1F4E86812A84FDBC0019AAB3 /* VideoTrim.swift in Sources */,
 				1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */,
 				1F660F452A782E6B0072925A /* CGPoint+.swift in Sources */,
+				1F83E66F2AAA57C0006A2704 /* Sticker.swift in Sources */,
 				1F7759662A97676B00A57060 /* CommonSliderView.swift in Sources */,
 				1F2D3F542A82C6C800EA6307 /* VideoPlayerView.swift in Sources */,
 				1F54DB312A9548CC0075DE94 /* ModifiedImage.swift in Sources */,

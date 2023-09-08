@@ -34,13 +34,13 @@ struct AppReducer: ReducerProtocol {
         case .removeSelectedPoints:
             newState.selectedPointsIDs.removeAll()
             
-        case .swithEditMode:
+        case .switchEditMode:
             newState.editMode.next()
             
         case .toggleGrid:
             newState.isShowingGrid.toggle()
             
-        case .togglePlayColalge:
+        case .togglePlayCollage:
             newState.isPlayingCollage.toggle()
         }
         

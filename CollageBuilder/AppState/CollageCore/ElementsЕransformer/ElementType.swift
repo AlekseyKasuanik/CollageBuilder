@@ -10,10 +10,11 @@ import Foundation
 enum ElementType {
     case shape(String)
     case text(String)
+    case sticker(String)
     
     var id: String {
         switch self {
-        case .shape(let id), .text(let id):
+        case .shape(let id), .text(let id), .sticker(let id):
             return id
         }
     }
@@ -28,6 +29,14 @@ enum ElementType {
     
     var textId: String? {
         guard case .text(let id) = self else {
+            return nil
+        }
+        
+        return id
+    }
+    
+    var stickerId: String? {
+        guard case .sticker(let id) = self else {
             return nil
         }
         
