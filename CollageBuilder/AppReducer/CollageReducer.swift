@@ -49,10 +49,42 @@ struct CollageReducer: ReducerProtocol {
         case .changeSticker(let action, id: let id):
             newCollage = changeSticker(action, id: id, in: newCollage)
             
+        case .removeShape(let id):
+            newCollage = removeShape(id, in: newCollage)
+            
+        case .removeText(let id):
+            newCollage = removeText(id, in: newCollage)
+            
+        case .removeSticker(let id):
+            newCollage = removeSticker(id, in: newCollage)
         }
         
         return newCollage
         
+    }
+    
+    private func removeShape(_ id: String,
+                             in collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.shapes.removeAll(where: { $0.id == id })
+        return newCollage
+    }
+    
+    private func removeText(_ id: String,
+                            in collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.texts.removeAll(where: { $0.id == id })
+        return newCollage
+    }
+    
+    private func removeSticker(_ id: String,
+                               in collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.stickers.removeAll(where: { $0.id == id })
+        return newCollage
     }
     
     private mutating func changeShape(_ action: ShapeModification,

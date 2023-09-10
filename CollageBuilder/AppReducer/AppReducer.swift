@@ -20,7 +20,7 @@ struct AppReducer: ReducerProtocol {
         
         switch action {
         case .changeCollage(let modification):
-            newState.collage = collageReducer.reduce(newState.collage, modification)
+            newState = changeCollage(modification, state: newState)
             
         case .setCollage(let collage):
             newState.collage = collage
@@ -42,6 +42,23 @@ struct AppReducer: ReducerProtocol {
             
         case .togglePlayCollage:
             newState.isPlayingCollage.toggle()
+        }
+        
+        return newState
+    }
+    
+    private mutating func changeCollage(_ action: CollageModification,
+                                        state: AppState) -> AppState {
+        
+        var newState = state
+        newState.collage = collageReducer.reduce(newState.collage, action)
+        
+        switch action {
+        case .removeShape, .removeText, .removeSticker:
+            newState.selectedElement = nil
+            
+        default:
+            break
         }
         
         return newState

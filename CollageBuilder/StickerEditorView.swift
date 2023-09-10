@@ -9,21 +9,51 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 
 struct StickerEditorView: View {
-
+    
     @EnvironmentObject private var store: AppStore
     @State private var showMaskEditor = false
-
+    
     var body: some View {
         Section("mask") {
-            Button("Edit mask") {
-                showMaskEditor.toggle()
-            }
-            .frame(maxWidth: .infinity)
+            editMask
+        }
+        Section("manage") {
+            remove
         }
         .sheet(isPresented: $showMaskEditor) {
             if let sticker {
                 StickerEraserView(sticker: sticker)
                     .presentationBackground(.thinMaterial)
+            }
+        }
+    }
+    
+    private var editMask: some View {
+        HStack {
+            Text("Edit mask")
+            Spacer()
+            Button {
+                showMaskEditor.toggle()
+            } label: {
+                Image(systemName: "paintbrush.pointed.fill")
+                    .font(.largeTitle)
+            }
+        }
+    }
+    
+    private var remove: some View {
+        HStack {
+            Text("Remove")
+            Spacer()
+            Button {
+                if let sticker {
+                    store.dispatch(.changeCollage(
+                        .removeSticker(sticker.id)
+                    ))
+                }
+            } label: {
+                Image(systemName: "trash.slash")
+                    .font(.largeTitle)
             }
         }
     }
