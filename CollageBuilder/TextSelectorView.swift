@@ -24,6 +24,7 @@ struct TextSelectorView: View {
                     ))
                     .presentationBackground(.thinMaterial)
                 }
+            
             Section("Font") {
                 createFontEditor(for: text)
                 .sheet(isPresented: $showFontSelector) {
@@ -38,8 +39,29 @@ struct TextSelectorView: View {
             Section("Appearance") {
                 createAppearanceEditor(for: text)
             }
+            
+            Section("manage") {
+                remove
+            }
         } else {
             EmptyView()
+        }
+    }
+    
+    private var remove: some View {
+        HStack {
+            Text("Remove")
+            Spacer()
+            Button {
+                if let id = store.state.selectedElement?.textId {
+                    store.dispatch(.changeCollage(
+                        .removeText(id)
+                    ))
+                }
+            } label: {
+                Image(systemName: "trash.slash")
+                    .font(.largeTitle)
+            }
         }
     }
     

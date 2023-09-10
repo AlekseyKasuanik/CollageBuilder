@@ -11,6 +11,7 @@ struct CollageReducer: ReducerProtocol {
     
     private var shapeReducer = ShapeReducer()
     private var textReducer = TextReducer()
+    private var stickerReducer = StickerReducer()
     
     mutating func reduce(_ currentState: Collage,
                          _ action: CollageModification) -> Collage {
@@ -41,15 +42,54 @@ struct CollageReducer: ReducerProtocol {
             
         case .changeText(let action, id: let id):
             newCollage = changeText(action, id: id, in: newCollage)
+            
+        case .addSticker(let sticker):
+            newCollage = addSticker(sticker, to: newCollage)
+            
+        case .changeSticker(let action, id: let id):
+            newCollage = changeSticker(action, id: id, in: newCollage)
+            
+        case .removeShape(let id):
+            newCollage = removeShape(id, in: newCollage)
+            
+        case .removeText(let id):
+            newCollage = removeText(id, in: newCollage)
+            
+        case .removeSticker(let id):
+            newCollage = removeSticker(id, in: newCollage)
         }
         
         return newCollage
         
     }
     
-    private mutating func changeShape(_ action: ShapeModification,
-                             id: String,
+    private func removeShape(_ id: String,
                              in collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.shapes.removeAll(where: { $0.id == id })
+        return newCollage
+    }
+    
+    private func removeText(_ id: String,
+                            in collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.texts.removeAll(where: { $0.id == id })
+        return newCollage
+    }
+    
+    private func removeSticker(_ id: String,
+                               in collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.stickers.removeAll(where: { $0.id == id })
+        return newCollage
+    }
+    
+    private mutating func changeShape(_ action: ShapeModification,
+                                      id: String,
+                                      in collage: Collage) -> Collage {
         
         guard let shapeIndex = collage.shapes.firstIndex(where: {
             $0.id == id
@@ -87,6 +127,26 @@ struct CollageReducer: ReducerProtocol {
         return newCollage
     }
     
+    private mutating func changeSticker(_ action: StickerModification,
+                                        id: String,
+                                        in collage: Collage) -> Collage {
+        
+        guard let stickerIndex = collage.stickers.firstIndex(where: {
+            $0.id == id
+        }) else {
+            return collage
+        }
+        
+        var newCollage = collage
+        
+        newCollage.stickers[stickerIndex] = stickerReducer.reduce(
+            newCollage.stickers[stickerIndex],
+            action
+        )
+        
+        return newCollage
+    }
+    
     private mutating func changeBackground(_ action: ShapeModification,
                                            in collage: Collage) -> Collage {
         
@@ -104,7 +164,7 @@ struct CollageReducer: ReducerProtocol {
     }
     
     private func connectControlPoints(_ ids: Set<String>,
-                                     in collage: Collage) -> Collage {
+                                      in collage: Collage) -> Collage {
         
         var newCollage = collage
         guard let index = newCollage.dependencies.firstIndex(where: {
@@ -120,7 +180,7 @@ struct CollageReducer: ReducerProtocol {
     }
     
     private func disconnectControlPoints(_ ids: Set<String>,
-                                        in collage: Collage) -> Collage {
+                                         in collage: Collage) -> Collage {
         
         guard let index = collage.dependencies.firstIndex(where: {
             $0.pointIDs.isSubset(of: ids)
@@ -143,10 +203,18 @@ struct CollageReducer: ReducerProtocol {
     }
     
     private func addText(_ text: TextSettings,
-                          to collage: Collage) -> Collage {
+                         to collage: Collage) -> Collage {
         
         var newCollage = collage
         newCollage.texts.append(text)
+        return newCollage
+    }
+    
+    private func addSticker(_ sticker: Sticker,
+                            to collage: Collage) -> Collage {
+        
+        var newCollage = collage
+        newCollage.stickers.append(sticker)
         return newCollage
     }
 }

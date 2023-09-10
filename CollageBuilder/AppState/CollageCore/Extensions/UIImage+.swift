@@ -51,4 +51,25 @@ extension UIImage: DataRepresentable {
         }
     }
     
+    static func create(from color: UIColor,
+                       size: CGSize = CGSize(width: 1, height: 1),
+                       scale: CGFloat = 1) -> UIImage {
+        
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = scale
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            color.setFill()
+        }
+    }
+    
+    func masked(_ mask: UIImage) -> UIImage {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = self.scale
+        
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            self.draw(at: .zero)
+            mask.draw(at: .zero, blendMode: .destinationOut, alpha: 1)
+        }
+    }
+    
 }

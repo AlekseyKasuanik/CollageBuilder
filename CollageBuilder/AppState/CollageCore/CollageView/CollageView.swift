@@ -25,6 +25,16 @@ struct CollageView<ViewType: View>: View {
             ZStack {
                 intermediateView
                 
+                ForEach(collage.stickers) { sticker in
+                    let isSelected = selectedElement?.stickerId == sticker.id
+                    StickerItemView(
+                        sticker: sticker,
+                        collageSize: collageSize,
+                        strokeColor: isSelected ? strokeColor : .clear,
+                        strokeWidth: strokeWidth
+                    )
+                }
+                
                 ForEach(collage.texts) { text in
                     let isSelected = selectedElement?.textId == text.id
                     TextItemView(

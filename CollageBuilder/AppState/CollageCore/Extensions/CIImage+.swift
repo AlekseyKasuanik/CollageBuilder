@@ -92,6 +92,14 @@ extension CIImage {
             .translated(by: centerPoint.x, y:  centerPoint.y)
     }
     
+    func blurred(with radius: CGFloat) -> CIImage {
+        let blurFilter = CIFilter.gaussianBlur()
+        blurFilter.inputImage = self
+        blurFilter.radius = Float(radius)
+        
+        return blurFilter.outputImage?.cropped(to: self.extent) ?? self
+    }
+    
     func translatedToZero() -> CIImage {
         self.translated(by: -extent.minX, y: -extent.minY)
     }

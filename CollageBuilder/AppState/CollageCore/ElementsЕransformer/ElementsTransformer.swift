@@ -58,28 +58,75 @@ struct ElementsTransformer {
             return collage
         }
         
-        var newCollage = collage
-        
-        
         switch element {
         case .text(let id):
-            if let index = collage.texts.firstIndex(where: {
-                $0.id == id
-            }) {
-                let newTransforms = change(newCollage.texts[index].transforms,
-                                           with: transforms)
-                newCollage.texts[index].transforms = newTransforms
-            }
+            return transformsText(transforms,
+                                  in: collage,
+                                  witch: id)
             
         case .shape(let id):
-            if let index = collage.shapes.firstIndex(where: {
-                $0.id == id
-            }) {
-                let newTransforms = change(newCollage.shapes[index].transforms,
-                                           with: transforms)
-                newCollage.shapes[index].transforms = newTransforms
-            }
+            return transformsShape(transforms,
+                                  in: collage,
+                                  witch: id)
+            
+        case .sticker(let id):
+            return transformsSticker(transforms,
+                                  in: collage,
+                                  witch: id)
         }
+        
+    }
+    
+    private func transformsSticker(_ transforms: Transforms,
+                                in collage: Collage,
+                                witch id: String) -> Collage {
+        
+        guard let index = collage.stickers.firstIndex(where: {
+            $0.id == id
+        }) else {
+            return collage
+        }
+        
+        var newCollage = collage
+        let newTransforms = change(newCollage.stickers[index].transforms,
+                                   with: transforms)
+        newCollage.stickers[index].transforms = newTransforms
+        
+        return newCollage
+    }
+    
+    private func transformsShape(_ transforms: Transforms,
+                                in collage: Collage,
+                                witch id: String) -> Collage {
+        
+        guard let index = collage.shapes.firstIndex(where: {
+            $0.id == id
+        }) else {
+            return collage
+        }
+        
+        var newCollage = collage
+        let newTransforms = change(newCollage.shapes[index].transforms,
+                                   with: transforms)
+        newCollage.shapes[index].transforms = newTransforms
+        
+        return newCollage
+    }
+    
+    private func transformsText(_ transforms: Transforms,
+                                in collage: Collage,
+                                witch id: String) -> Collage {
+        
+        guard let index = collage.texts.firstIndex(where: {
+            $0.id == id
+        }) else {
+            return collage
+        }
+        
+        var newCollage = collage
+        let newTransforms = change(collage.texts[index].transforms,
+                                   with: transforms)
+        newCollage.texts[index].transforms = newTransforms
         
         return newCollage
     }

@@ -48,8 +48,9 @@ struct ShapeEditorView: View {
                 ))
             }
         }
-        Section("Filters") {
-            if let previewImage {
+        
+        if let previewImage {
+            Section("Filters") {
                 FiltersSelectorView(
                     filter: .init(
                         get: { shape?.filter },
@@ -59,10 +60,30 @@ struct ShapeEditorView: View {
                 )
             }
         }
+        Section("manage") {
+            remove
+        }
         .onChange(of: shape?.id) { _ in
             Task { previewImage = await shape?.media?.image }
         }
         .task { previewImage = await shape?.media?.image }
+    }
+    
+    private var remove: some View {
+        HStack {
+            Text("Remove")
+            Spacer()
+            Button {
+                if let shape {
+                    store.dispatch(.changeCollage(
+                        .removeShape(shape.id)
+                    ))
+                }
+            } label: {
+                Image(systemName: "trash.slash")
+                    .font(.largeTitle)
+            }
+        }
     }
     
     private var addMedia: some View {

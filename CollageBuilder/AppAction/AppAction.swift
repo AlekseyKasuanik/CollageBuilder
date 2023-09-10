@@ -13,7 +13,7 @@ enum AppAction {
     case changeCollage(CollageModification)
     case selectElement(ElementType)
     case removeSelectedPoints
-    case swithEditMode
+    case switchEditMode
     case toggleGrid
-    case togglePlayColalge
+    case togglePlayCollage
 }
