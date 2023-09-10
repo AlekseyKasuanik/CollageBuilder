@@ -13,8 +13,11 @@ struct CollageEditorView: View {
     
     @State private var selectedColor: Color = .clear
     @State private var selectedMedia: Media?
+    
     @State private var showMediaPicker = false
     @State private var showTextPicker = false
+    @State private var showStickerPicker = false
+    
     @State private var cornerRadius: CGFloat = 0
     
     var body: some View {
@@ -31,6 +34,10 @@ struct CollageEditorView: View {
             
             Section("Text") {
                 textPicker
+            }
+            
+            Section("Sticker") {
+                stickerPicker
             }
         }
         .sheet(isPresented: $showMediaPicker) {
@@ -53,7 +60,13 @@ struct CollageEditorView: View {
         .sheet(isPresented: $showTextPicker) {
             AddTextView(collageSize: store.state.collageSize,
                         maxZPosition: store.state.collage.maxZPosition)
-                .presentationBackground(.thinMaterial)
+            .presentationBackground(.thinMaterial)
+        }
+        .sheet(isPresented: $showStickerPicker) {
+            StickerSelectorView(
+                maxZPosition: store.state.collage.maxZPosition
+            )
+            .presentationBackground(.thinMaterial)
         }
     }
     
@@ -82,6 +95,19 @@ struct CollageEditorView: View {
                 showTextPicker.toggle()
             } label: {
                 Image(systemName: "textformat.abc")
+                    .font(.title2)
+            }
+        }
+    }
+    
+    private var stickerPicker: some View {
+        HStack {
+            Text("add sticker")
+            Spacer()
+            Button {
+                showStickerPicker.toggle()
+            } label: {
+                Image(systemName: "smiley")
                     .font(.title2)
             }
         }

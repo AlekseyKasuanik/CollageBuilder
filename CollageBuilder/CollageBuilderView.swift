@@ -84,7 +84,7 @@ struct CollageBuilderView: View {
                 case .text:
                     TextSelectorView()
                 case .sticker:
-                    EmptyView()
+                    StickerEditorView()
                 case .none:
                     AddShapeElementView(size: collageSize)
                     CollageEditorView()

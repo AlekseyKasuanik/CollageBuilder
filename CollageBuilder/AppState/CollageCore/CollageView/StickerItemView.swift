@@ -16,7 +16,7 @@ struct StickerItemView: View {
     var strokeWidth: CGFloat
     
     var body: some View {
-        Image(uiImage: sticker.image)
+        Image(uiImage: image)
             .resizable()
             .frame(width: sticker.relativeInitialSize.width * collageSize.width,
                    height: sticker.relativeInitialSize.height * collageSize.height)
@@ -30,5 +30,13 @@ struct StickerItemView: View {
                       y: collageSize.height * sticker.transforms.position.y)
             .blendMode(sticker.blendMode.blendMode)
             .zIndex(Double(sticker.zPosition))
+    }
+    
+    var image: UIImage {
+        guard let mask = sticker.mask else {
+            return sticker.image
+        }
+        
+        return sticker.image.masked(mask)
     }
 }
