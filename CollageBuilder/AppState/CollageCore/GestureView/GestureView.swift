@@ -9,12 +9,12 @@ import SwiftUI
 
 struct GestureView: UIViewRepresentable {
     
-    var onRecive: ((GestureType) -> ())?
+    var onReceive: ((GestureType) -> ())?
     
     func makeUIView(context: Context) -> UIView {
         
         let view = GestureUIView()
-        view.onRecive = onRecive
+        view.onReceive = onReceive
         
         return view
     }

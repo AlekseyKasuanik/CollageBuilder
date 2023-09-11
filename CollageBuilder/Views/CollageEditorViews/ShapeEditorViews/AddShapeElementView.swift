@@ -32,7 +32,7 @@ struct AddShapeElementView: View {
                     addPointButton
                     addCurveButton
                     addRectangleButton
-                    addElipseButton
+                    addEllipseButton
                 }
             }
         }
@@ -134,10 +134,10 @@ struct AddShapeElementView: View {
         }
     }
     
-    private var addElipseButton: some View {
+    private var addEllipseButton: some View {
         VStack {
             Button {
-                addElipse()
+                addEllipse()
             } label: {
                 Text("Add Elipse")
             }
@@ -197,7 +197,7 @@ struct AddShapeElementView: View {
         dispatch(.rectangle(rect))
     }
     
-    private func addElipse() {
+    private func addEllipse() {
         guard let rect = extractRect() else {
             return
         }

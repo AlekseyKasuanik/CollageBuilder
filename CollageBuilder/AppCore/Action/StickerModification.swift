@@ -8,5 +8,5 @@
 import SwiftUI
 
 enum StickerModification {
-    case mask(UIImage)
+    case changeMask(UIImage)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShapesTranslator {
+struct ShapesTranslator: ShapesTranslatorProtocol {
     let pointTouchSide: CGFloat
     let translationStep: CGFloat
     

@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct TextReducer: ReducerProtocol {
-    
+protocol TextReducerProtocol {
+    mutating func reduce(_ currentState: TextSettings,
+                         _ action: TextModification) -> TextSettings
+}
+
+struct TextReducer: TextReducerProtocol {
     
     mutating func reduce(_ currentState: TextSettings,
                          _ action: TextModification) -> TextSettings {
@@ -16,34 +20,34 @@ struct TextReducer: ReducerProtocol {
         var newText = currentState
         
         switch action {
-        case .size(let size):
+        case .changeSize(let size):
             newText.fontSize = size
             
-        case .fontName(let name):
+        case .changeFontName(let name):
             newText.fontName = name
             
-        case .kern(let kern):
+        case .changeKern(let kern):
             newText.kern = kern
             
-        case .lineSpacing(let spacing):
+        case .changeLineSpacing(let spacing):
             newText.lineSpacing = spacing
             
-        case .alignment(let alignment):
+        case .changeAlignment(let alignment):
             newText.alignment = alignment
             
-        case .text(let text):
+        case .changeText(let text):
             newText.text = text
             
-        case .textColor(let color):
+        case .changeTextColor(let color):
             newText.textColor = color
             
-        case .backgroundColor(let color):
+        case .changeBackgroundColor(let color):
             newText.backgroundColor = color
             
-        case .cornerRadius(let radius):
+        case .changeCornerRadius(let radius):
             newText.cornerRadius = radius
             
-        case .blendMode(let mode):
+        case .changeBlendMode(let mode):
             newText.blendMode = mode
         }
         

@@ -9,7 +9,7 @@ import SwiftUI
 
 final class GestureUIView: UIView {
     
-    var onRecive: ((GestureType) -> ())?
+    var onReceive: ((GestureType) -> ())?
     
     private var lastScale: CGFloat?
     private var lastRotation: CGFloat?
@@ -68,14 +68,14 @@ final class GestureUIView: UIView {
         switch gesture.state {
         case .began:
             let location = gesture.location(in: self)
-            onRecive?(.translate(.began(CGPoint(
+            onReceive?(.translate(.began(CGPoint(
                 x: location.x / frame.width,
                 y: location.y / frame.height
             ))))
             
         case .changed:
             let translation = gesture.translation(in: self)
-            onRecive?(.translate(.changed(CGPoint(
+            onReceive?(.translate(.changed(CGPoint(
                 x: translation.x / frame.width,
                 y: translation.y / frame.height
             ))))
@@ -92,14 +92,14 @@ final class GestureUIView: UIView {
         switch gesture.state {
         case .began:
             let location = gesture.location(in: self)
-            onRecive?(.twoFingersTranslate(.began(CGPoint(
+            onReceive?(.twoFingersTranslate(.began(CGPoint(
                 x: location.x / frame.width,
                 y: location.y / frame.height
             ))))
             
         case .changed:
             let translation = gesture.translation(in: self)
-            onRecive?(.twoFingersTranslate(.changed(CGPoint(
+            onReceive?(.twoFingersTranslate(.changed(CGPoint(
                 x: translation.x / frame.width,
                 y: translation.y / frame.height
             ))))
@@ -116,7 +116,7 @@ final class GestureUIView: UIView {
         switch gesture.state {
         case .began:
             let location = gesture.location(in: self)
-            onRecive?(.scale(.began(CGPoint(
+            onReceive?(.scale(.began(CGPoint(
                 x: location.x / frame.width,
                 y: location.y / frame.height
             ))))
@@ -125,7 +125,7 @@ final class GestureUIView: UIView {
             
         case .changed:
             if let lastScale {
-                onRecive?(.scale(.changed(gesture.scale / lastScale)))
+                onReceive?(.scale(.changed(gesture.scale / lastScale)))
             }
             
             lastScale = gesture.scale
@@ -142,7 +142,7 @@ final class GestureUIView: UIView {
         guard gesture.state == .began else { return }
         
         let location = gesture.location(in: self)
-        onRecive?(.longTap(CGPoint(
+        onReceive?(.longTap(CGPoint(
             x: location.x / frame.width,
             y: location.y / frame.height
         )))
@@ -151,7 +151,7 @@ final class GestureUIView: UIView {
     
     @objc private func tapGestureRecognizer(gesture: UITapGestureRecognizer) {
         let location = gesture.location(in: self)
-        onRecive?(.tap(CGPoint(
+        onReceive?(.tap(CGPoint(
             x: location.x / frame.width,
             y: location.y / frame.height
         )))
@@ -161,7 +161,7 @@ final class GestureUIView: UIView {
         switch gesture.state {
         case .began:
             let location = gesture.location(in: self)
-            onRecive?(.rotate(.began(CGPoint(
+            onReceive?(.rotate(.began(CGPoint(
                 x: location.x / frame.width,
                 y: location.y / frame.height
             ))))
@@ -170,7 +170,7 @@ final class GestureUIView: UIView {
             
         case .changed:
             if let lastRotation {
-                onRecive?(.rotate(.changed(gesture.rotation - lastRotation)))
+                onReceive?(.rotate(.changed(gesture.rotation - lastRotation)))
             }
             
             lastRotation = gesture.rotation

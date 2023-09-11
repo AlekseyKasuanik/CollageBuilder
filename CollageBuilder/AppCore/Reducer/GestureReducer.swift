@@ -7,11 +7,15 @@
 
 import Foundation
 
-struct GestureReducer: ReducerProtocol {
+protocol GestureReducerProtocol {
+    mutating func reduce(_ currentState: AppState,
+                         _ action: GestureType) -> AppState
+}
+
+struct GestureReducer: GestureReducerProtocol {
     
-    private var shapesTranslator = ShapesTranslator(pointTouchSide: 0.1,
-                                                    translationStep: 0.01)
-    private var elementsTransformer = ElementsTransformer()
+    private(set) var shapesTranslator: ShapesTranslatorProtocol
+    private(set) var elementsTransformer: ElementsTransformerProtocol
     
     mutating func reduce(_ currentState: AppState,
                          _ action: GestureType) -> AppState {

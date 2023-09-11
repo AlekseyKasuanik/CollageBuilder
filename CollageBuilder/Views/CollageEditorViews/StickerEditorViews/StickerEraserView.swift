@@ -89,7 +89,7 @@ struct StickerEraserView: View {
                 Spacer()
                 Button {
                     store.dispatch(.changeCollage(.changeSticker(
-                        .mask(maskEditor.maskImage),
+                        .changeMask(maskEditor.maskImage),
                         id: sticker.id
                     )))
                     dismiss()

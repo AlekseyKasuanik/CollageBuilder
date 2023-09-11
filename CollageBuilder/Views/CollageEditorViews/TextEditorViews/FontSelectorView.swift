@@ -25,7 +25,7 @@ struct FontSelectorView: View {
                 ForEach(allFonts, id: \.self) { name in
                     Button {
                         dismiss()
-                        dispatch(.fontName(name))
+                        dispatch(.changeFontName(name))
                     } label: {
                         Text(name)
                             .font(.custom(name, size: 14))

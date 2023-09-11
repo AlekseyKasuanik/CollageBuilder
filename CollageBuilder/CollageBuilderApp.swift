@@ -37,7 +37,7 @@ struct CollageBuilderApp: App {
                                           texts: [],
                                           stickers: [],
                                           id: UUID().uuidString)),
-            reducer: .init()
+            reducer: AppReducerBuilder.reducer
         )
         
         return store

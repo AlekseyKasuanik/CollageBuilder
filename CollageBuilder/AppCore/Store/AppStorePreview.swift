@@ -55,7 +55,7 @@ extension AppStore {
         
         return AppStore(
             initial: AppState(collageSize: collageSize, collage: collage),
-            reducer: AppReducer()
+            reducer: AppReducerBuilder.reducer
         )
     }
 }

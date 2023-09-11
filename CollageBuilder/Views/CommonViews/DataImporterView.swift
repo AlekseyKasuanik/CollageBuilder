@@ -12,10 +12,10 @@ struct DataImporterView: UIViewControllerRepresentable {
     @Binding var data: Data?
     
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController  {
-        let vc = UIDocumentPickerViewController(forOpeningContentTypes: [.data], asCopy: true)
-        vc.delegate = context.coordinator
-        vc.allowsMultipleSelection = false
-        return vc
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.data], asCopy: true)
+        picker.delegate = context.coordinator
+        picker.allowsMultipleSelection = false
+        return picker
     }
     
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}

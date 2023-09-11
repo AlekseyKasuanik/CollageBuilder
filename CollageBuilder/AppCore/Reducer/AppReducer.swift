@@ -7,11 +7,15 @@
 
 import Foundation
 
-struct AppReducer: ReducerProtocol {
+protocol AppReducerProtocol {
+    mutating func reduce(_ currentState: AppState,
+                         _ action: AppAction) -> AppState
+}
+
+struct AppReducer: AppReducerProtocol {
     
-    
-    var collageReducer = CollageReducer()
-    var gestureReducer = GestureReducer()
+    private(set) var collageReducer: CollageReducerProtocol
+    private(set) var gestureReducer: GestureReducerProtocol
     
     mutating func reduce(_ currentState: AppState,
                          _ action: AppAction) -> AppState {

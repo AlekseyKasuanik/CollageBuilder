@@ -45,7 +45,7 @@ struct TopBarView: View {
             DataImporterView(data: $data)
         }
         .onChange(of: data) { _ in
-            loadCollge()
+            loadCollage()
         }
     }
     
@@ -54,7 +54,7 @@ struct TopBarView: View {
         showSaveSheet.toggle()
     }
     
-    private func loadCollge() {
+    private func loadCollage() {
         guard let data,
               let collage = try? JSONDecoder().decode(
                 Collage.self,

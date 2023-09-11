@@ -13,30 +13,30 @@ struct DependentPointsConectorView: View {
     
     var body: some View {
         HStack {
-            conectButton
+            connectButton
             cancelButton
-            disconectButton
+            disconnectButton
         }
         .buttonStyle(.plain)
         .opacity(store.state.selectedPointsIDs.isEmpty ? 0 : 1)
         .animation(.default, value: store.state.selectedPointsIDs)
     }
     
-    private var disconectButton: some View {
+    private var disconnectButton: some View {
         Button {
             store.dispatch(.changeCollage(.disconnectControlPoints(pointsIds)))
             store.dispatch(.removeSelectedPoints)
         } label: {
-            createButtonBody(with: "Disconect")
+            createButtonBody(with: "Disconnect")
         }
     }
     
-    private var conectButton: some View {
+    private var connectButton: some View {
         Button {
             store.dispatch(.changeCollage(.connectControlPoints(pointsIds)))
             store.dispatch(.removeSelectedPoints)
         } label: {
-            createButtonBody(with: "Conect")
+            createButtonBody(with: "Connect")
         }
     }
     

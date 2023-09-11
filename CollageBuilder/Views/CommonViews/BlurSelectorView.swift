@@ -29,12 +29,12 @@ struct BlurSelectorView: View {
             .pickerStyle(.segmented)
             slidersView
         }
-        .onChange(of: blurType) { _ in handleChnages() }
-        .onChange(of: boxRadius) { _ in handleChnages() }
-        .onChange(of: discRadius) { _ in handleChnages() }
-        .onChange(of: gaussianRadius) { _ in handleChnages() }
-        .onChange(of: motionRadius) { _ in handleChnages() }
-        .onChange(of: motionAngle) { _ in handleChnages() }
+        .onChange(of: blurType) { _ in handleChanges() }
+        .onChange(of: boxRadius) { _ in handleChanges() }
+        .onChange(of: discRadius) { _ in handleChanges() }
+        .onChange(of: gaussianRadius) { _ in handleChanges() }
+        .onChange(of: motionRadius) { _ in handleChanges() }
+        .onChange(of: motionAngle) { _ in handleChanges() }
         .onAppear{ setupProperties() }
     }
     
@@ -51,7 +51,7 @@ struct BlurSelectorView: View {
                              range: 0...100,
                              title: "Radius")
             
-        case .gaus:
+        case .gaussian:
             CommonSliderView(value: $gaussianRadius,
                              range: 0...100,
                              title: "Radius")
@@ -69,7 +69,7 @@ struct BlurSelectorView: View {
         }
     }
     
-    private func handleChnages() {
+    private func handleChanges() {
         switch blurType {
             
         case .box:
@@ -78,7 +78,7 @@ struct BlurSelectorView: View {
         case .disc:
             blur = .disc(discRadius)
             
-        case .gaus:
+        case .gaussian:
             blur = .gaussian(gaussianRadius)
             
         case .motion:
@@ -101,7 +101,7 @@ struct BlurSelectorView: View {
             discRadius = radius
             
         case .gaussian(let radius):
-            blurType = .gaus
+            blurType = .gaussian
             gaussianRadius = radius
             
         case .motion(let radius, let angle):
@@ -115,7 +115,7 @@ struct BlurSelectorView: View {
     }
     
     private enum BlurType: String, CaseIterable {
-        case box, disc, gaus, motion, none
+        case box, disc, gaussian, motion, none
     }
 }
 

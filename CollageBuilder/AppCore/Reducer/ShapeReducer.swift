@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct ShapeReducer: ReducerProtocol {
-    
+protocol ShapeReducerProtocol {
+    mutating func reduce(_ currentState: ShapeData,
+                         _ action: ShapeModification) -> ShapeData
+}
+
+struct ShapeReducer: ShapeReducerProtocol {
     
     mutating func reduce(_ currentState: ShapeData,
                          _ action: ShapeModification) -> ShapeData {

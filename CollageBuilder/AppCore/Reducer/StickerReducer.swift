@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct StickerReducer: ReducerProtocol {
-    
+protocol StickerReducerProtocol {
+    mutating func reduce(_ currentState: Sticker,
+                         _ action: StickerModification) -> Sticker
+}
+
+struct StickerReducer: StickerReducerProtocol {
     
     mutating func reduce(_ currentState: Sticker,
                          _ action: StickerModification) -> Sticker {
@@ -16,7 +20,7 @@ struct StickerReducer: ReducerProtocol {
         var newState = currentState
         
         switch action {
-        case .mask(let mask):
+        case .changeMask(let mask):
             newState.mask = mask
         }
         

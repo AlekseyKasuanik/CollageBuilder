@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ElementsTransformer {
+struct ElementsTransformer: ElementsTransformerProtocol {
     
     private var element: ElementType?
     

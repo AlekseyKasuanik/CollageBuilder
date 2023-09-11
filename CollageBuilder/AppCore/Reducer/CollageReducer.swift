@@ -7,11 +7,16 @@
 
 import Foundation
 
-struct CollageReducer: ReducerProtocol {
+protocol CollageReducerProtocol {
+    mutating func reduce(_ currentState: Collage,
+                         _ action: CollageModification) -> Collage
+}
+
+struct CollageReducer: CollageReducerProtocol {
     
-    private var shapeReducer = ShapeReducer()
-    private var textReducer = TextReducer()
-    private var stickerReducer = StickerReducer()
+    private(set) var shapeReducer: ShapeReducerProtocol
+    private(set) var textReducer: TextReducerProtocol
+    private(set) var stickerReducer: StickerReducer
     
     mutating func reduce(_ currentState: Collage,
                          _ action: CollageModification) -> Collage {
@@ -20,10 +25,10 @@ struct CollageReducer: ReducerProtocol {
         
         switch action {
         case .addShape(let shapeData):
-            newCollage = addShape(shapeData, to: newCollage)
+            newCollage.shapes.append(shapeData)
             
-        case .changeBackground(let collageBackground):
-            newCollage = changeBackground(collageBackground, in: newCollage)
+        case .changeBackground(let action):
+            newCollage.background = shapeReducer.reduce(newCollage.background, action)
             
         case .connectControlPoints(let ids):
             newCollage = connectControlPoints(ids, in: newCollage)
@@ -32,59 +37,35 @@ struct CollageReducer: ReducerProtocol {
             newCollage = disconnectControlPoints(ids, in: newCollage)
             
         case .changeCornerRadius(let radius):
-            newCollage = changeCornerRadius(radius, in: newCollage)
+            newCollage.cornerRadius = radius
             
         case .changeShape(let action, id: let id):
             newCollage = changeShape(action, id: id, in: newCollage)
             
         case .addText(let text):
-            newCollage = addText(text, to: newCollage)
+            newCollage.texts.append(text)
             
         case .changeText(let action, id: let id):
             newCollage = changeText(action, id: id, in: newCollage)
             
         case .addSticker(let sticker):
-            newCollage = addSticker(sticker, to: newCollage)
+            newCollage.stickers.append(sticker)
             
         case .changeSticker(let action, id: let id):
             newCollage = changeSticker(action, id: id, in: newCollage)
             
         case .removeShape(let id):
-            newCollage = removeShape(id, in: newCollage)
+            newCollage.shapes.removeAll(where: { $0.id == id })
             
         case .removeText(let id):
-            newCollage = removeText(id, in: newCollage)
+            newCollage.texts.removeAll(where: { $0.id == id })
             
         case .removeSticker(let id):
-            newCollage = removeSticker(id, in: newCollage)
+            newCollage.stickers.removeAll(where: { $0.id == id })
         }
         
         return newCollage
         
-    }
-    
-    private func removeShape(_ id: String,
-                             in collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.shapes.removeAll(where: { $0.id == id })
-        return newCollage
-    }
-    
-    private func removeText(_ id: String,
-                            in collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.texts.removeAll(where: { $0.id == id })
-        return newCollage
-    }
-    
-    private func removeSticker(_ id: String,
-                               in collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.stickers.removeAll(where: { $0.id == id })
-        return newCollage
     }
     
     private mutating func changeShape(_ action: ShapeModification,
@@ -147,22 +128,6 @@ struct CollageReducer: ReducerProtocol {
         return newCollage
     }
     
-    private mutating func changeBackground(_ action: ShapeModification,
-                                           in collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.background = shapeReducer.reduce( newCollage.background, action)
-        return newCollage
-    }
-    
-    private func addShape(_ shape: ShapeData,
-                          to collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.shapes.append(shape)
-        return newCollage
-    }
-    
     private func connectControlPoints(_ ids: Set<String>,
                                       in collage: Collage) -> Collage {
         
@@ -194,27 +159,4 @@ struct CollageReducer: ReducerProtocol {
         return newCollage
     }
     
-    private func changeCornerRadius(_ radius: CGFloat,
-                                    in collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.cornerRadius = radius
-        return newCollage
-    }
-    
-    private func addText(_ text: TextSettings,
-                         to collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.texts.append(text)
-        return newCollage
-    }
-    
-    private func addSticker(_ sticker: Sticker,
-                            to collage: Collage) -> Collage {
-        
-        var newCollage = collage
-        newCollage.stickers.append(sticker)
-        return newCollage
-    }
 }

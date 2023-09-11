@@ -20,7 +20,7 @@ struct TextSelectorView: View {
                 .sheet(isPresented: $showTextEditor) {
                     TextEditorView(text: .init(
                         get: { text },
-                        set: { dispatch(.text($0.text))}
+                        set: { dispatch(.changeText($0.text))}
                     ))
                     .presentationBackground(.thinMaterial)
                 }
@@ -76,14 +76,14 @@ struct TextSelectorView: View {
         VStack(spacing: 16) {
             ColorPicker(selection: .init(
                 get: { Color(text.backgroundColor) },
-                set: { dispatch(.backgroundColor(UIColor($0)))}
+                set: { dispatch(.changeBackgroundColor(UIColor($0)))}
             )) {
                 Text("Background color")
             }
             CommonSliderView(
                 value: .init(
                     get: { text.cornerRadius },
-                    set: { dispatch(.cornerRadius($0)) }
+                    set: { dispatch(.changeCornerRadius($0)) }
                 ),
                 range: 0...50,
                 title: "Corner radius"
@@ -92,7 +92,7 @@ struct TextSelectorView: View {
             
             BlendModeSelectorView(blendMode: .init(
                 get: { text.blendMode },
-                set: { dispatch(.blendMode($0)) }
+                set: { dispatch(.changeBlendMode($0)) }
             ))
         }
     }
@@ -102,7 +102,7 @@ struct TextSelectorView: View {
             CommonSliderView(
                 value: .init(
                     get: { text.kern },
-                    set: { dispatch(.kern($0)) }
+                    set: { dispatch(.changeKern($0)) }
                 ),
                 range: 0...20,
                 title: "Kent"
@@ -111,7 +111,7 @@ struct TextSelectorView: View {
             CommonSliderView(
                 value: .init(
                     get: { text.lineSpacing },
-                    set: { dispatch(.lineSpacing($0)) }
+                    set: { dispatch(.changeLineSpacing($0)) }
                 ),
                 range: 0...100,
                 title: "Line spacing"
@@ -123,7 +123,7 @@ struct TextSelectorView: View {
                     "",
                     selection: .init(
                         get: { text.alignment },
-                        set: { dispatch(.alignment($0)) }
+                        set: { dispatch(.changeAlignment($0)) }
                     )
                 ) {
                     ForEach(TextSettings.TextAlignment.allCases, id: \.self) {
@@ -139,7 +139,7 @@ struct TextSelectorView: View {
             CommonSliderView(
                 value: .init(
                     get: { text.fontSize },
-                    set: { dispatch(.size($0)) }
+                    set: { dispatch(.changeSize($0)) }
                 ),
                 range: 10...100,
                 title: "Size"
@@ -158,7 +158,7 @@ struct TextSelectorView: View {
             
             ColorPicker(selection: .init(
                 get: { Color(text.textColor) },
-                set: { dispatch(.textColor(UIColor($0)))}
+                set: { dispatch(.changeTextColor(UIColor($0)))}
             )) {
                 Text("Text color")
             }
