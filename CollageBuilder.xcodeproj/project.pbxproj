@@ -610,7 +610,6 @@
 				1F3E9DD02AAEE4DE000DFB45 /* Views */,
 				1F3E9DD82AAEEA8E000DFB45 /* AppCore */,
 				1F4EC4E22A9E82D7008701DE /* Content */,
-				1F660F242A781F290072925A /* AppState */,
 				1F660F2B2A7825360072925A /* CollageCore */,
 				1F5DF5C92A76726C00430AF1 /* Assets.xcassets */,
 				1F5DF5CB2A76726C00430AF1 /* CollageBuilder.entitlements */,
@@ -659,13 +658,6 @@
 			path = Reducer;
 			sourceTree = "<group>";
 		};
-		1F660F242A781F290072925A /* AppState */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AppState;
-			sourceTree = "<group>";
-		};
 		1F660F272A781F6F0072925A /* Action */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,8 +688,7 @@
 				1F47FE632A8FB97000E96210 /* SharedContext */,
 				1F660F3F2A782E410072925A /* Extensions */,
 			);
-			name = CollageCore;
-			path = AppState/CollageCore;
+			path = CollageCore;
 			sourceTree = "<group>";
 		};
 		1F660F362A782D3F0072925A /* GestureView */ = {

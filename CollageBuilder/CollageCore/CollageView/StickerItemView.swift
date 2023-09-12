@@ -18,17 +18,17 @@ struct StickerItemView: View {
     var body: some View {
         Image(uiImage: image)
             .resizable()
+            .blendMode(sticker.blendMode.blendMode)
             .frame(width: sticker.relativeInitialSize.width * collageSize.width,
                    height: sticker.relativeInitialSize.height * collageSize.height)
+            .rotationEffect(.radians(sticker.transforms.rotation))
+            .scaleEffect(sticker.transforms.scale)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(strokeColor), lineWidth: strokeWidth)
             }
-            .rotationEffect(.radians(sticker.transforms.rotation))
-            .scaleEffect(sticker.transforms.scale)
             .position(x: collageSize.width * sticker.transforms.position.x,
                       y: collageSize.height * sticker.transforms.position.y)
-            .blendMode(sticker.blendMode.blendMode)
             .zIndex(Double(sticker.zPosition))
     }
     

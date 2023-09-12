@@ -15,6 +15,11 @@ struct TextSelectorView: View {
     @State private var showTextEditor = false
     
     var body: some View {
+        
+        Section("Common settings") {
+            commonSettings
+        }
+        
         if let text {
             textEditor
                 .sheet(isPresented: $showTextEditor) {
@@ -48,6 +53,19 @@ struct TextSelectorView: View {
         }
     }
     
+    private var commonSettings: some View {
+        VStack {
+            BlendModeSelectorView(blendMode: .init(
+                get: { text?.blendMode ?? .normal },
+                set: { dispatch(.changeBlendMode($0)) }
+            ))
+            ZPositionSelectorView(zPosition: .init(
+                get: { text?.zPosition ?? 0 },
+                set: { dispatch(.changeZPosition($0)) }
+            ))
+        }
+    }
+    
     private var remove: some View {
         HStack {
             Text("Remove")
@@ -60,7 +78,7 @@ struct TextSelectorView: View {
                 }
             } label: {
                 Image(systemName: "trash.slash")
-                    .font(.largeTitle)
+                    .font(.title2)
             }
         }
     }
@@ -89,11 +107,6 @@ struct TextSelectorView: View {
                 title: "Corner radius"
             )
             .padding(.trailing, 5)
-            
-            BlendModeSelectorView(blendMode: .init(
-                get: { text.blendMode },
-                set: { dispatch(.changeBlendMode($0)) }
-            ))
         }
     }
     

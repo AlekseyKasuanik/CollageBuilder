@@ -81,7 +81,7 @@ struct ShapeEditorView: View {
                 }
             } label: {
                 Image(systemName: "trash.slash")
-                    .font(.largeTitle)
+                    .font(.title2)
             }
         }
     }

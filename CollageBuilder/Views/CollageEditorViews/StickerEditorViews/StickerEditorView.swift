@@ -14,9 +14,14 @@ struct StickerEditorView: View {
     @State private var showMaskEditor = false
     
     var body: some View {
+        Section("Common settings") {
+            commonSettings
+        }
+        
         Section("mask") {
             editMask
         }
+        
         Section("manage") {
             remove
         }
@@ -28,6 +33,19 @@ struct StickerEditorView: View {
         }
     }
     
+    private var commonSettings: some View {
+        VStack {
+            BlendModeSelectorView(blendMode: .init(
+                get: { sticker?.blendMode ?? .normal },
+                set: { dispatch(.changeBlendMode($0)) }
+            ))
+            ZPositionSelectorView(zPosition: .init(
+                get: { sticker?.zPosition ?? 0 },
+                set: { dispatch(.changeZPosition($0)) }
+            ))
+        }
+    }
+    
     private var editMask: some View {
         HStack {
             Text("Edit mask")
@@ -36,7 +54,7 @@ struct StickerEditorView: View {
                 showMaskEditor.toggle()
             } label: {
                 Image(systemName: "paintbrush.pointed.fill")
-                    .font(.largeTitle)
+                    .font(.title2)
             }
         }
     }
@@ -53,7 +71,7 @@ struct StickerEditorView: View {
                 }
             } label: {
                 Image(systemName: "trash.slash")
-                    .font(.largeTitle)
+                    .font(.title2)
             }
         }
     }
@@ -66,12 +84,21 @@ struct StickerEditorView: View {
         return sticker
     }
     
+    private func dispatch(_ action: StickerModification) {
+        guard let id = store.state.selectedElement?.stickerId else {
+            return
+        }
+        
+        store.dispatch(.changeCollage(.changeSticker(action, id: id)))
+    }
     
 }
 
 struct StickerEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        StickerEditorView()
-            .environmentObject(AppStore.preview)
+        List {
+            StickerEditorView()
+                .environmentObject(AppStore.preview)
+        }
     }
 }

@@ -49,21 +49,25 @@ struct ShapesTranslator: ShapesTranslatorProtocol {
             in: collage
         ) {
             movedPointsIDs = shape.controlPoints.map(\.id)
+            
+        } else {
+            movedPointsIDs = []
         }
+        
     }
     
     private mutating func translatePoint(_ translation: CGPoint,
                                          in collage: Collage) -> Collage {
         
-        let coorectTransation = getCoorectTranslation(translation)
+        let correctTranslation = getCorrectTranslation(translation)
         
         let allPoints = getAllPointsForTranslation(in: collage)
         
         let translatedPoints = allPoints.map { controlPoint in
             var newPoint = controlPoint
             newPoint.point = .init(
-                x: newPoint.point.x + coorectTransation.x,
-                y: newPoint.point.y + coorectTransation.y
+                x: newPoint.point.x + correctTranslation.x,
+                y: newPoint.point.y + correctTranslation.y
             )
             
             return newPoint
@@ -72,7 +76,7 @@ struct ShapesTranslator: ShapesTranslatorProtocol {
         return setPoints(translatedPoints, to: collage)
     }
     
-    private mutating func getCoorectTranslation(_ translation: CGPoint) -> CGPoint {
+    private mutating func getCorrectTranslation(_ translation: CGPoint) -> CGPoint {
         let sumTranslation = accumulatedTranslation + translation
         
         let remainderX = sumTranslation.x.truncatingRemainder(dividingBy: translationStep)

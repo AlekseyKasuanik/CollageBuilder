@@ -49,6 +49,9 @@ struct TextReducer: TextReducerProtocol {
             
         case .changeBlendMode(let mode):
             newText.blendMode = mode
+            
+        case .changeZPosition(let index):
+            newText.zPosition = index
         }
         
         return newText

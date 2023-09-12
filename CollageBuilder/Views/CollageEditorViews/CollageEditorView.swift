@@ -39,6 +39,19 @@ struct CollageEditorView: View {
             Section("Sticker") {
                 stickerPicker
             }
+            
+            Section("Blur") {
+                BlurSelectorView(blur: .init(
+                    get: { store.state.collage.background.blur },
+                    set: { dispatch(.changeBackground(.changeBlur($0))) }
+                ))
+            }
+            Section("Adjustments") {
+                AdjustmentsSelectorView(adjustments: .init(
+                    get: { store.state.collage.background.adjustments },
+                    set: { dispatch(.changeBackground(.changeAdjustments($0))) }
+                ))
+            }
         }
         .sheet(isPresented: $showMediaPicker) {
             MediaPickerView(media: $selectedMedia)

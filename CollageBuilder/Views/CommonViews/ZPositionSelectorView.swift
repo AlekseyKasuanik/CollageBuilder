@@ -14,10 +14,17 @@ struct ZPositionSelectorView: View {
     var body: some View {
         HStack {
             Text("Z position: ")
-            Picker("", selection: $zPosition) {
-                ForEach(-20...20, id: \.self) {
-                    Text($0.description)
-                }
+            Spacer()
+            Button {
+                zPosition -= 1
+            } label: {
+                Image(systemName: "arrow.backward")
+            }
+            Text(zPosition.description)
+            Button {
+                zPosition += 1
+            } label: {
+                Image(systemName: "arrow.right")
             }
         }
     }

@@ -18,4 +18,5 @@ enum TextModification {
     case changeBackgroundColor(UIColor)
     case changeCornerRadius(CGFloat)
     case changeBlendMode(ContentBlendMode)
+    case changeZPosition(Int)
 }

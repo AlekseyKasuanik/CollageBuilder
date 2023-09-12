@@ -22,6 +22,12 @@ struct StickerReducer: StickerReducerProtocol {
         switch action {
         case .changeMask(let mask):
             newState.mask = mask
+            
+        case .changeBlendMode(let mode):
+            newState.blendMode = mode
+            
+        case .changeZPosition(let index):
+            newState.zPosition = index
         }
         
         return newState
