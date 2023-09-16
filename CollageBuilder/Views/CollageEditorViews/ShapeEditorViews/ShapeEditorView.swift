@@ -11,6 +11,7 @@ struct ShapeEditorView: View {
     
     @EnvironmentObject private var store: AppStore
     
+    @State private var showVideoTrim = false
     @State private var showMediaPicker = false
     @State private var previewImage: CIImage?
     
@@ -25,13 +26,26 @@ struct ShapeEditorView: View {
                 set: { dispatch(.changeZPosition($0)) }
             ))
             addMedia
-                .sheet(isPresented: $showMediaPicker) {
-                    MediaPickerView(media: .init(
-                        get: { nil } ,
-                        set: { dispatch(.changeMedia($0)) }
+        }
+        
+        if let settings = shape?.media?.videoSettings {
+            Section("video settings") {
+                VStack {
+                    videoTrim
+                    CommonSliderView(
+                        value: .init(
+                            get: { CGFloat(settings.speed) },
+                            set: { dispatchSettings(.changeSpeed($0)) }),
+                        range: 0.2...3
+                    )
+                    Toggle("Muted", isOn: .init(
+                        get: { settings.isMuted },
+                        set: { dispatchSettings(.changeIsMute($0)) }
                     ))
                 }
+            }
         }
+        
         Section("Blur") {
             if let shape {
                 BlurSelectorView(blur: .init(
@@ -40,6 +54,7 @@ struct ShapeEditorView: View {
                 ))
             }
         }
+        
         Section("Adjustments") {
             if let shape {
                 AdjustmentsSelectorView(adjustments: .init(
@@ -67,6 +82,30 @@ struct ShapeEditorView: View {
             Task { previewImage = await shape?.media?.image }
         }
         .task { previewImage = await shape?.media?.image }
+    }
+    
+    private var videoTrim: some View {
+        VStack {
+            HStack {
+                Text("trim")
+                Spacer()
+                Button {
+                    showVideoTrim.toggle()
+                } label: {
+                    Image(systemName: "scissors")
+                        .font(.title2)
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $showVideoTrim) {
+            if case .video(let video) = shape?.media?.resource,
+               let id = store.state.selectedElement?.shapeId {
+                VideoTrimView(trim: video.settings.trim,
+                              url: video.videoUrl,
+                              id: id)
+                .presentationBackground(.regularMaterial)
+            }
+        }
     }
     
     private var remove: some View {
@@ -97,6 +136,12 @@ struct ShapeEditorView: View {
                     .font(.largeTitle)
             }
         }
+        .sheet(isPresented: $showMediaPicker) {
+            MediaPickerView(media: .init(
+                get: { nil } ,
+                set: { dispatch(.changeMedia(.replace($0))) }
+            ))
+        }
     }
     
     private var shape: ShapeData? {
@@ -105,6 +150,10 @@ struct ShapeEditorView: View {
         })
         
         return shape
+    }
+    
+    private func dispatchSettings(_ action: VideoSettingsModification) {
+        dispatch(.changeMedia(.changeVideoSettings(action)))
     }
     
     private func dispatch(_ action: ShapeModification) {

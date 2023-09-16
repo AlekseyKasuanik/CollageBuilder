@@ -132,6 +132,7 @@
 		1F7883492AA24E0700B2AA5F /* cube1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7883462AA24E0700B2AA5F /* cube1.png */; };
 		1F78834A2AA24E0700B2AA5F /* cube3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7883472AA24E0700B2AA5F /* cube3.png */; };
 		1F78834B2AA24E0700B2AA5F /* cube2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7883482AA24E0700B2AA5F /* cube2.png */; };
+		1F7AE9A92AB5D0D600E45462 /* MediaReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7AE9A82AB5D0D600E45462 /* MediaReducer.swift */; };
 		1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */; };
 		1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */; };
 		1F7B718E2A9D1F44004E5A2E /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B718D2A9D1F44004E5A2E /* View+.swift */; };
@@ -142,6 +143,10 @@
 		1F83E66B2AA9F7C1006A2704 /* NSTextAlignment+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83E66A2AA9F7C1006A2704 /* NSTextAlignment+.swift */; };
 		1F83E66D2AAA0116006A2704 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83E66C2AAA0116006A2704 /* TextEditorView.swift */; };
 		1F83E66F2AAA57C0006A2704 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83E66E2AAA57C0006A2704 /* Sticker.swift */; };
+		1F84C7F52AB46FD60006D05E /* TrimSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C7F42AB46FD60006D05E /* TrimSelectorView.swift */; };
+		1F84C7F72AB481030006D05E /* MediaModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C7F62AB481030006D05E /* MediaModification.swift */; };
+		1F84C7F92AB481CE0006D05E /* VideoSettingsModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C7F82AB481CE0006D05E /* VideoSettingsModification.swift */; };
+		1F84C7FB2AB4836B0006D05E /* VideoSettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C7FA2AB4836B0006D05E /* VideoSettingsReducer.swift */; };
 		1F85E2CC2AA9195B00D7E7A7 /* AddTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */; };
 		1FCF56122AA6608400CC2355 /* ElementsTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */; };
 		1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */; };
@@ -276,6 +281,7 @@
 		1F7883462AA24E0700B2AA5F /* cube1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube1.png; sourceTree = "<group>"; };
 		1F7883472AA24E0700B2AA5F /* cube3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube3.png; sourceTree = "<group>"; };
 		1F7883482AA24E0700B2AA5F /* cube2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube2.png; sourceTree = "<group>"; };
+		1F7AE9A82AB5D0D600E45462 /* MediaReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaReducer.swift; sourceTree = "<group>"; };
 		1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVURLAsset+.swift"; sourceTree = "<group>"; };
 		1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		1F7B718D2A9D1F44004E5A2E /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -286,6 +292,10 @@
 		1F83E66A2AA9F7C1006A2704 /* NSTextAlignment+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextAlignment+.swift"; sourceTree = "<group>"; };
 		1F83E66C2AAA0116006A2704 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		1F83E66E2AAA57C0006A2704 /* Sticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
+		1F84C7F42AB46FD60006D05E /* TrimSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimSelectorView.swift; sourceTree = "<group>"; };
+		1F84C7F62AB481030006D05E /* MediaModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaModification.swift; sourceTree = "<group>"; };
+		1F84C7F82AB481CE0006D05E /* VideoSettingsModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSettingsModification.swift; sourceTree = "<group>"; };
+		1F84C7FA2AB4836B0006D05E /* VideoSettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSettingsReducer.swift; sourceTree = "<group>"; };
 		1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextView.swift; sourceTree = "<group>"; };
 		1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTransformer.swift; sourceTree = "<group>"; };
 		1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporterView.swift; sourceTree = "<group>"; };
@@ -423,6 +433,7 @@
 				1F3D2DC92A8EB9B100217749 /* ShapeEditorView.swift */,
 				1F4F76C12A7E5418005374EB /* AddShapeElementView.swift */,
 				1F74F4742AB395CB00B93669 /* VideoTrimView.swift */,
+				1F84C7F42AB46FD60006D05E /* TrimSelectorView.swift */,
 			);
 			path = ShapeEditorViews;
 			sourceTree = "<group>";
@@ -654,9 +665,11 @@
 				1F660F202A781EDC0072925A /* AppReducer.swift */,
 				1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */,
 				1F47FE4D2A8F9B8B00E96210 /* ShapeReducer.swift */,
+				1F84C7FA2AB4836B0006D05E /* VideoSettingsReducer.swift */,
 				1F5C7A0A2AAB558C003DD9E0 /* StickerReducer.swift */,
 				1F83E6652AA9E53A006A2704 /* TextReducer.swift */,
 				1F47FE662A8FC87600E96210 /* GestureReducer.swift */,
+				1F7AE9A82AB5D0D600E45462 /* MediaReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -669,6 +682,8 @@
 				1F47FE4B2A8F9B2B00E96210 /* ShapeModification.swift */,
 				1F83E6632AA9E456006A2704 /* TextModification.swift */,
 				1F5C7A082AAB54FC003DD9E0 /* StickerModification.swift */,
+				1F84C7F62AB481030006D05E /* MediaModification.swift */,
+				1F84C7F82AB481CE0006D05E /* VideoSettingsModification.swift */,
 				1F682A6B2A9B74FE003F846C /* EditMode.swift */,
 			);
 			path = Action;
@@ -879,6 +894,7 @@
 				1F2E07DE2A92888400A71926 /* BlurSelectorView.swift in Sources */,
 				1F85E2CC2AA9195B00D7E7A7 /* AddTextView.swift in Sources */,
 				1FED663E2A7FBC9C009FF7A4 /* DataExporterView.swift in Sources */,
+				1F84C7F72AB481030006D05E /* MediaModification.swift in Sources */,
 				1F83E6662AA9E53A006A2704 /* TextReducer.swift in Sources */,
 				1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */,
 				1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */,
@@ -891,6 +907,7 @@
 				1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */,
 				1F2B5CB22A88FCD300BAEE19 /* CIImage+.swift in Sources */,
 				1F52FD912A81744B005ECBDD /* RectExtractor.swift in Sources */,
+				1F84C7F52AB46FD60006D05E /* TrimSelectorView.swift in Sources */,
 				1F660F312A7829700072925A /* ShapeElement.swift in Sources */,
 				1F52FD8B2A8156A6005ECBDD /* Media.swift in Sources */,
 				1F302C8D2A7FA3A2005956C0 /* DependentPoints.swift in Sources */,
@@ -914,6 +931,7 @@
 				1F5DF5C82A76726A00430AF1 /* CollageBuilderView.swift in Sources */,
 				1F47FE582A8FB38000E96210 /* Resource.swift in Sources */,
 				1F660F3E2A782DEF0072925A /* GridView.swift in Sources */,
+				1F84C7F92AB481CE0006D05E /* VideoSettingsModification.swift in Sources */,
 				1F83E6622AA9D4CD006A2704 /* ElementType.swift in Sources */,
 				1F660F262A781F570072925A /* AppState.swift in Sources */,
 				1F47FE502A8FA5CD00E96210 /* BlendModeSelectorView.swift in Sources */,
@@ -930,11 +948,13 @@
 				1F364F4E2AAE2B660032DEDA /* StickerEraserView.swift in Sources */,
 				1F2E07DC2A92739500A71926 /* BlurModifier.swift in Sources */,
 				1F2D3F502A82C26000EA6307 /* VideoPlayer.swift in Sources */,
+				1F7AE9A92AB5D0D600E45462 /* MediaReducer.swift in Sources */,
 				1F83E6692AA9F10D006A2704 /* FontSelectorView.swift in Sources */,
 				1F47FE6D2A8FEEAB00E96210 /* DependentPointsConectorView.swift in Sources */,
 				1F5FF8DC2AA4B0C500CF7B7F /* TextSelectorView.swift in Sources */,
 				1F2D3F4C2A82A45B00EA6307 /* ShapeItemView.swift in Sources */,
 				1F68699A2A810FD1006C2B6C /* CodableWrapper.swift in Sources */,
+				1F84C7FB2AB4836B0006D05E /* VideoSettingsReducer.swift in Sources */,
 				1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */,
 				1F47FE652A8FBA3400E96210 /* CollageView.swift in Sources */,
 				1F623D1E2AACE03A00B149D0 /* StickerSelectorView.swift in Sources */,

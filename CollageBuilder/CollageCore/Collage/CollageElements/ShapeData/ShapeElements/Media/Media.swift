@@ -28,10 +28,28 @@ struct Media: Codable {
             }
         }
     }
+    
+    var videoSettings: VideoSettings? {
+        get {
+            guard case .video(let video) = resource else {
+                return nil
+            }
+            return video.settings
+        }
+        
+        set {
+            guard case .video(var video) = resource,
+                  let settings = newValue else {
+                return
+            }
+            video.settings = settings
+            resource = .video(video)
+        }
+    }
 }
 
 extension Media: Equatable {
     static func == (lhs: Media, rhs: Media) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.videoSettings == rhs.videoSettings
     }
 }

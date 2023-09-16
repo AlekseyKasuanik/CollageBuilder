@@ -30,7 +30,6 @@ struct VideoPlayerView: UIViewRepresentable {
     func updateUIView(_ uiView: VideoPlayer, context: Context) {
         uiView.modifiers = modifiers
         uiView.changeSettings(settings)
-        
         if isPlaying {
             uiView.play()
         } else {
