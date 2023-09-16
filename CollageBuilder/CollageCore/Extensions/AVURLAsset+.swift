@@ -51,5 +51,34 @@ extension AVURLAsset {
             return CIImage(cgImage: image)
         }
     }
+    
+    func createIterator(for times: [Double],
+                        timescale: Int32 = 600) -> AVAssetImageGenerator.Images {
+        
+        let imageGenerator = AVAssetImageGenerator(asset: self)
+        imageGenerator.appliesPreferredTrackTransform = true
+        
+        let cmTimes = times.map {
+            CMTime(seconds: $0, preferredTimescale: timescale)
+        }
+        
+        return imageGenerator.images(for: cmTimes).makeAsyncIterator()
+    }
+    
+    func createImages(for times: [Double],
+                      timescale: Int32 = 600) async -> [CGImage] {
+        
+        var images = [CGImage]()
+        
+        var iterator = createIterator(for: times, timescale: timescale)
+        
+        while let element = await iterator.next() {
+            if let image = try? element.image {
+                images.append(image)
+            }
+        }
+        
+        return images
+    }
 }
 

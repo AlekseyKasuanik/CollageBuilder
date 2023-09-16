@@ -14,6 +14,8 @@ protocol ShapeReducerProtocol {
 
 struct ShapeReducer: ShapeReducerProtocol {
     
+    private(set) var mediaReducer: MediaReducerProtocol
+    
     mutating func reduce(_ currentState: ShapeData,
                          _ action: ShapeModification) -> ShapeData {
         
@@ -22,9 +24,6 @@ struct ShapeReducer: ShapeReducerProtocol {
         switch action {
         case .addElement(let element):
             newShape.elements.append(element)
-            
-        case .changeMedia(let media):
-            newShape.media = media
             
         case .changeBlendMode(let blendMode):
             newShape.blendMode = blendMode
@@ -40,6 +39,9 @@ struct ShapeReducer: ShapeReducerProtocol {
             
         case .changeFilter(let filter):
             newShape.filter = filter
+            
+        case .changeMedia(let action):
+            newShape.media = mediaReducer.reduce(newShape.media, action)
         }
         
         return newShape

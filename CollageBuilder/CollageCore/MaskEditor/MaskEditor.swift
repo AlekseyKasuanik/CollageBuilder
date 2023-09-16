@@ -83,7 +83,6 @@ struct MaskEditor {
             .composited(over: originalMaskImage)
         
         maskImage = UIImage(ciImage: mask, context: context)
-        print(maskImage.size, maskImage.scale)
     }
     
     struct EraserSettings {

@@ -9,7 +9,7 @@ import Foundation
 
 enum ShapeModification {
     case addElement(ShapeElement)
-    case changeMedia(Media?)
+    case changeMedia(MediaModification)
     case changeBlendMode(ContentBlendMode)
     case changeZPosition(Int)
     case changeBlur(Blur)

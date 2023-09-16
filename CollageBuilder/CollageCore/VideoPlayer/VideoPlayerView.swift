@@ -13,6 +13,7 @@ struct VideoPlayerView: UIViewRepresentable {
     var modifiers: [Modifier]
     var settings: VideoSettings
     var isPlaying: Bool
+    var restartAfterPause = true
     
     let context: CIContext
     
@@ -29,12 +30,11 @@ struct VideoPlayerView: UIViewRepresentable {
     func updateUIView(_ uiView: VideoPlayer, context: Context) {
         uiView.modifiers = modifiers
         uiView.changeSettings(settings)
-        
         if isPlaying {
             uiView.play()
         } else {
             uiView.pause()
-            uiView.restart()
+            if restartAfterPause { uiView.restart() }
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VideoSettings: Codable {
+struct VideoSettings: Codable, Equatable {
     
     var trim: VideoTrim?
     var speed: Float

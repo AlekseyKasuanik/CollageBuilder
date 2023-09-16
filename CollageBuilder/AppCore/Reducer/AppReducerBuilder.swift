@@ -10,13 +10,22 @@ import Foundation
 enum AppReducerBuilder {
     
     static var reducer: AppReducer {
-        let collageReducer = CollageReducer(shapeReducer: ShapeReducer(),
-                                            textReducer: TextReducer(),
-                                            stickerReducer: StickerReducer())
+        
+        let videoSettingsReducer = VideoSettingsReducer()
+        
+        let mediaReducer = MediaReducer(videoSettingsReducer: videoSettingsReducer)
+        let shapeReducer = ShapeReducer(mediaReducer: mediaReducer)
+        let textReducer = TextReducer()
+        let stickerReducer = StickerReducer()
+        let elementsTransformer = ElementsTransformer()
+        
+        let collageReducer = CollageReducer(shapeReducer: shapeReducer,
+                                            textReducer: textReducer,
+                                            stickerReducer: stickerReducer)
         
         let shapesTranslator = ShapesTranslator(pointTouchSide: 0.1, translationStep: 0.01)
         let gestureReducer = GestureReducer(shapesTranslator: shapesTranslator,
-                                            elementsTransformer: ElementsTransformer())
+                                            elementsTransformer: elementsTransformer)
         
         return AppReducer(collageReducer: collageReducer,
                           gestureReducer: gestureReducer)
