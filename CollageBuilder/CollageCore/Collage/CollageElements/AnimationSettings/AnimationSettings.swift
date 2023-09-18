@@ -7,16 +7,18 @@
 
 import Foundation
 
-struct AnimationSettings {
-    let offset: AnimationValue<CGPoint>
-    let rotation: AnimationValue<CGFloat>
-    let opacity: AnimationValue<CGFloat>
+struct AnimationSettings: Codable {
+    private(set) var id = UUID().uuidString
     
-    struct AnimationValue<Value> {
-        let value: Value
-        let duration: CGFloat
-        let delay: CGFloat
-        let autoreverses: Bool
-        let animation: CurveType
+    var offset: AnimationValue<CGPoint>?
+    var rotation: AnimationValue<CGFloat>?
+    var opacity: AnimationValue<CGFloat>?
+    
+    struct AnimationValue<Value: Codable>: Codable {
+        var value: Value
+        var duration: CGFloat = 0.35
+        var delay: CGFloat = 0
+        var autoreverses: Bool = true
+        var animation: CurveType = .easeInOut
     }
 }

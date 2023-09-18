@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CurveType {
+enum CurveType: Codable {
     case linear
     case ease
     case easeIn

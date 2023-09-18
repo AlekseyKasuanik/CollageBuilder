@@ -135,6 +135,9 @@
 		1F78D23C2AB79559004BF12B /* AnimationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78D23B2AB79559004BF12B /* AnimationSettings.swift */; };
 		1F78D23E2AB7956D004BF12B /* CurveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78D23D2AB7956D004BF12B /* CurveType.swift */; };
 		1F78D2402AB797A6004BF12B /* Animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78D23F2AB797A6004BF12B /* Animation+.swift */; };
+		1F78D2682AB8DA53004BF12B /* AnimatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78D2672AB8DA53004BF12B /* AnimatorModifier.swift */; };
+		1F78D26E2AB8E3C2004BF12B /* ContentAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78D26D2AB8E3C2004BF12B /* ContentAnimation.swift */; };
+		1F78D2702AB8E41A004BF12B /* AnimationsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78D26F2AB8E41A004BF12B /* AnimationsProvider.swift */; };
 		1F7AE9A92AB5D0D600E45462 /* MediaReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7AE9A82AB5D0D600E45462 /* MediaReducer.swift */; };
 		1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */; };
 		1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */; };
@@ -287,6 +290,9 @@
 		1F78D23B2AB79559004BF12B /* AnimationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSettings.swift; sourceTree = "<group>"; };
 		1F78D23D2AB7956D004BF12B /* CurveType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveType.swift; sourceTree = "<group>"; };
 		1F78D23F2AB797A6004BF12B /* Animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+.swift"; sourceTree = "<group>"; };
+		1F78D2672AB8DA53004BF12B /* AnimatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorModifier.swift; sourceTree = "<group>"; };
+		1F78D26D2AB8E3C2004BF12B /* ContentAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentAnimation.swift; sourceTree = "<group>"; };
+		1F78D26F2AB8E41A004BF12B /* AnimationsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsProvider.swift; sourceTree = "<group>"; };
 		1F7AE9A82AB5D0D600E45462 /* MediaReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaReducer.swift; sourceTree = "<group>"; };
 		1F7B71892A9D1B7D004E5A2E /* AVURLAsset+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVURLAsset+.swift"; sourceTree = "<group>"; };
 		1F7B718B2A9D1EA0004E5A2E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -447,6 +453,7 @@
 		1F3E9DD82AAEEA8E000DFB45 /* AppCore */ = {
 			isa = PBXGroup;
 			children = (
+				1F78D26C2AB8E3A7004BF12B /* DataModels */,
 				1F660F1C2A78172A0072925A /* Store */,
 				1F3E9DD92AAEEB49000DFB45 /* State */,
 				1F660F1F2A781EAB0072925A /* Reducer */,
@@ -563,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				1F4EC4E32A9E836F008701DE /* FiltersProvider.swift */,
+				1F78D26F2AB8E41A004BF12B /* AnimationsProvider.swift */,
 				1F5C7A0D2AAB9ABD003DD9E0 /* StickersProvider.swift */,
 				1F5C7A8D2AAB9BDF003DD9E0 /* Stickers */,
 				1F78833F2AA21F9700B2AA5F /* Filters */,
@@ -703,6 +711,7 @@
 				1F5FF8E52AA51F0100CF7B7F /* TextView */,
 				1F47FE612A8FB84B00E96210 /* CollageView */,
 				1F364F4F2AAE2C280032DEDA /* MaskEditor */,
+				1F78D2692AB8DA7B004BF12B /* ViewModifier */,
 				1F2E07DA2A92737B00A71926 /* Modifiers */,
 				1F47FE622A8FB94300E96210 /* SupportUtils */,
 				1FCF56102AA65FD800CC2355 /* ElementsЕransformer */,
@@ -774,6 +783,22 @@
 				1F78D23D2AB7956D004BF12B /* CurveType.swift */,
 			);
 			path = AnimationSettings;
+			sourceTree = "<group>";
+		};
+		1F78D2692AB8DA7B004BF12B /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				1F78D2672AB8DA53004BF12B /* AnimatorModifier.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		1F78D26C2AB8E3A7004BF12B /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				1F78D26D2AB8E3C2004BF12B /* ContentAnimation.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 		1FCF56102AA65FD800CC2355 /* ElementsЕransformer */ = {
@@ -917,6 +942,7 @@
 				1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */,
 				1F4F76C22A7E5418005374EB /* AddShapeElementView.swift in Sources */,
 				1F74F4752AB395CB00B93669 /* VideoTrimView.swift in Sources */,
+				1F78D2702AB8E41A004BF12B /* AnimationsProvider.swift in Sources */,
 				1F83E66B2AA9F7C1006A2704 /* NSTextAlignment+.swift in Sources */,
 				1F302C8B2A7F9EEB005956C0 /* TopBarView.swift in Sources */,
 				1F2B5CB02A88F5C700BAEE19 /* UIScreen+.swift in Sources */,
@@ -989,6 +1015,7 @@
 				1F574C032A8BFFFA00B0EC2E /* CollageReducer.swift in Sources */,
 				1F6869982A810E78006C2B6C /* UIImage+.swift in Sources */,
 				1F660F212A781EDC0072925A /* AppReducer.swift in Sources */,
+				1F78D26E2AB8E3C2004BF12B /* ContentAnimation.swift in Sources */,
 				1F26383A2A83B69900022E1C /* SharedContext.swift in Sources */,
 				1F47FE672A8FC87600E96210 /* GestureReducer.swift in Sources */,
 				1F682A6E2A9B78BC003F846C /* TransformsModifier.swift in Sources */,
@@ -997,6 +1024,7 @@
 				1F660F452A782E6B0072925A /* CGPoint+.swift in Sources */,
 				1F83E66F2AAA57C0006A2704 /* Sticker.swift in Sources */,
 				1F3E9DDD2AAF76B0000DFB45 /* ShapesTranslatorProtocol.swift in Sources */,
+				1F78D2682AB8DA53004BF12B /* AnimatorModifier.swift in Sources */,
 				1F7759662A97676B00A57060 /* CommonSliderView.swift in Sources */,
 				1F2D3F542A82C6C800EA6307 /* VideoPlayerView.swift in Sources */,
 				1F54DB312A9548CC0075DE94 /* ModifiedImage.swift in Sources */,
