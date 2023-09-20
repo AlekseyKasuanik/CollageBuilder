@@ -99,6 +99,9 @@
 		1F5FF8E42AA51E8100CF7B7F /* AttributedStringCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8E32AA51E8100CF7B7F /* AttributedStringCreator.swift */; };
 		1F5FF8E72AA51F2D00CF7B7F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8E62AA51F2D00CF7B7F /* TextView.swift */; };
 		1F5FF8E92AA51F4300CF7B7F /* TextUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FF8E82AA51F4300CF7B7F /* TextUIView.swift */; };
+		1F6018F72ABB900A0035E593 /* AnimationFrameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6018F62ABB900A0035E593 /* AnimationFrameSettings.swift */; };
+		1F6018F92ABB901E0035E593 /* AnimationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6018F82ABB901E0035E593 /* AnimationSettings.swift */; };
+		1F6018FB2ABB903D0035E593 /* AnimationsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6018FA2ABB903D0035E593 /* AnimationsCreator.swift */; };
 		1F623D1E2AACE03A00B149D0 /* StickerSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F623D1D2AACE03A00B149D0 /* StickerSelectorView.swift */; };
 		1F623D202AAD121D00B149D0 /* StickerEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F623D1F2AAD121D00B149D0 /* StickerEditorView.swift */; };
 		1F660F1E2A78174D0072925A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F660F1D2A78174D0072925A /* Store.swift */; };
@@ -248,6 +251,9 @@
 		1F5FF8E32AA51E8100CF7B7F /* AttributedStringCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringCreator.swift; sourceTree = "<group>"; };
 		1F5FF8E62AA51F2D00CF7B7F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		1F5FF8E82AA51F4300CF7B7F /* TextUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextUIView.swift; sourceTree = "<group>"; };
+		1F6018F62ABB900A0035E593 /* AnimationFrameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFrameSettings.swift; sourceTree = "<group>"; };
+		1F6018F82ABB901E0035E593 /* AnimationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSettings.swift; sourceTree = "<group>"; };
+		1F6018FA2ABB903D0035E593 /* AnimationsCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsCreator.swift; sourceTree = "<group>"; };
 		1F623D1D2AACE03A00B149D0 /* StickerSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerSelectorView.swift; sourceTree = "<group>"; };
 		1F623D1F2AAD121D00B149D0 /* StickerEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerEditorView.swift; sourceTree = "<group>"; };
 		1F660F1D2A78174D0072925A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -649,6 +655,16 @@
 			path = TextView;
 			sourceTree = "<group>";
 		};
+		1F6018F52ABB8FEA0035E593 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				1F6018F62ABB900A0035E593 /* AnimationFrameSettings.swift */,
+				1F6018F82ABB901E0035E593 /* AnimationSettings.swift */,
+				1F6018FA2ABB903D0035E593 /* AnimationsCreator.swift */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
 		1F660F1C2A78172A0072925A /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +713,7 @@
 				1F47FE612A8FB84B00E96210 /* CollageView */,
 				1F364F4F2AAE2C280032DEDA /* MaskEditor */,
 				1F2E07DA2A92737B00A71926 /* Modifiers */,
+				1F6018F52ABB8FEA0035E593 /* Animator */,
 				1F47FE622A8FB94300E96210 /* SupportUtils */,
 				1FCF56102AA65FD800CC2355 /* ElementsЕransformer */,
 				1F47FE5E2A8FB6BE00E96210 /* ShapesTranslator */,
@@ -902,11 +919,14 @@
 				1F83E66B2AA9F7C1006A2704 /* NSTextAlignment+.swift in Sources */,
 				1F302C8B2A7F9EEB005956C0 /* TopBarView.swift in Sources */,
 				1F2B5CB02A88F5C700BAEE19 /* UIScreen+.swift in Sources */,
+				1F6018F92ABB901E0035E593 /* AnimationSettings.swift in Sources */,
 				1F5C7A0E2AAB9ABD003DD9E0 /* StickersProvider.swift in Sources */,
 				1F364F512AAE2C310032DEDA /* MaskEditor.swift in Sources */,
 				1F7B718C2A9D1EA0004E5A2E /* UIView+.swift in Sources */,
 				1F2B5CB22A88FCD300BAEE19 /* CIImage+.swift in Sources */,
+				1F6018F72ABB900A0035E593 /* AnimationFrameSettings.swift in Sources */,
 				1F52FD912A81744B005ECBDD /* RectExtractor.swift in Sources */,
+				1F6018FB2ABB903D0035E593 /* AnimationsCreator.swift in Sources */,
 				1F84C7F52AB46FD60006D05E /* TrimSelectorView.swift in Sources */,
 				1F660F312A7829700072925A /* ShapeElement.swift in Sources */,
 				1F52FD8B2A8156A6005ECBDD /* Media.swift in Sources */,
