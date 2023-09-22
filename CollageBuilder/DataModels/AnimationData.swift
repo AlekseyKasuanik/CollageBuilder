@@ -13,3 +13,15 @@ struct AnimationData: Identifiable {
     
     var id: String { settings.id }
 }
+
+extension AnimationData: Hashable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+}

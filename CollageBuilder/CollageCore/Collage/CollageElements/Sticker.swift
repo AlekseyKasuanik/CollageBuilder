@@ -13,6 +13,7 @@ struct Sticker: Codable, Identifiable {
     var transforms: Transforms = .init(position: .init(x: 0.5, y: 0.5))
     var relativeInitialSize: CGSize = .init(side: 0.2)
     var blendMode: ContentBlendMode = .normal
+    var animation: AnimationSettings?
     var zPosition: Int 
     
     @CodableWrapper var image: UIImage
