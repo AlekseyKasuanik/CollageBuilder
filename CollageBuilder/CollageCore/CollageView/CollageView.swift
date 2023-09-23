@@ -30,6 +30,7 @@ struct CollageView<ViewType: View>: View {
                     StickerItemView(
                         sticker: sticker,
                         collageSize: collageSize,
+                        isPlaying: isPlaying,
                         strokeColor: isSelected ? strokeColor : .clear,
                         strokeWidth: strokeWidth
                     )
@@ -40,6 +41,7 @@ struct CollageView<ViewType: View>: View {
                     TextItemView(
                         settings: text,
                         collageSize: collageSize,
+                        isPlaying: isPlaying,
                         strokeColor: isSelected ? strokeColor : .clear,
                         strokeWidth: strokeWidth
                     )

@@ -52,6 +52,9 @@ struct TextReducer: TextReducerProtocol {
             
         case .changeZPosition(let index):
             newText.zPosition = index
+            
+        case .changeAnimation(let animation):
+            newText.animation = animation
         }
         
         return newText

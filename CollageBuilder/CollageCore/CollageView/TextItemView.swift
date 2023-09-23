@@ -11,6 +11,7 @@ struct TextItemView: View {
     
     var settings: TextSettings
     var collageSize: CGSize
+    var isPlaying: Bool
     
     var strokeColor: UIColor
     var strokeWidth: CGFloat
@@ -26,9 +27,11 @@ struct TextItemView: View {
                 RoundedRectangle(cornerRadius: settings.cornerRadius)
                     .stroke(Color(strokeColor), lineWidth: strokeWidth)
             }
+            .frameAnimation(animate: isPlaying,
+                            animation: settings.animation)
             .position(x: collageSize.width * settings.transforms.position.x,
                       y: collageSize.height * settings.transforms.position.y)
             .zIndex(Double(settings.zPosition))
-        
+
     }
 }

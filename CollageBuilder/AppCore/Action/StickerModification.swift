@@ -11,4 +11,5 @@ enum StickerModification {
     case changeMask(UIImage)
     case changeBlendMode(ContentBlendMode)
     case changeZPosition(Int)
+    case changeAnimation(AnimationSettings?)
 }

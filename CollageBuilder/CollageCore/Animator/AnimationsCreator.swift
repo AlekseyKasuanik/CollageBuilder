@@ -38,7 +38,10 @@ struct AnimationsCreator: AnimationsCreatorProtocol {
         var resultSettings = [AnimationFrameSettings]()
         
         for try await line in url.lines {
-            let components = line.components(separatedBy: ";")
+            let components = line
+                .replacingOccurrences(of: ",", with: ".")
+                .components(separatedBy: ";")
+            
             if let settings = convert(components: components) {
                 resultSettings.append(settings)
             }

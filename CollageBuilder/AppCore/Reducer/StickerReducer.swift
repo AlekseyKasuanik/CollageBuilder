@@ -28,8 +28,11 @@ struct StickerReducer: StickerReducerProtocol {
             
         case .changeZPosition(let index):
             newState.zPosition = index
+            
+        case .changeAnimation(let animation):
+            newState.animation = animation
         }
-        
+
         return newState
     }
     

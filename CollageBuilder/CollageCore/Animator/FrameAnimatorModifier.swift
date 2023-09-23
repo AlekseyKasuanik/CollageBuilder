@@ -28,7 +28,6 @@ fileprivate struct FrameAnimatorModifier: AnimatableModifier {
         }
         
         DispatchQueue.main.async {
-            print(animatableData)
             let frame = Int(animatableData * (Double(animation.frames.count) - 1))
             settings = animation.frames[frame]
         }

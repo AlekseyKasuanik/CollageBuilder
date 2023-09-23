@@ -11,6 +11,7 @@ struct StickerItemView: View {
     
     var sticker: Sticker
     var collageSize: CGSize
+    var isPlaying: Bool
     
     var strokeColor: UIColor
     var strokeWidth: CGFloat
@@ -27,6 +28,8 @@ struct StickerItemView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(strokeColor), lineWidth: strokeWidth)
             }
+            .frameAnimation(animate: isPlaying,
+                            animation: sticker.animation)
             .position(x: collageSize.width * sticker.transforms.position.x,
                       y: collageSize.height * sticker.transforms.position.y)
             .zIndex(Double(sticker.zPosition))
