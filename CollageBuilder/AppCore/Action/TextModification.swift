@@ -19,4 +19,5 @@ enum TextModification {
     case changeCornerRadius(CGFloat)
     case changeBlendMode(ContentBlendMode)
     case changeZPosition(Int)
+    case changeAnimation(AnimationSettings?)
 }

@@ -24,6 +24,7 @@ struct TextSettings: Codable, Identifiable {
     var transforms: Transforms = .init(position: .init(x: 0.5, y: 0.5))
     var cornerRadius: CGFloat = 5
     var blendMode: ContentBlendMode = .normal
+    var animation: AnimationSettings?
     
     @CodableWrapper var textColor: UIColor = .black
     @CodableWrapper var backgroundColor: UIColor = .clear

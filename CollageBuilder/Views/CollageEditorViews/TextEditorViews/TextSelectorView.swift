@@ -45,12 +45,25 @@ struct TextSelectorView: View {
                 createAppearanceEditor(for: text)
             }
             
+            Section("Animation") {
+                animation
+            }
+            
             Section("manage") {
                 remove
             }
+            
+            
         } else {
             EmptyView()
         }
+    }
+    
+    private var animation: some View {
+        AnimationSelectorView(animation: .init(
+            get: { text?.animation },
+            set: { dispatch(.changeAnimation($0)) }
+        ))
     }
     
     private var commonSettings: some View {

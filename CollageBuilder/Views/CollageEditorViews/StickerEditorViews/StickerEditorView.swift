@@ -31,6 +31,17 @@ struct StickerEditorView: View {
                     .presentationBackground(.thinMaterial)
             }
         }
+        
+        Section("Animation") {
+            animation
+        }
+    }
+    
+    private var animation: some View {
+        AnimationSelectorView(animation: .init(
+            get: { sticker?.animation },
+            set: { dispatch(.changeAnimation($0)) }
+        ))
     }
     
     private var commonSettings: some View {
