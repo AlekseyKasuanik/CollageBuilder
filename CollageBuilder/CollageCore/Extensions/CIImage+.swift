@@ -21,6 +21,12 @@ extension CIImage {
         transformed(by: CGAffineTransform(scaleX: scale, y: scale))
     }
     
+    func scaled(to size: CGSize) -> CIImage  {
+        let scaleX = size.width / self.extent.width
+        let scaleY = size.height / self.extent.height
+        return self.scaled(by: scaleX, y: scaleY)
+    }
+    
     func withModifiers(_ modifiers: [Modifier]) -> CIImage {
         modifiers.reduce(self) { resultImage, modifier in
             modifier.modify(resultImage)

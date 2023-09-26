@@ -11,6 +11,8 @@ import AVFoundation
 struct Media: Codable {
     
     @CodableWrapper var resource: Resource
+    var maskSettings: MaskSettings?
+    
     private(set) var id = UUID().uuidString
     
     var image: CIImage? {

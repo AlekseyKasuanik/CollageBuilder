@@ -165,6 +165,10 @@
 		1F84C7F92AB481CE0006D05E /* VideoSettingsModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C7F82AB481CE0006D05E /* VideoSettingsModification.swift */; };
 		1F84C7FB2AB4836B0006D05E /* VideoSettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C7FA2AB4836B0006D05E /* VideoSettingsReducer.swift */; };
 		1F85E2CC2AA9195B00D7E7A7 /* AddTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */; };
+		1FC2E01F2AC3664B00E514F2 /* MaskSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2E01E2AC3664B00E514F2 /* MaskSettings.swift */; };
+		1FC2E0222AC366BD00E514F2 /* BackgroundRemoval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2E0212AC366BD00E514F2 /* BackgroundRemoval.swift */; };
+		1FC2E0242AC3700200E514F2 /* MaskSettingsModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2E0232AC3700200E514F2 /* MaskSettingsModification.swift */; };
+		1FC2E0262AC3739500E514F2 /* MaskSettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2E0252AC3739500E514F2 /* MaskSettingsReducer.swift */; };
 		1FCF56122AA6608400CC2355 /* ElementsTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */; };
 		1FED663C2A7FB98F009FF7A4 /* DataImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */; };
 		1FED663E2A7FBC9C009FF7A4 /* DataExporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED663D2A7FBC9C009FF7A4 /* DataExporterView.swift */; };
@@ -331,6 +335,10 @@
 		1F84C7F82AB481CE0006D05E /* VideoSettingsModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSettingsModification.swift; sourceTree = "<group>"; };
 		1F84C7FA2AB4836B0006D05E /* VideoSettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSettingsReducer.swift; sourceTree = "<group>"; };
 		1F85E2CB2AA9195B00D7E7A7 /* AddTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextView.swift; sourceTree = "<group>"; };
+		1FC2E01E2AC3664B00E514F2 /* MaskSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSettings.swift; sourceTree = "<group>"; };
+		1FC2E0212AC366BD00E514F2 /* BackgroundRemoval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRemoval.swift; sourceTree = "<group>"; };
+		1FC2E0232AC3700200E514F2 /* MaskSettingsModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSettingsModification.swift; sourceTree = "<group>"; };
+		1FC2E0252AC3739500E514F2 /* MaskSettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskSettingsReducer.swift; sourceTree = "<group>"; };
 		1FCF56112AA6608400CC2355 /* ElementsTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTransformer.swift; sourceTree = "<group>"; };
 		1FED663B2A7FB98F009FF7A4 /* DataImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporterView.swift; sourceTree = "<group>"; };
 		1FED663D2A7FBC9C009FF7A4 /* DataExporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExporterView.swift; sourceTree = "<group>"; };
@@ -566,6 +574,7 @@
 				1F52FD8A2A8156A6005ECBDD /* Media.swift */,
 				1F47FE572A8FB38000E96210 /* Resource.swift */,
 				1F562BB62A882C7B00302C22 /* Video.swift */,
+				1FC2E01E2AC3664B00E514F2 /* MaskSettings.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -744,6 +753,7 @@
 				1F83E6652AA9E53A006A2704 /* TextReducer.swift */,
 				1F47FE662A8FC87600E96210 /* GestureReducer.swift */,
 				1F7AE9A82AB5D0D600E45462 /* MediaReducer.swift */,
+				1FC2E0252AC3739500E514F2 /* MaskSettingsReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -758,6 +768,7 @@
 				1F5C7A082AAB54FC003DD9E0 /* StickerModification.swift */,
 				1F84C7F62AB481030006D05E /* MediaModification.swift */,
 				1F84C7F82AB481CE0006D05E /* VideoSettingsModification.swift */,
+				1FC2E0232AC3700200E514F2 /* MaskSettingsModification.swift */,
 				1F682A6B2A9B74FE003F846C /* EditMode.swift */,
 			);
 			path = Action;
@@ -772,6 +783,7 @@
 				1F364F4F2AAE2C280032DEDA /* MaskEditor */,
 				1F2E07DA2A92737B00A71926 /* Modifiers */,
 				1F6018F52ABB8FEA0035E593 /* Animator */,
+				1FC2E0202AC366B200E514F2 /* BackgroundRemoval */,
 				1F47FE622A8FB94300E96210 /* SupportUtils */,
 				1FCF56102AA65FD800CC2355 /* ElementsЕransformer */,
 				1F47FE5E2A8FB6BE00E96210 /* ShapesTranslator */,
@@ -832,6 +844,14 @@
 				1F7883472AA24E0700B2AA5F /* cube3.png */,
 			);
 			path = Filters;
+			sourceTree = "<group>";
+		};
+		1FC2E0202AC366B200E514F2 /* BackgroundRemoval */ = {
+			isa = PBXGroup;
+			children = (
+				1FC2E0212AC366BD00E514F2 /* BackgroundRemoval.swift */,
+			);
+			path = BackgroundRemoval;
 			sourceTree = "<group>";
 		};
 		1FCF56102AA65FD800CC2355 /* ElementsЕransformer */ = {
@@ -951,6 +971,7 @@
 				1F47FE6B2A8FE4E600E96210 /* CollageSettings.swift in Sources */,
 				1F660F442A782E6B0072925A /* CGSize+.swift in Sources */,
 				1F47FE4C2A8F9B2B00E96210 /* ShapeModification.swift in Sources */,
+				1FC2E0242AC3700200E514F2 /* MaskSettingsModification.swift in Sources */,
 				1F347B5D2A79950C008915BF /* ShapesTranslator.swift in Sources */,
 				1F4EC4E42A9E836F008701DE /* FiltersProvider.swift in Sources */,
 				1F660F3A2A782D640072925A /* GestureUIView.swift in Sources */,
@@ -961,12 +982,14 @@
 				1F660F352A782D010072925A /* AppStorePreview.swift in Sources */,
 				1F5FF8E92AA51F4300CF7B7F /* TextUIView.swift in Sources */,
 				1F562BB72A882C7B00302C22 /* Video.swift in Sources */,
+				1FC2E01F2AC3664B00E514F2 /* MaskSettings.swift in Sources */,
 				1F52FD8F2A81685D005ECBDD /* MediaPickerView.swift in Sources */,
 				1F7B718A2A9D1B7D004E5A2E /* AVURLAsset+.swift in Sources */,
 				1F660F3C2A782D820072925A /* GestureState.swift in Sources */,
 				1F660F292A781F8C0072925A /* AppAction.swift in Sources */,
 				1F5C7A092AAB54FC003DD9E0 /* StickerModification.swift in Sources */,
 				1F5FF8E42AA51E8100CF7B7F /* AttributedStringCreator.swift in Sources */,
+				1FC2E0222AC366BD00E514F2 /* BackgroundRemoval.swift in Sources */,
 				1F5C7A072AAB52C6003DD9E0 /* Optional+.swift in Sources */,
 				1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */,
 				1F660F1E2A78174D0072925A /* Store.swift in Sources */,
@@ -1018,6 +1041,7 @@
 				1F83E6642AA9E456006A2704 /* TextModification.swift in Sources */,
 				1F2E07D92A92730700A71926 /* Blur.swift in Sources */,
 				1F660F4A2A78324D0072925A /* ControlPointsView.swift in Sources */,
+				1FC2E0262AC3739500E514F2 /* MaskSettingsReducer.swift in Sources */,
 				1F5DF5C82A76726A00430AF1 /* CollageBuilderView.swift in Sources */,
 				1F47FE582A8FB38000E96210 /* Resource.swift in Sources */,
 				1F660F3E2A782DEF0072925A /* GridView.swift in Sources */,

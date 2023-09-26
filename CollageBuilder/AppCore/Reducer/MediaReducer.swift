@@ -15,6 +15,7 @@ protocol MediaReducerProtocol {
 struct MediaReducer: MediaReducerProtocol {
     
     private(set) var videoSettingsReducer: VideoSettingsReducerProtocol
+    private(set) var maskSettingsReducer: MaskSettingsReducerProtocol
     
     mutating func reduce(_ currentState: Media?,
                          _ action: MediaModification) -> Media? {
@@ -27,7 +28,11 @@ struct MediaReducer: MediaReducerProtocol {
             newState = media
         case .changeVideoSettings(let action):
             newState = changeSettings(in: newState, action: action)
+        case .createMask(let action):
+            let maskSettings = maskSettingsReducer.reduce(newState?.maskSettings, action)
+            newState?.maskSettings = maskSettings
         }
+        
         return newState
         
     }
