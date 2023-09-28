@@ -32,6 +32,7 @@ struct ShapeItemView: View {
         fullSize: .zero
     )
     @State private var filtersModifier = FiltersModifier()
+    @State private var maskModifier = MaskModifier()
     
     @State private var changesHandler = PassthroughSubject<Void, Never>()
     @State private var modifiers = [Modifier]()
@@ -72,6 +73,7 @@ struct ShapeItemView: View {
         .onChange(of: shape.adjustments) { _ in changesHandler.send() }
         .onChange(of: shape.transforms) { setupTransformsModifier($0) }
         .onChange(of: shape.filter) { setupFiltersModifier($0) }
+        .onChange(of: shape.media?.maskSettings) { setupMaskModifier($0) }
         .onChange(of: shape.fitRect) {
             transformsModifier.fitSize = .init(
                 width: size.width * $0.width * screenScale,
@@ -103,6 +105,7 @@ struct ShapeItemView: View {
             height: size.height * shape.fitRect.height * screenScale
         )
         filtersModifier.filter = shape.filter
+        maskModifier.mask = shape.media?.maskSettings
         
         changeModifiers()
     }
@@ -124,6 +127,7 @@ struct ShapeItemView: View {
             adjustmentsModifier,
             blurModifier,
             filtersModifier,
+            maskModifier,
             transformsModifier
         ]
     }
@@ -139,6 +143,14 @@ struct ShapeItemView: View {
     private func setupFiltersModifier(_ filter: ColorFilter?) {
         if filtersModifier.filter != filter {
             filtersModifier.filter = filter
+        }
+        
+        changeModifiers()
+    }
+    
+    private func setupMaskModifier(_ mask: MaskSettings?) {
+        if maskModifier.mask != mask {
+            maskModifier.mask = mask
         }
         
         changeModifiers()

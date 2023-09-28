@@ -12,7 +12,7 @@ protocol BackgroundRemovalProtocol {
     func crateMask(for image: UIImage) async throws -> UIImage?
 }
 
-struct BackgroundRemoval {
+struct BackgroundRemoval: BackgroundRemovalProtocol {
     
     let context: CIContext
     
@@ -23,7 +23,7 @@ struct BackgroundRemoval {
         request.qualityLevel = .accurate
         
         let handler = VNImageRequestHandler(ciImage: ciImage)
-        try handler.perform([request])
+        try! handler.perform([request])
         
         guard let pixelBuffer = request.results?.first?.pixelBuffer else {
             return nil
@@ -31,8 +31,11 @@ struct BackgroundRemoval {
         
         let mask = CIImage(cvPixelBuffer: pixelBuffer)
             .scaled(to: ciImage.extent.size)
+            .toAlphaMask()
         
-        return UIImage(ciImage: mask, context: context)
+        let uiIMage = UIImage(ciImage: mask, context: context)
+        
+        return uiIMage
         
     }
 }

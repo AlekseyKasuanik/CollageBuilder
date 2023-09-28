@@ -109,5 +109,20 @@ extension CIImage {
     func translatedToZero() -> CIImage {
         self.translated(by: -extent.minX, y: -extent.minY)
     }
+    
+    func toAlphaMask() -> CIImage {
+        let maskFilter = CIFilter.maskToAlpha()
+        maskFilter.inputImage = self
+        
+        return maskFilter.outputImage ?? self
+    }
+    
+    func withAlphaMask(_ mask: CIImage) -> CIImage {
+        let blendFilter = CIFilter.blendWithAlphaMask()
+        blendFilter.inputImage = self
+        blendFilter.maskImage = mask
+        
+        return blendFilter.outputImage ?? self
+    }
 }
 

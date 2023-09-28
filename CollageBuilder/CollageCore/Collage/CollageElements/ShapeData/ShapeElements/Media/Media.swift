@@ -52,6 +52,8 @@ struct Media: Codable {
 
 extension Media: Equatable {
     static func == (lhs: Media, rhs: Media) -> Bool {
-        lhs.id == rhs.id && lhs.videoSettings == rhs.videoSettings
+        lhs.id == rhs.id &&
+        lhs.videoSettings == rhs.videoSettings &&
+        lhs.maskSettings == rhs.maskSettings
     }
 }

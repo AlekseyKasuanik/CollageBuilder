@@ -10,5 +10,5 @@ import Foundation
 enum MediaModification {
     case replace(Media?)
     case changeVideoSettings(VideoSettingsModification)
-    case createMask(MaskSettingsModification)
+    case changeMask(MaskSettingsModification)
 }

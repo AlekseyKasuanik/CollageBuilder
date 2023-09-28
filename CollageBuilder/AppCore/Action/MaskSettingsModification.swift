@@ -9,4 +9,5 @@ import SwiftUI
 
 enum MaskSettingsModification {
     case createMask(originalImage: UIImage)
+    case change(UIImage?)
 }

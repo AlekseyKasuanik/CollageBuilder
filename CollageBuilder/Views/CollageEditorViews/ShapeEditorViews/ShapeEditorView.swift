@@ -46,6 +46,19 @@ struct ShapeEditorView: View {
             }
         }
         
+        if case .image(let image) = shape?.media?.resource {
+            Section("background removal") {
+                Toggle("remove", isOn: .init(
+                    get: { shape?.media?.maskSettings != nil },
+                    set: {
+                        $0
+                        ? dispatchMask(.createMask(originalImage: image))
+                        : dispatchMask(.change(nil))
+                    }
+                ))
+            }
+        }
+        
         Section("Blur") {
             if let shape {
                 BlurSelectorView(blur: .init(
@@ -75,6 +88,7 @@ struct ShapeEditorView: View {
                 )
             }
         }
+        
         Section("manage") {
             remove
         }
@@ -155,6 +169,10 @@ struct ShapeEditorView: View {
     private func dispatchSettings(_ action: VideoSettingsModification) {
         dispatch(.changeMedia(.changeVideoSettings(action)))
     }
+        
+        private func dispatchMask(_ action: MaskSettingsModification) {
+            dispatch(.changeMedia(.changeMask(action)))
+        }
     
     private func dispatch(_ action: ShapeModification) {
         guard let id = store.state.selectedElement?.shapeId else {

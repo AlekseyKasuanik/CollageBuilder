@@ -28,7 +28,7 @@ struct MediaReducer: MediaReducerProtocol {
             newState = media
         case .changeVideoSettings(let action):
             newState = changeSettings(in: newState, action: action)
-        case .createMask(let action):
+        case .changeMask(let action):
             let maskSettings = maskSettingsReducer.reduce(newState?.maskSettings, action)
             newState?.maskSettings = maskSettings
         }

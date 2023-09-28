@@ -76,6 +76,7 @@
 		1F574C012A8BF13500B0EC2E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C002A8BF13500B0EC2E /* UIColor+.swift */; };
 		1F574C032A8BFFFA00B0EC2E /* CollageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */; };
 		1F574C072A8C11AC00B0EC2E /* CollageModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F574C062A8C11AC00B0EC2E /* CollageModification.swift */; };
+		1F591DED2AC5C21F00EB94CD /* MaskModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F591DEC2AC5C21F00EB94CD /* MaskModifier.swift */; };
 		1F5C7A072AAB52C6003DD9E0 /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7A062AAB52C6003DD9E0 /* Optional+.swift */; };
 		1F5C7A092AAB54FC003DD9E0 /* StickerModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7A082AAB54FC003DD9E0 /* StickerModification.swift */; };
 		1F5C7A0B2AAB558C003DD9E0 /* StickerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5C7A0A2AAB558C003DD9E0 /* StickerReducer.swift */; };
@@ -244,6 +245,7 @@
 		1F574C002A8BF13500B0EC2E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		1F574C022A8BFFFA00B0EC2E /* CollageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageReducer.swift; sourceTree = "<group>"; };
 		1F574C062A8C11AC00B0EC2E /* CollageModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageModification.swift; sourceTree = "<group>"; };
+		1F591DEC2AC5C21F00EB94CD /* MaskModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskModifier.swift; sourceTree = "<group>"; };
 		1F5C7A062AAB52C6003DD9E0 /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		1F5C7A082AAB54FC003DD9E0 /* StickerModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerModification.swift; sourceTree = "<group>"; };
 		1F5C7A0A2AAB558C003DD9E0 /* StickerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerReducer.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				1F24ABAF2A968F5800788F74 /* AdjustmentsModifier.swift */,
 				1F682A6D2A9B78BC003F846C /* TransformsModifier.swift */,
 				1F4EC4D92A9E705A008701DE /* FiltersModifier.swift */,
+				1F591DEC2AC5C21F00EB94CD /* MaskModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -1088,6 +1091,7 @@
 				1F26383A2A83B69900022E1C /* SharedContext.swift in Sources */,
 				1F47FE672A8FC87600E96210 /* GestureReducer.swift in Sources */,
 				1F682A6E2A9B78BC003F846C /* TransformsModifier.swift in Sources */,
+				1F591DED2AC5C21F00EB94CD /* MaskModifier.swift in Sources */,
 				1F4E86812A84FDBC0019AAB3 /* VideoTrim.swift in Sources */,
 				1F5DF5C62A76726A00430AF1 /* CollageBuilderApp.swift in Sources */,
 				1F660F452A782E6B0072925A /* CGPoint+.swift in Sources */,

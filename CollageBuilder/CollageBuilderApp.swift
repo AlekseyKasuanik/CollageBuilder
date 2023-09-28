@@ -37,7 +37,8 @@ struct CollageBuilderApp: App {
                                           texts: [],
                                           stickers: [],
                                           id: UUID().uuidString)),
-            reducer: AppReducerBuilder.reducer
+            reducer: AppReducerBuilder.reducer,
+            backgroundRemoval: BackgroundRemoval(context: SharedContext.context)
         )
         
         return store
